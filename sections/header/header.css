@@ -180,6 +180,21 @@
   .mobile-only {
     display: flex !important;
   }
+
+  .nav-book-btn-mobile {
+    padding: 8px 16px !important;
+    font-size: 0.85rem !important;
+    height: 36px !important;
+    border-radius: 18px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(224, 185, 115, 0.3);
+  }
+
+  .header-actions {
+    gap: 8px !important;
+  }
 }
 
 /* ========== HEADER ========== */

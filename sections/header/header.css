@@ -339,6 +339,8 @@
   align-items: center;
   justify-content: space-between;
   height: 100%;
+  position: relative;
+  /* Container for active marker if needed, but we'll try to keep it relative to link */
 }
 
 @media (min-width: 768px) {
@@ -351,6 +353,7 @@
   height: 45px;
   width: auto;
   flex-shrink: 0;
+  z-index: 2;
 }
 
 @media (min-width: 768px) {
@@ -367,12 +370,11 @@
 @media (min-width: 1024px) {
   .main-nav {
     display: flex;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    top: 50%;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    gap: 2.5vw;
     margin: 0;
-    width: max-content;
     padding: 2px;
   }
 
@@ -462,6 +464,7 @@
   align-items: center;
   gap: 1rem;
   flex-shrink: 0;
+  z-index: 2;
 }
 
 @media (min-width: 768px) {

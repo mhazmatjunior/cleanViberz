@@ -4,7 +4,8 @@
   overflow: hidden;
   padding: 10vh 1.5vw;
   margin-top: 5vh;
-  background: #0a0500;
+  background: transparent;
+  /* Allow hero-bg-overlay to show */
 }
 
 /* Background Image Full Width */
@@ -40,33 +41,61 @@
 .booking-cta-content {
   position: relative;
   z-index: 2;
-  max-width: 60vw;
-  margin-left: 10vw;
+  width: 712px;
+  /* Precision from user: 711.8px */
+  min-height: 393px;
+  /* Precision from user: 393.0px */
+  max-width: 90vw;
+  margin-left: 2.5vw;
   display: flex;
   flex-direction: column;
-  min-height: 45vh;
+  justify-content: center;
   text-align: left;
+}
+
+.booking-eyebrow {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1.5vh;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 /* Typography */
 .booking-cta-content h2 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 1.05;
-  margin-bottom: 3vh;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 2.5vh;
+  letter-spacing: -0.01em;
 }
 
 .booking-cta-content .lead {
-  font-size: clamp(1rem, 2.5vmin, 1.125rem);
+  font-size: clamp(0.95rem, 2vmin, 1.1rem);
   max-width: 50vw;
-  color: #d9d9d9;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
   margin-bottom: 4vh;
 }
 
 /* Button */
 .booking-cta .btn-primary {
-  padding: 18px 44px;
-  font-size: 1.05rem;
-  border-radius: 40px;
+  background: #c9a55c;
+  color: #fff;
+  padding: 18px 48px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  border-radius: 150px;
+  /* Precision from user: 150px */
+  border: none;
+  display: inline-block;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.booking-cta .btn-primary:hover {
+  background: #b9934a;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
 
 /* Desktop spacing adjustment */

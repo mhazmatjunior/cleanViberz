@@ -159,6 +159,8 @@
 
 .features-media {
   order: 2;
+  display: grid;
+  place-items: stretch;
   position: relative;
   width: calc(100% + (50vw - 50%));
   min-height: 60vh;
@@ -171,10 +173,8 @@
 .features-media::before,
 .features-media::after {
   content: "";
-  position: absolute;
-  /* border-left: 1px solid rgba(224, 185, 115, 0.3);
-  border-top: 1px solid rgba(224, 185, 115, 0.3);
-  border-bottom: 1px solid rgba(224, 185, 115, 0.3); */
+  grid-area: 1 / 1;
+  /* position: relative; - Pseudo-elements are still absolute relative to parent grid, but we can't easily avoid this without extra div markers. We'll leave as is if not structural. */
   border-right: 0;
   border-radius: 380px 0 0 380px;
   pointer-events: none;

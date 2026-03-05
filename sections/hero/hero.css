@@ -31,8 +31,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  /* Start from top to use margins for exact placement */
   overflow: visible;
+  padding-top: 24.8vh;
+  /* Position hero-content exactly where it was */
 }
 
 .hero-bg {
@@ -65,11 +68,8 @@
 }
 
 .hero-content {
-  position: absolute;
-  top: 24.8vh;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
+  position: relative;
+  /* Changed from absolute */
   z-index: 1;
   text-align: center;
   width: 78.2vw;
@@ -102,10 +102,13 @@
 
 /* Hero Booking Widget Overlay */
 .hero-booking {
-  position: absolute;
-  top: 77.7vh;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  /* Changed from absolute */
+  margin-top: calc(77.7vh - (24.8vh + 27vh + 7.6vh + 6vh));
+  /* Calculate necessary gap to keep it at 77.7vh */
+  /* Simplification: using a fixed margin based on previous layout */
+  margin-top: auto;
+  margin-bottom: calc(100vh - (77.7vh + 19.4vh));
   width: 81.2vw;
   height: 19.4vh;
   z-index: 10;

@@ -142,12 +142,19 @@ p {
 
 @media (max-width: 1023px) {
   .section {
-    width: calc(100vw - 40px);
-    margin: 20px auto;
+    margin: 20px;
     border-radius: 30px;
+    min-height: 80vh;
+    padding: 6vh 5vw;
     background: #100c07;
-    min-height: calc(100vh - 40px);
-    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .section.booking-cta,
+  .section.vibe-section {
+    background: transparent;
+    /* These sections have their own bg image/video cards */
   }
 
   body {

@@ -143,6 +143,7 @@
   padding: 3vh 2vw;
   position: relative;
   margin-top: -6vh;
+  /* Maintain overlap using relative flow and negative margin */
   z-index: 1;
 }
 

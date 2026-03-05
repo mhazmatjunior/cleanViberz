@@ -21,10 +21,9 @@
   align-items: center;
   justify-content: space-between;
   gap: 0;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: 0 auto;
+  margin-top: calc(-7.8vh / 2);
+  /* Floating effect using half its height */
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.45) 100%);
   backdrop-filter: blur(40px) brightness(95%) saturate(150%);
   -webkit-backdrop-filter: blur(40px) brightness(95%) saturate(150%);

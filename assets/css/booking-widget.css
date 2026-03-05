@@ -22,8 +22,9 @@
   justify-content: space-between;
   gap: 0;
   margin: 0 auto;
-  margin-top: calc(-7.8vh / 2);
-  /* Floating effect using half its height */
+  /* Floating effect handled by relative positioning since it's now a sibling */
+  position: relative;
+  top: calc(7.8vh / 2);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.45) 100%);
   backdrop-filter: blur(40px) brightness(95%) saturate(150%);
   -webkit-backdrop-filter: blur(40px) brightness(95%) saturate(150%);
@@ -146,7 +147,8 @@
   justify-content: center;
   width: clamp(40px, 8vh, 60px);
   aspect-ratio: 1;
-  background: linear-gradient(135deg, #c9a55c 0%, #a07d3a 100%);
+  background: linear-gradient(135deg, #e0b973 0%, #a07d3a 100%);
+  /* RESTORED GOLDEN THEME */
   border: none;
   border-radius: 50%;
   color: #fff;
@@ -164,50 +166,92 @@
 
 .btn-submit-circle:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(201, 165, 92, 0.4);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 @media (max-width: 1023px) {
   .booking-widget {
-    padding: 2.5vh 1.5vw;
-    border-radius: 30px;
+    padding: 4vh 5vw;
+    border-radius: 40px;
     height: auto;
-    min-height: 120px;
+    min-height: 150px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   }
 
   .booking-tabs {
-    width: 85vw;
-    height: 6vh;
-    padding: 2px;
+    width: 92% !important;
+    /* FLUID WIDTH FOR GALAXY FOLD */
+    max-width: 400px;
+    height: auto;
+    min-height: 50px;
+    padding: 4px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 5px;
+    /* TIGHTER GAP */
+    justify-content: center;
+    scrollbar-width: none;
+    margin: 0 auto -25px auto !important;
+    /* OVERLAP THE FORM */
+    position: relative;
+    z-index: 30;
+  }
+
+  .booking-tabs::-webkit-scrollbar {
+    display: none;
   }
 
   .chip {
-    font-size: 0.9rem;
-    padding: 0 1vw;
+    font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+    /* FLUID FONT SIZE */
+    padding: 0 10px;
+    min-width: 0;
+    /* ALLOW SHRINKING */
+    height: 36px;
+    flex: 1;
+    /* EQUAL FLUID WIDTH */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
   }
 
   .booking-form {
-    padding-top: 1vh;
-    gap: 0.5vh;
+    padding: 35px 10px 5px;
+    /* INCREASED TOP PADDING FOR SPACE */
+    gap: 15px;
   }
 
   .form-group {
-    padding: 0.5vh 1vw;
-    align-items: center;
-    text-align: center;
+    padding: 0;
+    align-items: flex-start;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding-bottom: 8px;
+  }
+
+  .form-group:last-of-type {
+    border-bottom: none;
   }
 
   .form-group label {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+    font-weight: 700;
   }
 
   .form-group input {
-    font-size: 0.8rem;
-    text-align: center;
+    font-size: 1rem;
+    text-align: left;
+    color: #666;
+    width: 100%;
   }
 
   .btn-submit-circle {
-    width: 45px;
-    margin: 1vh auto;
+    width: 54px;
+    height: 54px;
+    margin: 10px auto 0;
   }
 }

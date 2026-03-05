@@ -30,6 +30,7 @@ html {
   -ms-overflow-style: none;
   /* IE and Old Edge */
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 @media (max-width: 767px) {
@@ -50,6 +51,8 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 img {
@@ -142,13 +145,16 @@ p {
 
 @media (max-width: 1023px) {
   .section {
-    margin: 20px;
+    margin: 5vh 20px;
     border-radius: 30px;
     min-height: 80vh;
     padding: 6vh 5vw;
     background: #100c07;
     position: relative;
     overflow: hidden;
+    width: auto;
+    /* Allow margin to work without pushing past 100vw */
+    max-width: 100%;
   }
 
   .section.booking-cta,

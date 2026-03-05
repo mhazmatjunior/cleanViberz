@@ -1,0 +1,95 @@
+/* ========== MEAL PREP MAIN PAGE ========== */
+.meal-prep-banner {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+}
+.meal-prep-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.meal-prep-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.7);
+}
+.meal-prep-header-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  color: #fff;
+  padding: 4rem 1.5rem 3rem 1.5rem;
+}
+.meal-prep-label {
+  display: inline-block;
+  background: #222;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 22px;
+  padding: 0.4em 1.2em;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.03em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.meal-prep-title {
+  font-size: clamp(2.2rem, 6vw, 4.2rem);
+  font-weight: 800;
+  margin-bottom: 1.2rem;
+  line-height: 1.08;
+}
+.meal-prep-desc {
+  font-size: 1.25rem;
+  margin-bottom: 2.2rem;
+  color: #fff;
+  opacity: 0.92;
+}
+.meal-prep-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  background: #e0b973;
+  color: #0a0500;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: 100px;
+  padding: 0.7em 2.2em 0.7em 1.7em;
+  box-shadow: 0 2px 12px rgba(224,185,115,0.13);
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.meal-prep-btn:hover {
+  background: #b9935a;
+  color: #fff;
+}
+.meal-prep-btn .btn-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: #fff;
+  border-radius: 50%;
+  margin-left: 0.7em;
+  color: #e0b973;
+}
+@media (max-width: 767px) {
+  .meal-prep-header-content {
+    padding: 2.5rem 0.5rem 2rem 0.5rem;
+  }
+  .meal-prep-title {
+    font-size: 2rem;
+  }
+  .meal-prep-desc {
+    font-size: 1rem;
+  }
+}

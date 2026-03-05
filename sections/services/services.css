@@ -1,0 +1,240 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.divider-fadein-animate {
+  opacity: 0;
+}
+
+.divider-fadein-animate.animate {
+  animation: fadeIn 1s 0.5s ease forwards;
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-60px) skewX(-8deg);
+    filter: blur(4px);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateX(8px) skewX(2deg);
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0) skewX(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(60px) skewX(8deg);
+    filter: blur(4px);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateX(-8px) skewX(-2deg);
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0) skewX(0);
+    filter: blur(0);
+  }
+}
+
+.services-content-animate {
+  opacity: 0;
+}
+
+.services-content-animate.animate {
+  animation: slideInLeft 0.9s 0.1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+.service-card-animate {
+  opacity: 0;
+}
+
+.service-card-animate.animate {
+  animation: slideInRight 0.9s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+/* ========== SERVICES SECTION ========== */
+.services-layout {
+  display: grid;
+  gap: 4vh;
+}
+
+@media (min-width: 1024px) {
+  .services-layout {
+    grid-template-columns: 1fr 1.2fr;
+    gap: 6vh;
+    align-items: center;
+  }
+}
+
+.services-content {
+  max-width: 450px;
+}
+
+.services-content .eyebrow {
+  margin-bottom: 1rem;
+}
+
+.services-content h2 {
+  margin-bottom: 1.5rem;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+}
+
+.services-content p {
+  font-size: clamp(0.85rem, 2vmin, 0.95rem);
+  line-height: 1.5;
+  color: #999;
+  margin-bottom: 2vh;
+}
+
+.services-content .btn {
+  margin-top: 2vh;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  padding-left: 1.75rem;
+  border-radius: 100px;
+}
+
+.btn-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #e0b973 0%, #ae8741 100%);
+  border-radius: 50%;
+  color: #0a0500;
+}
+
+.services-content .btn:hover .btn-circle {
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3vh 2vw;
+}
+
+.service-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 3vh 2vw;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(224, 185, 115, 0.2);
+}
+
+.service-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border-radius: 0;
+}
+
+.service-icon img {
+  width: 40px;
+  height: 40px;
+  filter: brightness(0) saturate(100%) invert(79%) sepia(28%) saturate(573%) hue-rotate(6deg) brightness(91%) contrast(87%);
+}
+
+.service-card h3 {
+  font-size: clamp(1rem, 2.5vmin, 1.1rem);
+  margin-bottom: 1vh;
+  color: #fff;
+}
+
+.service-card p {
+  font-size: clamp(0.75rem, 1.8vmin, 0.85rem);
+  line-height: 1.4;
+  color: #888;
+  margin-bottom: 0;
+}
+
+.services-decoration {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.services-decoration svg {
+  opacity: 0.6;
+}
+
+.divider-line-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.1rem;
+}
+
+.divider-line-img {
+  display: block;
+  margin: 0 auto;
+  max-width: 350px;
+  width: 100%;
+}
+
+#services.section {
+  padding-bottom: 0;
+}
+
+@media (max-width: 1023px) {
+  .services-layout {
+    gap: 30px;
+    text-align: center;
+  }
+
+  .services-content {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .service-card {
+    padding: 20px;
+  }
+
+  .services-decoration {
+    display: none;
+  }
+
+  .divider-line-wrapper {
+    display: none;
+  }
+}

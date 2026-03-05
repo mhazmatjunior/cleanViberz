@@ -1,0 +1,90 @@
+<!-- ========== WHY CHOOSE US SECTION ========== -->
+<section id="why-us" class="section">
+  <div class="container">
+    <div class="two-column">
+      <div class="column features-content whyus-content-animate">
+        <header class="section-header">
+          <h2>Why Choose Us</h2>
+        </header>
+
+        <div class="features-timeline">
+          <div class="timeline-item">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <img src="/img/dollar-circle0.svg" alt="No hidden fees">
+              </div>
+              <div class="feature-text">
+                <h3>No hidden fees</h3>
+                <p>Transparent pricing with no hidden fees always.</p>
+              </div>
+            </div>
+            <div class="divider-below">
+              <img src="/img/vertical_divider.svg" alt="divider">
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <img src="/img/shield-check0.svg" alt="Instant booking">
+              </div>
+              <div class="feature-text">
+                <h3>Instant booking</h3>
+                <p>Secure &amp; Get confirmation right after you reserve.</p>
+              </div>
+            </div>
+            <div class="divider-below">
+              <img src="/img/vertical_divider.svg" alt="divider">
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <img src="/img/file-list-edit0.svg" alt="Flexibility">
+              </div>
+              <div class="feature-text">
+                <h3>Flexibility</h3>
+                <p>Flexible options with free cancellation on any listings.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column features-media whyus-media-animate">
+        <img src="/img/girl_image.png" alt="Premium dining experience" class="features-image">
+      </div>
+</section>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var section = document.getElementById('why-us');
+    var content = section.querySelector('.whyus-content-animate');
+    var media = section.querySelector('.whyus-media-animate');
+    function animateWhyUs() {
+      content.classList.add('animate');
+      media.classList.add('animate');
+    }
+    function resetWhyUs() {
+      content.classList.remove('animate');
+      media.classList.remove('animate');
+    }
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animateWhyUs();
+          } else {
+            resetWhyUs();
+          }
+        });
+      }, { threshold: 0.2 });
+      observer.observe(section);
+    } else {
+      animateWhyUs();
+    }
+  });
+</script>
+</div>
+</div>
+</section>

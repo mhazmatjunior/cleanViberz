@@ -1,0 +1,134 @@
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var section = document.getElementById('services');
+    var content = section.querySelector('.services-content-animate');
+    var cards = section.querySelectorAll('.service-card-animate');
+    function animateServices() {
+      content.classList.add('animate');
+      cards.forEach(function(card) {
+        card.classList.add('animate');
+      });
+    }
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            animateServices();
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+      observer.observe(section);
+    } else {
+      // fallback
+      animateServices();
+    }
+  });
+</script>
+<!-- ========== SERVICES SECTION ========== -->
+<section id="services" class="section section-dark section-spacing">
+  <div class="container">
+    <div class="services-layout">
+      <div class="services-content services-content-animate">
+        <span class="eyebrow">Services</span>
+        <h2>Luxury Services, Crafted for Every Occasion</h2>
+        <p>
+          At Clean Vibez VIP, every service is designed to bring ease, style, and
+          sophistication to your life.Whether you're hosting a private dinner,
+          planning an event, or traveling in comfort — our team ensures every detail
+          reflects perfection.
+        </p>
+        <p>
+          From fine dining to flawless coordination, we turn ordinary moments into
+          signature experiences.
+        </p>
+        <a href="#" class="btn btn-outline">
+          Explore More
+          <span class="btn-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </span>
+        </a>
+      </div>
+      
+      <div class="services-grid">
+        <article class="service-card service-card-animate" style="animation-delay:0.15s">
+          <div class="service-icon">
+            <img src="/img/union0.svg" alt="">
+          </div>
+          <h3>Catering</h3>
+          <p>From intimate dinners to grand celebrations, we serve flavor, style, and unforgettable presentation.</p>
+        </article>
+
+        <article class="service-card service-card-animate" style="animation-delay:0.35s">
+          <div class="service-icon">
+            <img src="/img/vector2.svg" alt="">
+          </div>
+          <h3>Personal Chef</h3>
+          <p>Fine dining at your doorstep personalized menus, flawless service, and pure culinary artistry.</p>
+        </article>
+
+        <article class="service-card service-card-animate" style="animation-delay:0.55s">
+          <div class="service-icon">
+            <img src="/img/vector1.svg" alt="">
+          </div>
+          <h3>Concierge</h3>
+          <p>Your event, perfectly managed. From setup to last detail, we handle it all with ease and class.</p>
+        </article>
+
+        <article class="service-card service-card-animate" style="animation-delay:0.75s">
+          <div class="service-icon">
+            <img src="/img/group-15978824000.svg" alt="">
+          </div>
+          <h3>Luxury Car &amp; Van</h3>
+          <p>Travel in comfort &amp; arrive in style premium rides with professional drivers at your service.</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="divider-line-wrapper divider-fadein-animate">
+      <img src="/img/divider_line.svg" alt="divider line" class="divider-line-img">
+    </div>
+  </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Services section animation (already present)
+      var section = document.getElementById('services');
+      var content = section.querySelector('.services-content-animate');
+      var cards = section.querySelectorAll('.service-card-animate');
+      var divider = section.querySelector('.divider-fadein-animate');
+      function animateServices() {
+        content.classList.add('animate');
+        cards.forEach(function(card) {
+          card.classList.add('animate');
+        });
+        if(divider) divider.classList.add('animate');
+      }
+      function resetServices() {
+        content.classList.remove('animate');
+        cards.forEach(function(card) {
+          card.classList.remove('animate');
+        });
+        if(divider) divider.classList.remove('animate');
+      }
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              animateServices();
+            } else {
+              resetServices();
+            }
+          });
+        }, { threshold: 0.2 });
+        observer.observe(section);
+      } else {
+        animateServices();
+      }
+    });
+  </script>
+  </div>
+</section>

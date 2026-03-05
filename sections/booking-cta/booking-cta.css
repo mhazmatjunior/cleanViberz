@@ -1,0 +1,128 @@
+/* ========== BOOKING CTA SECTION ========== */
+.booking-cta {
+  position: relative;
+  overflow: hidden;
+  padding: 10vh 1.5vw;
+  margin-top: 5vh;
+  background: #0a0500;
+}
+
+/* Background Image Full Width */
+.booking-cta .hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.booking-cta .hero-bg-overlay img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+}
+
+/* Left → Right Gradient Overlay */
+.booking-cta .hero-bg-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+      rgba(10, 5, 0, 0.95) 0%,
+      rgba(10, 5, 0, 0.85) 25%,
+      rgba(10, 5, 0, 0.5) 55%,
+      rgba(10, 5, 0, 0) 100%);
+  z-index: 1;
+}
+
+/* Content */
+.booking-cta-content {
+  position: relative;
+  z-index: 2;
+  max-width: 60vw;
+  margin-left: 10vw;
+  display: flex;
+  flex-direction: column;
+  min-height: 45vh;
+  text-align: left;
+}
+
+/* Typography */
+.booking-cta-content h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.05;
+  margin-bottom: 3vh;
+}
+
+.booking-cta-content .lead {
+  font-size: clamp(1rem, 2.5vmin, 1.125rem);
+  max-width: 50vw;
+  color: #d9d9d9;
+  margin-bottom: 4vh;
+}
+
+/* Button */
+.booking-cta .btn-primary {
+  padding: 18px 44px;
+  font-size: 1.05rem;
+  border-radius: 40px;
+}
+
+/* Desktop spacing adjustment */
+@media (min-width: 992px) {
+  .booking-cta {
+    padding: 7rem 0;
+  }
+
+  .booking-cta-content {
+    padding-left: 6rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .booking-cta-content {
+    padding-left: 8rem;
+  }
+}
+
+/* CTA buttons container */
+.cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Buttons with circle icon on the right */
+.cta-buttons .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 8px 20px;
+  font-size: 1rem;
+  border-radius: 40px;
+  transition: all 0.3s ease;
+}
+
+/* Circle icon inside button */
+.cta-buttons .btn .btn-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e0b973 0%, #ae8741 100%);
+  color: #0a0500;
+  margin-left: 10px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect for circle */
+.cta-buttons .btn:hover .btn-circle {
+  transform: rotate(45deg);
+}

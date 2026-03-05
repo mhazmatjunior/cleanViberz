@@ -125,19 +125,17 @@
 }
 
 @media (max-width: 1023px) {
-  .vibe-section {
-    padding: 20px 0;
-  }
+  /* Let global .section handle centering (margin: 5vh 20px, width: auto) */
 
   .vibe-container {
     background: #100c07;
-    padding: 40px 25px;
+    padding: 35px 20px;
     min-height: auto;
-    border-radius: 25px;
+    border-radius: 20px;
     text-align: left;
     align-items: flex-start;
-    width: 90%;
-    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .vibe-header {
@@ -151,13 +149,13 @@
     line-height: 1.3;
     padding: 0;
     text-align: left;
+    margin-bottom: 20px;
   }
 
   .vibe-tabs {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    /* ALLOW WRAPPING */
     justify-content: flex-start;
     gap: 12px;
     padding: 0;
@@ -166,7 +164,6 @@
 
   .vibe-tabs .chip {
     flex: 1 1 calc(50% - 12px);
-    /* SPLIT INTO 2 PER ROW */
     min-width: 0;
     padding: 0 10px;
     height: 42px;
@@ -182,13 +179,15 @@
     width: 100%;
     height: auto;
     aspect-ratio: 16/9;
-    margin-top: 5px;
+    margin-top: 10px;
     border-radius: 15px;
+    box-sizing: border-box;
   }
 
   .vibe-video-wrapper video,
   .vibe-video-wrapper img {
     border-radius: 15px;
+    width: 100%;
   }
 
   #vibe-play-btn {

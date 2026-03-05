@@ -163,6 +163,15 @@ p {
     /* These sections have their own bg image/video cards */
   }
 
+  .section.vibe-section {
+    min-height: auto;
+    padding: 0;
+    margin: 20px auto;
+    border-radius: 0;
+    width: calc(100% - 40px);
+    max-width: 100%;
+  }
+
   body {
     background: #0a0500;
   }

@@ -73,6 +73,18 @@
     }
 }
 
+@media (max-width: 1023px) {
+    .mp-testimonials-fullwidth {
+        width: 100%;
+        margin: 0;
+        margin-left: 0;
+        transform: none;
+        min-height: auto;
+        padding: 60px 0;
+        border-radius: 0 !important;
+    }
+}
+
 @media (max-width: 900px) {
     .mp-testimonials-fullwidth .section-header {
         text-align: center;

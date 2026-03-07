@@ -159,6 +159,7 @@
 
 .features-media {
   order: 2;
+<<<<<<< HEAD
   display: grid;
   place-items: center;
   position: relative;
@@ -167,36 +168,46 @@
   margin: 0;
   padding: 0;
   margin-right: calc(50% - 46vw);
+=======
+  position: relative;
+  width: 714px;
+  height: 620px;
+  margin: 0;
+  padding: 0;
+>>>>>>> ed5ee8b (Design: Finalized 'Why Choose Us' image dimensions (714x620) and fixed layout alignment)
   justify-self: end;
+  overflow: hidden;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  border-bottom-left-radius: 560px;
 }
 
-.features-media::before,
-.features-media::after {
+.features-media::before {
   content: "";
+<<<<<<< HEAD
   grid-area: 1 / 1;
   position: absolute;
   border: 1px solid #e0b973;
   border-right: 0;
   border-radius: 400px 0 0 400px;
+=======
+  position: absolute;
+  inset: 0;
+  border: 1px solid #e0b973;
+  border-right: 0;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  border-bottom-left-radius: 560px;
+>>>>>>> ed5ee8b (Design: Finalized 'Why Choose Us' image dimensions (714x620) and fixed layout alignment)
   pointer-events: none;
   z-index: 2;
 }
 
-.features-media::before {
-  inset: 0.95rem -0.75rem 0.95rem 1.1rem;
-}
-
-.features-media::after {
-  inset: 0.2rem -1.35rem 0.2rem 2rem;
-}
-
 .features-image {
   width: 100%;
-  height: auto;
-  max-height: 70vh;
-  object-fit: contain;
-  object-position: right center;
-  border-radius: 360px 0 0 360px;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   display: block;
 }
 

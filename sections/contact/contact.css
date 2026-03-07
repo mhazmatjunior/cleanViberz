@@ -1,0 +1,236 @@
+/* ========== CONTACT US SECTION STYLES ========== */
+
+.contact-section {
+    background: #0d0a04;
+    padding: 140px 5vw 80px;
+    /* Increased top padding to clear the floating header */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.contact-container {
+    width: 100%;
+    max-width: 1080px;
+    /* Reduced from 1520px */
+    background: #14110b;
+    border-radius: 40px;
+    padding: 60px 80px;
+    /* Reduced from 80px */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* More visible border like mockup */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.contact-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 38px;
+    /* Further reduced from 42px */
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 30px;
+    /* Reduced from 40px */
+    text-align: left;
+}
+
+.contact-form {
+    width: 100%;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    /* Reduced from 30px */
+    margin-bottom: 25px;
+    /* Reduced from 40px */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-group.full-width {
+    grid-column: span 3;
+    margin-bottom: 30px;
+    /* Reduced from 50px */
+}
+
+.form-group label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    /* Reduced from 20px */
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.form-group label .required {
+    color: #ff4d4d;
+    margin-left: 4px;
+}
+
+.form-group input,
+.form-group textarea {
+    background: #1c1811;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 16px 20px;
+    /* Reduced padding */
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #dca959;
+    background: #251f16;
+}
+
+.form-group input.invalid,
+.form-group textarea.invalid {
+    border-color: #ff4d4d;
+}
+
+.form-group textarea {
+    min-height: 180px;
+    /* Reduced from 250px */
+    resize: vertical;
+}
+
+.error-message {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: #ff4d4d;
+    display: none;
+    margin-top: 4px;
+}
+
+.error-message.active {
+    display: block;
+}
+
+.form-submit {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Gold Button Style */
+.submit-btn.gold-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #dca959 0%, #b38641 100%);
+    border: none;
+    border-radius: 14px;
+    /* Slightly sharper radius */
+    padding: 16px 40px;
+    /* More compact button */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn.gold-btn span {
+    font-family: 'Jost', sans-serif;
+    font-size: 16px;
+    /* Reduced from 18px */
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.submit-btn.gold-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(220, 169, 89, 0.3);
+}
+
+.submit-btn.gold-btn:active {
+    transform: translateY(0);
+}
+
+.submit-btn.loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.form-feedback {
+    margin-top: 25px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    text-align: center;
+    padding: 15px;
+    border-radius: 12px;
+    display: none;
+}
+
+.form-feedback.success {
+    background: rgba(46, 204, 113, 0.1);
+    color: #2ecc71;
+    border: 1px solid rgba(46, 204, 113, 0.2);
+}
+
+.form-feedback.active {
+    display: block;
+}
+
+/* Clear header marker for this page to match mockup 1 */
+.nav-link.active::before {
+    display: none !important;
+}
+
+/* ---- Mobile Responsiveness ---- */
+@media (max-width: 1024px) {
+    .contact-container {
+        padding: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 120px 20px 60px;
+        /* Increased top padding for mobile */
+    }
+
+    .contact-container {
+        padding: 40px 25px;
+        border-radius: 30px;
+    }
+
+    .contact-title {
+        font-size: 36px;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .form-group.full-width {
+        grid-column: span 1;
+    }
+
+    .form-group label {
+        font-size: 18px;
+    }
+
+    .form-group textarea {
+        min-height: 200px;
+    }
+
+    .submit-btn.gold-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 18px;
+    }
+}

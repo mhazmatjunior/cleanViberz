@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/vars.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Section-specific stylesheets -->
+    <link rel="stylesheet" href="/header/header.css">
+    <link rel="stylesheet" href="/consultancy/consultancy.css">
+    <link rel="stylesheet" href="/footer/footer.css">
+
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ========== HEADER ========== -->
+    <%- include('../sections/header/header'); %>
+
+        <main>
+            <!-- ========== CONSULTANCY SECTION ========== -->
+            <%- include('../sections/consultancy/consultancy'); %>
+        </main>
+
+        <!-- ========== FOOTER ========== -->
+        <%- include('../sections/footer/footer'); %>
+</body>
+
+</html>

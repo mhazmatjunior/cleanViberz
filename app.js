@@ -16,28 +16,56 @@ app.use(express.static(path.join(__dirname, 'sections')));
 // Routes
 app.get('/', (req, res) => {
   res.render('index', {
-    title: 'Clean Vibez VIP - Luxury Services'
+    title: 'Clean Vibez VIP - Luxury Services',
+    activePage: 'home'
   });
 });
 
 // Meal Prep Service Page
 app.get('/meal-prep', (req, res) => {
   res.render('meal-prep', {
-    title: 'Custom Meal Prep - Clean Vibez VIP'
+    title: 'Custom Meal Prep - Clean Vibez VIP',
+    activePage: 'services'
   });
 });
 
 // Premium Car Service Page
 app.get('/car-service', (req, res) => {
   res.render('car-service', {
-    title: 'Premium Car Services - Clean Vibez VIP'
+    title: 'Premium Car Services - Clean Vibez VIP',
+    activePage: 'services'
   });
 });
 
 // Our Story Page
 app.get('/our-story', (req, res) => {
   res.render('our-story', {
-    title: 'Our Story - Clean Vibez VIP'
+    title: 'Our Story - Clean Vibez VIP',
+    activePage: 'story'
+  });
+});
+
+// Contact Us Page
+app.get('/contact', (req, res) => {
+  res.render('contact', {
+    title: 'Contact Us - Clean Vibez VIP',
+    activePage: 'contact'
+  });
+});
+
+// Consultancy Page
+app.get('/consultancy', (req, res) => {
+  res.render('consultancy', {
+    title: 'Consultancy - Clean Vibez VIP',
+    activePage: 'services'
+  });
+});
+
+// Car Book Form Page
+app.get('/car-book', (req, res) => {
+  res.render('car-book', {
+    title: 'Car Book Form - Clean Vibez VIP',
+    activePage: 'services'
   });
 });
 

@@ -1,0 +1,517 @@
+/* ========== CAR BOOK SECTION STYLES ========== */
+
+.car-book-section {
+    background: #0d0a04;
+    padding: 140px 5vw 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.car-book-container {
+    width: 100%;
+    max-width: 900px;
+    /* More focused width for this dense form */
+    background: #14110b;
+    border-radius: 40px;
+    padding: 60px 80px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.car-book-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.car-book-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 40px;
+}
+
+.form-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 30px 0;
+    width: 100%;
+}
+
+.car-book-form {
+    width: 100%;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-group.full-width {
+    grid-column: span 2;
+    margin-bottom: 30px;
+}
+
+.form-group label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.form-group label .required {
+    color: #ff4d4d;
+    margin-left: 4px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    background: #1c1811;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 16px 20px;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+/* Custom Select styling */
+.select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    padding-right: 45px;
+}
+
+.select-arrow {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.4);
+    pointer-events: none;
+    font-size: 12px;
+}
+
+/* Specific styling for date/time inputs to match theme */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) opacity(0.5);
+    cursor: pointer;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #dca959;
+    background: #251f16;
+}
+
+/* ========== CUSTOM PICKER STYLES ========== */
+
+.picker-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: #14110b;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+    padding: 40px;
+    z-index: 1000;
+    width: 380px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.picker-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.picker-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.picker-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Date Picker Specifics */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.calendar-month-year {
+    font-family: 'Jost', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.calendar-nav {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.nav-btn:hover {
+    color: #dca959;
+}
+
+.calendar-days-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.day-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.calendar-day:hover:not(.empty) {
+    background: rgba(220, 169, 89, 0.1);
+    color: #dca959;
+}
+
+.calendar-day.selected {
+    background: #dca959;
+    color: #14110b;
+    font-weight: 700;
+}
+
+.calendar-day.today {
+    border: 1px solid rgba(220, 169, 89, 0.4);
+}
+
+.calendar-day.empty {
+    cursor: default;
+}
+
+/* Time Picker Specifics */
+.time-picker-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.time-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.time-display {
+    font-family: 'Jost', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #dca959;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.time-grid-container {
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Custom scrollbar for time grid */
+.time-grid-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.time-grid-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.time-grid-container::-webkit-scrollbar-thumb {
+    background: #dca959;
+    border-radius: 2px;
+}
+
+.time-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.time-item {
+    padding: 12px 5px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.time-item:hover {
+    background: rgba(220, 169, 89, 0.2);
+    color: #dca959;
+}
+
+.time-item.selected {
+    background: #dca959;
+    color: #14110b;
+    font-weight: 600;
+}
+
+.am-pm-toggle {
+    display: flex;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 5px;
+}
+
+.toggle-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Jost', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.toggle-btn.active {
+    background: #dca959;
+    color: #14110b;
+}
+
+.picker-footer {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.picker-btn {
+    flex: 1;
+    padding: 14px;
+    border-radius: 12px;
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.picker-btn.cancel {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.picker-btn.confirm {
+    background: #dca959;
+    color: #14110b;
+    border: none;
+}
+
+.picker-btn:hover {
+    transform: translateY(-2px);
+}
+
+.form-group input.readonly-input {
+    cursor: pointer;
+    caret-color: transparent;
+}
+
+@media (max-width: 480px) {
+    .picker-modal {
+        width: 90%;
+        padding: 30px 20px;
+        border-radius: 30px;
+    }
+}
+
+.form-group input.invalid,
+.form-group select.invalid {
+    border-color: #ff4d4d;
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.error-message {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: #ff4d4d;
+    display: none;
+    margin-top: 4px;
+}
+
+.error-message.active {
+    display: block;
+}
+
+.form-submit {
+    margin-top: 20px;
+}
+
+.submit-btn.gold-btn {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #dca959 0%, #b38641 100%);
+    border: none;
+    border-radius: 40px;
+    /* More rounded as per mockup */
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn.gold-btn span {
+    font-family: 'Jost', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.submit-btn.gold-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(220, 169, 89, 0.3);
+}
+
+.form-feedback {
+    margin-top: 25px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    text-align: center;
+    padding: 15px;
+    border-radius: 12px;
+    display: none;
+}
+
+.form-feedback.success {
+    background: rgba(46, 204, 113, 0.1);
+    color: #2ecc71;
+    border: 1px solid rgba(46, 204, 113, 0.2);
+}
+
+.form-feedback.active {
+    display: block;
+}
+
+/* ---- Mobile Responsiveness ---- */
+@media (max-width: 1024px) {
+    .car-book-container {
+        padding: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .car-book-section {
+        padding: 120px 20px 60px;
+    }
+
+    .car-book-container {
+        padding: 40px 25px;
+        border-radius: 30px;
+    }
+
+    .car-book-title {
+        font-size: 32px;
+        text-align: center;
+    }
+
+    .car-book-subtitle {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .form-group.full-width {
+        grid-column: span 1;
+    }
+
+    .submit-btn.gold-btn {
+        padding: 18px;
+    }
+}

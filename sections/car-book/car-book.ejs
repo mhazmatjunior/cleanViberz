@@ -1,0 +1,384 @@
+<section class="car-book-section">
+    <div class="car-book-container">
+        <h1 class="car-book-title">Car Book Form</h1>
+        <p class="car-book-subtitle">Fill out the form below to customize your car service plan.</p>
+
+        <form id="carBookForm" class="car-book-form" novalidate>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="carType">Car Type<span class="required">*</span></label>
+                    <div class="select-wrapper">
+                        <select id="carType" name="carType" required>
+                            <option value="" disabled selected>Select Car Type</option>
+                            <option value="luxury-sedan">Luxury Sedan</option>
+                            <option value="suv">SUV</option>
+                            <option value="luxury-suv">Luxury SUV</option>
+                            <option value="executive-van">Executive Van</option>
+                        </select>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                    <span class="error-message" id="carTypeError">Please select a car type</span>
+                </div>
+                <div class="form-group">
+                    <label for="guest">Guest<span class="required">*</span></label>
+                    <div class="select-wrapper">
+                        <select id="guest" name="guest" required>
+                            <option value="" disabled selected>Select Guest Type</option>
+                            <option value="personal">Personal</option>
+                            <option value="business">Business</option>
+                            <option value="family">Family/Group</option>
+                        </select>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                    <span class="error-message" id="guestError">Please select a guest type</span>
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="guestCount">Guest count<span class="required">*</span></label>
+                <input type="number" id="guestCount" name="guestCount" placeholder="Enter guest count" min="1" required>
+                <span class="error-message" id="guestCountError">Please enter guest count</span>
+            </div>
+
+            <div class="form-divider"></div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="pickUpLocation">Pick Up Location</label>
+                    <input type="text" id="pickUpLocation" name="pickUpLocation" placeholder="Enter pick up address">
+                </div>
+                <div class="form-group">
+                    <label for="dropOffLocation">Drop Off Location</label>
+                    <input type="text" id="dropOffLocation" name="dropOffLocation" placeholder="Enter drop off address">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="pickUpDate">Pick Up Date<span class="required">*</span></label>
+                    <input type="text" id="pickUpDate" name="pickUpDate" class="readonly-input"
+                        placeholder="Select Pick Up Date" readonly required>
+                    <span class="error-message" id="pickUpDateError">Please select pick up date</span>
+                </div>
+                <div class="form-group">
+                    <label for="dropOffDate">Drop Off Date<span class="required">*</span></label>
+                    <input type="text" id="dropOffDate" name="dropOffDate" class="readonly-input"
+                        placeholder="Select Drop Off Date" readonly required>
+                    <span class="error-message" id="dropOffDateError">Please select drop off date</span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="pickUpTime">Pick Up Time<span class="required">*</span></label>
+                    <input type="text" id="pickUpTime" name="pickUpTime" class="readonly-input"
+                        placeholder="Select Pick Up Time" readonly required>
+                    <span class="error-message" id="pickUpTimeError">Please select pick up time</span>
+                </div>
+                <div class="form-group">
+                    <label for="dropOffTime">Drop Off Time<span class="required">*</span></label>
+                    <input type="text" id="dropOffTime" name="dropOffTime" class="readonly-input"
+                        placeholder="Select Drop Off Time" readonly required>
+                    <span class="error-message" id="dropOffTimeError">Please select drop off time</span>
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="additionalInfo">Additional Info</label>
+                <textarea id="additionalInfo" name="additionalInfo" placeholder="Additional Message"></textarea>
+            </div>
+
+            <div class="form-submit">
+                <button type="submit" class="submit-btn gold-btn" id="submitBtn">
+                    <span>Submit Booking</span>
+                </button>
+            </div>
+
+            <div id="formFeedback" class="form-feedback"></div>
+        </form>
+    </div>
+
+    <!-- ========== DATE PICKER MODAL ========== -->
+    <div class="picker-overlay" id="datePickerOverlay"></div>
+    <div class="picker-modal" id="datePickerModal">
+        <div class="calendar-header">
+            <div class="calendar-month-year" id="currentMonthYear">October 2020</div>
+            <div class="calendar-nav">
+                <button class="nav-btn" id="prevMonth">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <button class="nav-btn" id="nextMonth">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="calendar-days-header">
+            <div class="day-name">Mo</div>
+            <div class="day-name">Tu</div>
+            <div class="day-name">We</div>
+            <div class="day-name">Th</div>
+            <div class="day-name">Fr</div>
+            <div class="day-name">Sa</div>
+            <div class="day-name">Su</div>
+        </div>
+        <div class="calendar-grid" id="calendarGrid">
+            <!-- Days injected via JS -->
+        </div>
+        <div class="picker-footer">
+            <button class="picker-btn cancel" id="cancelBtn">Cancel</button>
+            <button class="picker-btn confirm" id="confirmBtn">Confirm</button>
+        </div>
+    </div>
+
+    <!-- ========== TIME PICKER MODAL ========== -->
+    <div class="picker-overlay" id="timePickerOverlay"></div>
+    <div class="picker-modal" id="timePickerModal">
+        <div class="time-picker-content">
+            <div class="time-display" id="timeDisplay">12:00 PM</div>
+            <div class="am-pm-toggle">
+                <button class="toggle-btn active" id="amBtn">AM</button>
+                <button class="toggle-btn" id="pmBtn">PM</button>
+            </div>
+            <div class="time-grid-container">
+                <div class="time-grid" id="timeGrid">
+                    <!-- Times injected via JS -->
+                </div>
+            </div>
+        </div>
+        <div class="picker-footer">
+            <button class="picker-btn cancel" id="cancelTimeBtn">Cancel</button>
+            <button class="picker-btn confirm" id="confirmTimeBtn">Confirm</button>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('carBookForm');
+        const feedback = document.getElementById('formFeedback');
+        const submitBtn = document.getElementById('submitBtn');
+
+        /* --- Custom Date Picker Logic --- */
+        let currentTargetInput = null;
+        let selectedDate = new Date();
+        let displayDate = new Date();
+
+        const dateModal = document.getElementById('datePickerModal');
+        const dateOverlay = document.getElementById('datePickerOverlay');
+        const monthYearText = document.getElementById('currentMonthYear');
+        const calendarGrid = document.getElementById('calendarGrid');
+
+        const openDatePicker = (input) => {
+            currentTargetInput = input;
+            const val = input.value ? new Date(input.value) : new Date();
+            selectedDate = isNaN(val.getTime()) ? new Date() : val;
+            displayDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1);
+            renderCalendar();
+            dateModal.classList.add('active');
+            dateOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const closeDatePicker = () => {
+            dateModal.classList.remove('active');
+            dateOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        const renderCalendar = () => {
+            const year = displayDate.getFullYear();
+            const month = displayDate.getMonth();
+            const monthName = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(displayDate);
+            monthYearText.textContent = `${monthName} ${year}`;
+
+            calendarGrid.innerHTML = '';
+
+            // Get first day of month and adjust for Monday start (0=Su, 1=Mo...)
+            let firstDay = new Date(year, month, 1).getDay();
+            firstDay = firstDay === 0 ? 6 : firstDay - 1; // Adjust Su=0 to Su=6, Mo=1 to Mo=0
+
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            // Empty cells before month starts
+            for (let i = 0; i < firstDay; i++) {
+                const empty = document.createElement('div');
+                empty.className = 'calendar-day empty';
+                calendarGrid.appendChild(empty);
+            }
+
+            const today = new Date();
+
+            for (let d = 1; d <= daysInMonth; d++) {
+                const dayEl = document.createElement('div');
+                dayEl.className = 'calendar-day';
+                dayEl.textContent = d;
+
+                if (year === today.getFullYear() && month === today.getMonth() && d === today.getDate()) {
+                    dayEl.classList.add('today');
+                }
+
+                if (year === selectedDate.getFullYear() && month === selectedDate.getMonth() && d === selectedDate.getDate()) {
+                    dayEl.classList.add('selected');
+                }
+
+                dayEl.addEventListener('click', () => {
+                    selectedDate = new Date(year, month, d);
+                    renderCalendar();
+                });
+
+                calendarGrid.appendChild(dayEl);
+            }
+        };
+
+        document.getElementById('prevMonth').addEventListener('click', () => {
+            displayDate.setMonth(displayDate.getMonth() - 1);
+            renderCalendar();
+        });
+
+        document.getElementById('nextMonth').addEventListener('click', () => {
+            displayDate.setMonth(displayDate.getMonth() + 1);
+            renderCalendar();
+        });
+
+        document.getElementById('confirmBtn').addEventListener('click', () => {
+            const year = selectedDate.getFullYear();
+            const month = (selectedDate.getMonth() + 1).toString().padStart(2, '0');
+            const day = selectedDate.getDate().toString().padStart(2, '0');
+            currentTargetInput.value = `${year}-${month}-${day}`;
+            currentTargetInput.classList.remove('invalid');
+            const err = document.getElementById(currentTargetInput.id + 'Error');
+            if (err) err.classList.remove('active');
+            closeDatePicker();
+        });
+
+        document.getElementById('cancelBtn').addEventListener('click', closeDatePicker);
+        dateOverlay.addEventListener('click', closeDatePicker);
+
+        /* --- Custom Time Picker Logic --- */
+        const timeModal = document.getElementById('timePickerModal');
+        const timeOverlay = document.getElementById('timePickerOverlay');
+        const timeDisplay = document.getElementById('timeDisplay');
+        const timeGrid = document.getElementById('timeGrid');
+        const amBtn = document.getElementById('amBtn');
+        const pmBtn = document.getElementById('pmBtn');
+
+        let selectedHour = "12";
+        let selectedMinute = "00";
+        let selectedAMPM = "PM";
+
+        const openTimePicker = (input) => {
+            currentTargetInput = input;
+            // Parse existing value if any
+            if (input.value) {
+                const parts = input.value.split(' ');
+                if (parts.length === 2) {
+                    const timeParts = parts[0].split(':');
+                    selectedHour = timeParts[0];
+                    selectedMinute = timeParts[1];
+                    selectedAMPM = parts[1];
+                }
+            }
+            renderTimeGrid();
+            updateTimeDisplay();
+            timeModal.classList.add('active');
+            timeOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const closeTimePicker = () => {
+            timeModal.classList.remove('active');
+            timeOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        const updateTimeDisplay = () => {
+            timeDisplay.textContent = `${selectedHour}:${selectedMinute} ${selectedAMPM}`;
+            amBtn.classList.toggle('active', selectedAMPM === 'AM');
+            pmBtn.classList.toggle('active', selectedAMPM === 'PM');
+        };
+
+        const renderTimeGrid = () => {
+            timeGrid.innerHTML = '';
+            // Generate hourly intervals with 15 min steps
+            for (let h = 1; h <= 12; h++) {
+                ['00', '15', '30', '45'].forEach(m => {
+                    const timeStr = h.toString();
+                    const hourPadded = timeStr.padStart(1, '0');
+                    const item = document.createElement('div');
+                    item.className = 'time-item';
+                    if (hourPadded === selectedHour && m === selectedMinute) item.classList.add('selected');
+                    item.textContent = `${hourPadded}:${m}`;
+                    item.addEventListener('click', () => {
+                        selectedHour = hourPadded;
+                        selectedMinute = m;
+                        renderTimeGrid();
+                        updateTimeDisplay();
+                    });
+                    timeGrid.appendChild(item);
+                });
+            }
+        };
+
+        amBtn.addEventListener('click', () => { selectedAMPM = 'AM'; updateTimeDisplay(); });
+        pmBtn.addEventListener('click', () => { selectedAMPM = 'PM'; updateTimeDisplay(); });
+
+        document.getElementById('confirmTimeBtn').addEventListener('click', () => {
+            currentTargetInput.value = `${selectedHour}:${selectedMinute} ${selectedAMPM}`;
+            currentTargetInput.classList.remove('invalid');
+            const err = document.getElementById(currentTargetInput.id + 'Error');
+            if (err) err.classList.remove('active');
+            closeTimePicker();
+        });
+
+        document.getElementById('cancelTimeBtn').addEventListener('click', closeTimePicker);
+        timeOverlay.addEventListener('click', closeTimePicker);
+
+        /* --- Field Handlers --- */
+        ['pickUpDate', 'dropOffDate'].forEach(id => {
+            document.getElementById(id).addEventListener('click', function () { openDatePicker(this); });
+        });
+
+        ['pickUpTime', 'dropOffTime'].forEach(id => {
+            document.getElementById(id).addEventListener('click', function () { openTimePicker(this); });
+        });
+
+        /* --- Form Submission (Updated) --- */
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            let isValid = true;
+            const requiredFields = ['carType', 'guest', 'guestCount', 'pickUpDate', 'dropOffDate', 'pickUpTime', 'dropOffTime'];
+
+            requiredFields.forEach(fieldId => {
+                const input = document.getElementById(fieldId);
+                const error = document.getElementById(fieldId + 'Error');
+                if (!input.value) {
+                    input.classList.add('invalid');
+                    if (error) error.classList.add('active');
+                    isValid = false;
+                } else {
+                    input.classList.remove('invalid');
+                    if (error) error.classList.remove('active');
+                }
+            });
+
+            if (isValid) {
+                submitBtn.classList.add('loading');
+                submitBtn.disabled = true;
+                setTimeout(() => {
+                    submitBtn.classList.remove('loading');
+                    feedback.textContent = 'Booking request submitted successfully! We will contact you shortly.';
+                    feedback.classList.add('success', 'active');
+                    form.reset();
+                    submitBtn.disabled = false;
+                    setTimeout(() => { feedback.classList.remove('active'); }, 5000);
+                }, 1500);
+            }
+        });
+    });
+</script>

@@ -1,0 +1,124 @@
+<section class="consultancy-section">
+    <div class="consultancy-container">
+        <h1 class="consultancy-title">Consultancy</h1>
+
+        <form id="consultancyForm" class="consultancy-form" novalidate>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="fullName">Full Name<span class="required">*</span></label>
+                    <input type="text" id="fullName" name="fullName" placeholder="John David" required>
+                    <span class="error-message" id="nameError">Please enter your full name</span>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email<span class="required">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="your.email@gmail.com" required>
+                    <span class="error-message" id="emailError">Please enter a valid email address</span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phone">Phone<span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" placeholder="+1 (123) 456789" required>
+                    <span class="error-message" id="phoneError">Please enter your phone number</span>
+                </div>
+                <div class="form-group">
+                    <label for="consultancyType">Consultancy Type<span class="required">*</span></label>
+                    <div class="select-wrapper">
+                        <select id="consultancyType" name="consultancyType" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="airbnb">Airbnb Management</option>
+                            <option value="private-dinner">Private Dinner Planning</option>
+                            <option value="meal-prep">Meal Prep Consultation</option>
+                            <option value="luxury-transport">Luxury Transport</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                    <span class="error-message" id="typeError">Please select a consultancy type</span>
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="message">Your Message<span class="required">*</span></label>
+                <textarea id="message" name="message" placeholder="Write your massage here" required></textarea>
+                <span class="error-message" id="messageError">Please enter your message</span>
+            </div>
+
+            <div class="form-submit">
+                <button type="submit" class="submit-btn gold-btn" id="submitBtn">
+                    <span>Submit Request</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </div>
+
+            <div id="formFeedback" class="form-feedback"></div>
+        </form>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('consultancyForm');
+        const feedback = document.getElementById('formFeedback');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            let isValid = true;
+            const fields = ['fullName', 'email', 'phone', 'consultancyType', 'message'];
+
+            // Basic validation
+            fields.forEach(fieldId => {
+                const input = document.getElementById(fieldId);
+                const error = document.getElementById(fieldId === 'consultancyType' ? 'typeError' : fieldId + 'Error');
+
+                if (!input.value || (fieldId === 'email' && !validateEmail(input.value))) {
+                    input.classList.add('invalid');
+                    if (error) error.classList.add('active');
+                    isValid = false;
+                } else {
+                    input.classList.remove('invalid');
+                    if (error) error.classList.remove('active');
+                }
+            });
+
+            if (isValid) {
+                // Show success state (mock)
+                submitBtn.classList.add('loading');
+                submitBtn.disabled = true;
+
+                setTimeout(() => {
+                    submitBtn.classList.remove('loading');
+                    feedback.textContent = 'Thank you! Your consultancy request has been received.';
+                    feedback.classList.add('success', 'active');
+                    form.reset();
+                    submitBtn.disabled = false;
+
+                    setTimeout(() => {
+                        feedback.classList.remove('active');
+                    }, 5000);
+                }, 1500);
+            }
+        });
+
+        // Clear invalid status on input
+        form.querySelectorAll('input, select, textarea').forEach(el => {
+            el.addEventListener('input', function () {
+                this.classList.remove('invalid');
+                const errorId = this.id === 'consultancyType' ? 'typeError' : this.id + 'Error';
+                const error = document.getElementById(errorId);
+                if (error) error.classList.remove('active');
+            });
+        });
+
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+    });
+</script>

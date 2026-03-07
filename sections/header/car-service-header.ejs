@@ -14,18 +14,27 @@
                 </svg>
                 <span class="nav-text">Home</span>
             </a>
-            <a href="/car-service" class="nav-link active">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="nav-icon">
-                    <rect width="7" height="7" x="3" y="3" rx="1" />
-                    <rect width="7" height="7" x="14" y="3" rx="1" />
-                    <rect width="7" height="7" x="14" y="14" rx="1" />
-                    <rect width="7" height="7" x="3" y="14" rx="1" />
-                </svg>
-                <span class="nav-text">Services</span>
-            </a>
-            <a href="/#story" class="nav-link">
+            <div class="dropdown">
+                <a href="/car-service" class="nav-link active">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="nav-icon">
+                        <rect width="7" height="7" x="3" y="3" rx="1" />
+                        <rect width="7" height="7" x="14" y="3" rx="1" />
+                        <rect width="7" height="7" x="14" y="14" rx="1" />
+                        <rect width="7" height="7" x="3" y="14" rx="1" />
+                    </svg>
+                    <span class="nav-text">Services <span style="font-size: 0.8rem; margin-left: 2px;">▼</span></span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="/meal-prep" class="dropdown-item">Meal Prep</a>
+                    <a href="/car-service" class="dropdown-item">Car Book</a>
+                    <a href="/our-story" class="dropdown-item">Airbnb Stay</a>
+                    <a href="#" class="dropdown-item">Private Dinner / Date Night</a>
+                    <a href="/consultancy" class="dropdown-item">Consultation</a>
+                </div>
+            </div>
+            <a href="/our-story" class="nav-link">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="nav-icon">
@@ -34,7 +43,7 @@
                 </svg>
                 <span class="nav-text">Our Story</span>
             </a>
-            <a href="/#contact" class="nav-link">
+            <a href="/contact" class="nav-link">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="nav-icon">
@@ -45,15 +54,15 @@
             </a>
         </nav>
         <div class="header-actions">
-            <button class="btn btn-primary header-cta desktop-only">
+            <a href="/car-book" class="btn btn-primary header-cta desktop-only">
                 <span>Book Now</span>
                 <img src="/img/vector5.svg" alt="Book Now Icon" width="58" height="58">
-            </button>
+            </a>
 
             <!-- Mobile Book Now Button -->
-            <button class="btn btn-primary nav-book-btn-mobile mobile-only">
+            <a href="/car-book" class="btn btn-primary nav-book-btn-mobile mobile-only">
                 Book Now
-            </button>
+            </a>
 
             <!-- Mobile Menu Toggle -->
             <button class="mobile-menu-toggle mobile-only" id="menuToggle" aria-label="Toggle menu">
@@ -74,9 +83,20 @@
 
         <nav class="sidebar-nav">
             <a href="/" class="sidebar-link"><span>01</span> Home</a>
-            <a href="/car-service" class="sidebar-link"><span>02</span> Services</a>
-            <a href="/#story" class="sidebar-link"><span>03</span> Our Story</a>
-            <a href="/#contact" class="sidebar-link"><span>04</span> Contact Us</a>
+            <div class="sidebar-link-wrapper">
+                <div class="sidebar-link sidebar-dropdown-toggle">
+                    <span>02</span> Services <span class="dropdown-chevron">▼</span>
+                </div>
+                <div class="sidebar-submenu">
+                    <a href="/meal-prep" class="submenu-link">Meal Prep</a>
+                    <a href="/car-service" class="submenu-link active">Car Book</a>
+                    <a href="/our-story" class="submenu-link">Airbnb Stay</a>
+                    <a href="#" class="submenu-link">Private Dinner</a>
+                    <a href="/consultancy" class="submenu-link">Consultation</a>
+                </div>
+            </div>
+            <a href="/our-story" class="sidebar-link"><span>03</span> Our Story</a>
+            <a href="/contact" class="sidebar-link"><span>04</span> Contact Us</a>
         </nav>
 
         <div class="sidebar-footer">
@@ -84,7 +104,7 @@
                 <p>info@cleanvibezvip.com</p>
                 <p>+1 (555) VIP-VIBE</p>
             </div>
-            <button class="btn btn-primary sidebar-cta">Book Your Experience</button>
+            <a href="/car-book" class="btn btn-primary sidebar-cta">Book Your Experience</a>
         </div>
     </div>
 </div>
@@ -96,7 +116,9 @@
         const sidebarClose = document.getElementById('sidebarClose');
         const mobileSidebar = document.getElementById('mobileSidebar');
         const sidebarDimmer = document.getElementById('sidebarDimmer');
-        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+        const sidebarLinks = document.querySelectorAll('.sidebar-link:not(.sidebar-dropdown-toggle)');
+        const dropdownToggle = document.querySelector('.sidebar-dropdown-toggle');
+        const dropdownWrapper = document.querySelector('.sidebar-link-wrapper');
 
         header.classList.add('header-loaded');
 
@@ -108,6 +130,7 @@
         const closeSidebar = () => {
             mobileSidebar.classList.remove('active');
             document.body.style.overflow = '';
+            if (dropdownWrapper) dropdownWrapper.classList.remove('active');
         };
 
         if (menuToggle) menuToggle.addEventListener('click', openSidebar);
@@ -117,5 +140,12 @@
         sidebarLinks.forEach(link => {
             link.addEventListener('click', closeSidebar);
         });
+
+        if (dropdownToggle) {
+            dropdownToggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                dropdownWrapper.classList.toggle('active');
+            });
+        }
     });
 </script>

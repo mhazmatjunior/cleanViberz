@@ -1,0 +1,126 @@
+<!-- ========== CONTACT US SECTION ========== -->
+<section id="contact-us" class="contact-section">
+    <div class="contact-container">
+        <h1 class="contact-title">Contact Us</h1>
+
+        <form id="contactForm" class="contact-form" novalidate>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="fullName">Full Name<span class="required">*</span></label>
+                    <input type="text" id="fullName" name="fullName" placeholder="John david" required>
+                    <span class="error-message" id="nameError">Please enter your full name</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email<span class="required">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="your.email@gmail.com" required>
+                    <span class="error-message" id="emailError">Please enter a valid email address</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone<span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" placeholder="+1 (123) 456789" required>
+                    <span class="error-message" id="phoneError">Please enter your phone number</span>
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="message">Your Message<span class="required">*</span></label>
+                <textarea id="message" name="message" placeholder="Write your massage here" required></textarea>
+                <span class="error-message" id="messageError">Please enter your message</span>
+            </div>
+
+            <div class="form-submit">
+                <button type="submit" id="submitBtn" class="submit-btn gold-btn">
+                    <span>Submit Request</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M12 5L19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+
+            <div id="formFeedback" class="form-feedback"></div>
+        </form>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('contactForm');
+        const feedback = document.getElementById('formFeedback');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Reset errors
+            document.querySelectorAll('.error-message').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('input, textarea').forEach(el => el.classList.remove('invalid'));
+
+            let isValid = true;
+
+            // Simple validation
+            const name = document.getElementById('fullName');
+            if (!name.value.trim()) {
+                document.getElementById('nameError').classList.add('active');
+                name.classList.add('invalid');
+                isValid = false;
+            }
+
+            const email = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email.value.trim() || !emailRegex.test(email.value)) {
+                document.getElementById('emailError').classList.add('active');
+                email.classList.add('invalid');
+                isValid = false;
+            }
+
+            const phone = document.getElementById('phone');
+            if (!phone.value.trim()) {
+                document.getElementById('phoneError').classList.add('active');
+                phone.classList.add('invalid');
+                isValid = false;
+            }
+
+            const message = document.getElementById('message');
+            if (!message.value.trim()) {
+                document.getElementById('messageError').classList.add('active');
+                message.classList.add('invalid');
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Mock submission logic
+                submitBtn.disabled = true;
+                submitBtn.classList.add('loading');
+                submitBtn.querySelector('span').textContent = 'Sending...';
+
+                setTimeout(() => {
+                    feedback.textContent = 'Thank you! Your request has been sent successfully.';
+                    feedback.classList.add('success', 'active');
+                    form.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('loading');
+                    submitBtn.querySelector('span').textContent = 'Submit Request';
+
+                    setTimeout(() => {
+                        feedback.classList.remove('active');
+                    }, 5000);
+                }, 1500);
+            }
+        });
+
+        // Real-time input cleaning
+        document.querySelectorAll('input, textarea').forEach(input => {
+            input.addEventListener('input', function () {
+                this.classList.remove('invalid');
+                const errorId = this.id + 'Error';
+                const errorEl = document.getElementById(errorId);
+                if (errorEl) errorEl.classList.remove('active');
+            });
+        });
+    });
+</script>

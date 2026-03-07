@@ -53,21 +53,25 @@
       </div>
 
       <div class="column features-media whyus-media-animate">
-        <img src="/img/girl_image.png" alt="Premium dining experience" class="features-image">
+        <img src="/img/girl_image.png" alt="Premium dining experience" class="features-image" loading="lazy"
+          decoding="async">
       </div>
+    </div>
+  </div>
 </section>
+
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var section = document.getElementById('why-us');
     var content = section.querySelector('.whyus-content-animate');
     var media = section.querySelector('.whyus-media-animate');
     function animateWhyUs() {
-      content.classList.add('animate');
-      media.classList.add('animate');
+      if (content) content.classList.add('animate');
+      if (media) media.classList.add('animate');
     }
     function resetWhyUs() {
-      content.classList.remove('animate');
-      media.classList.remove('animate');
+      if (content) content.classList.remove('animate');
+      if (media) media.classList.remove('animate');
     }
     if ('IntersectionObserver' in window) {
       var observer = new IntersectionObserver(function (entries) {
@@ -85,6 +89,3 @@
     }
   });
 </script>
-</div>
-</div>
-</section>

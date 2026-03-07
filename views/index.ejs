@@ -5,12 +5,16 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title %></title>
+  <title>
+    <%= title %>
+  </title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
     rel="stylesheet">
+  <!-- Preload Critical Hero Image -->
+  <link rel="preload" as="image" href="/img/joshua-ferrer-2-wl-vu-7-bq-ua-a-unsplash0.png">
   <link rel="stylesheet" href="/css/vars.css">
   <link rel="stylesheet" href="/css/style.css">
   <!-- Section-specific stylesheets -->
@@ -35,42 +39,42 @@
   <!-- ========== HEADER ========== -->
   <%- include('../sections/header/header'); %>
 
-  <main>
-    <!-- ========== HERO SECTION ========== -->
-    <%- include('../sections/hero/hero'); %>
+    <main>
+      <!-- ========== HERO SECTION ========== -->
+      <%- include('../sections/hero/hero'); %>
 
-    <!-- ========== SERVICES SECTION ========== -->
-    <%- include('../sections/services/services'); %>
+        <!-- ========== SERVICES SECTION ========== -->
+        <%- include('../sections/services/services'); %>
 
-    <!-- ========== OUR STORY SECTION ========== -->
-    <%- include('../sections/story/story'); %>
-    <div class="divider-line-between-sections">
-      <img src="/img/divider_line.svg" alt="divider line" class="divider-line-img flipped">
-    </div>
+          <!-- ========== OUR STORY SECTION ========== -->
+          <%- include('../sections/story/story'); %>
+            <div class="divider-line-between-sections">
+              <img src="/img/divider_line.svg" alt="divider line" class="divider-line-img flipped">
+            </div>
 
-    <!-- ========== DESTINATIONS SECTION ==========
+            <!-- ========== DESTINATIONS SECTION ==========
     <%- include('../sections/destinations/destinations'); %>
 
     <!-- ========== BOOKING CTA SECTION ========== -->
-    <%- include('../sections/booking-cta/booking-cta'); %>
+            <%- include('../sections/booking-cta/booking-cta'); %>
 
-    <!-- ========== VIBE / MEDIA SECTION ========== -->
-    <%- include('../sections/vibe/vibe'); %>
-    <!-- ========== WHY CHOOSE US SECTION ========== -->
-    <%- include('../sections/why-us/why-us'); %>
-
-
+              <!-- ========== VIBE / MEDIA SECTION ========== -->
+              <%- include('../sections/vibe/vibe'); %>
+                <!-- ========== WHY CHOOSE US SECTION ========== -->
+                <%- include('../sections/why-us/why-us'); %>
 
 
-    <!-- ========== TESTIMONIALS SECTION ========== -->
-    <%- include('../sections/testimonials/testimonials'); %> 
 
-        <!-- ========== FAQ SECTION ========== -->
-    <%- include('../sections/faq/faq'); %>
-  </main>
 
-  <!-- ========== FOOTER ========== -->
-  <%- include('../sections/footer/footer'); %>
+                  <!-- ========== TESTIMONIALS SECTION ========== -->
+                  <%- include('../sections/testimonials/testimonials'); %>
+
+                    <!-- ========== FAQ SECTION ========== -->
+                    <%- include('../sections/faq/faq'); %>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <%- include('../sections/footer/footer'); %>
 </body>
 
 </html>

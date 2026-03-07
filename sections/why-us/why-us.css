@@ -58,7 +58,7 @@
 }
 
 #why-us .two-column {
-  /* align-items: center; */
+  align-items: center;
 }
 
 @media (min-width: 1024px) {
@@ -160,13 +160,13 @@
 .features-media {
   order: 2;
   display: grid;
-  place-items: stretch;
+  place-items: center;
   position: relative;
   width: calc(100% + (50vw - 50%));
-  min-height: 60vh;
+  min-height: 50vh;
   margin: 0;
   padding: 0;
-  margin-right: calc(50% - 32vw);
+  margin-right: calc(50% - 46vw);
   justify-self: end;
 }
 
@@ -174,9 +174,10 @@
 .features-media::after {
   content: "";
   grid-area: 1 / 1;
-  /* position: relative; - Pseudo-elements are still absolute relative to parent grid, but we can't easily avoid this without extra div markers. We'll leave as is if not structural. */
+  position: absolute;
+  border: 1px solid #e0b973;
   border-right: 0;
-  border-radius: 380px 0 0 380px;
+  border-radius: 400px 0 0 400px;
   pointer-events: none;
   z-index: 2;
 }

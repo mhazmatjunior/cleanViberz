@@ -69,6 +69,22 @@ app.get('/car-book', (req, res) => {
   });
 });
 
+// Private Dinner / Date Night Page
+app.get('/private-dinner', (req, res) => {
+  res.render('private-dinner', {
+    title: 'Private Dinner / Date Night - Clean Vibez VIP',
+    activePage: 'services'
+  });
+});
+
+// Meal Book Form Page
+app.get('/meal-book', (req, res) => {
+  res.render('meal-book', {
+    title: 'Build Your Meal Plan - Clean Vibez VIP',
+    activePage: 'services'
+  });
+});
+
 // Health check route
 app.get('/health', (req, res) => {
   res.json({ status: 'Server is running' });

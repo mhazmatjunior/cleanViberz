@@ -1,0 +1,501 @@
+<section class="meal-book-section">
+    <div class="meal-book-container">
+        <h1 class="meal-book-title">Build Your Meal Plan</h1>
+        <p class="meal-book-subtitle">Fill out the form below to customize your meal prep plan.</p>
+
+        <form id="mealBookForm" class="meal-book-form" novalidate>
+            <!-- SECTION 1: Personal Info -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Name<span class="required">*</span></label>
+                    <input type="text" id="name" name="name" placeholder="John david" required>
+                    <span class="error-message" id="nameError">Please enter your name</span>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email<span class="required">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="your.email@gmail.com" required>
+                    <span class="error-message" id="emailError">Please enter a valid email</span>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone<span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" placeholder="+1 (123) 456789" required>
+                    <span class="error-message" id="phoneError">Please enter your phone number</span>
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="address">Address<span class="required">*</span></label>
+                <input type="text" id="address" name="address" placeholder="Enter complete address" required>
+                <span class="error-message" id="addressError">Please enter your address</span>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="deliveryDate">Anticipated Delivery Date<span class="required">*</span></label>
+                <input type="text" id="deliveryDate" name="deliveryDate" class="readonly-input"
+                    placeholder="Select Date" readonly required>
+                <span class="error-message" id="deliveryDateError">Please select delivery date</span>
+            </div>
+
+            <div class="form-group full-width">
+                <label>Delivery Type</label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="deliveryType" value="delivery" checked>
+                        <span class="radio-custom"></span>
+                        Delivery
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="deliveryType" value="pickup">
+                        <span class="radio-custom"></span>
+                        Pickup
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-divider"></div>
+
+            <!-- SECTION 2: Plan Details -->
+            <h2 class="form-section-title plan-details-title">Plan Details</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="mealCount">Meal Count per week<span class="required">*</span></label>
+                    <input type="number" id="mealCount" name="mealCount" placeholder="E.g: 10 per week" min="1"
+                        required>
+                    <span class="error-message" id="mealCountError">Enter meals per week</span>
+                </div>
+                <div class="form-group">
+                    <label for="mealsPerDay">Meal perDay<span class="required">*</span></label>
+                    <input type="number" id="mealsPerDay" name="mealsPerDay" placeholder="E.g: 2 per day" min="1"
+                        required>
+                    <span class="error-message" id="mealsPerDayError">Enter meals per day</span>
+                </div>
+            </div>
+
+            <p class="section-hint">Select your quantities below (0 = not included)</p>
+
+            <!-- SECTION 3: Protein -->
+            <h3 class="selection-title">Protein<span class="required">*</span></h3>
+            <span class="error-message category-error" id="proteinError">Please select at least one protein
+                option</span>
+            <div class="selection-box" data-category="protein">
+                <% const proteins=[ { id: 'chicken_breast' , name: 'Chicken Breast' , sub: '(6 oz)' , cal: '280 cal.' ,
+                    protein: '52g protein' }, { id: 'salmon_fillet' , name: 'Salmon Fillet' , sub: '(6 oz)' ,
+                    cal: '350 cal.' , protein: '39g protein' }, { id: 'grass_fed_beef' , name: 'Grass-Fed Beef' ,
+                    sub: '(6 oz)' , cal: '380 cal.' , protein: '46g protein' }, { id: 'turkey_breast' ,
+                    name: 'Turkey Breast' , sub: '(6 oz)' , cal: '240 cal.' , protein: '48g protein' }, {
+                    id: 'tofu_organic' , name: 'Tofu (Organic)' , sub: '(8 oz)' , cal: '180 cal.' ,
+                    protein: '20g protein' } ]; %>
+                    <% proteins.forEach(item=> { %>
+                        <div class="selection-item">
+                            <div class="item-info">
+                                <div class="item-main">
+                                    <span class="item-name">
+                                        <%= item.name %>
+                                    </span>
+                                    <span class="item-sub">
+                                        <%= item.sub %>
+                                    </span>
+                                </div>
+                                <div class="item-stats">
+                                    <span>
+                                        <%= item.cal %>
+                                    </span>
+                                    <span>
+                                        <%= item.protein %>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="item-controls">
+                                <button type="button" class="qty-btn dec" data-target="<%= item.id %>">−</button>
+                                <span class="qty-display" id="display_<%= item.id %>">0</span>
+                                <input type="hidden" name="qty_<%= item.id %>" id="<%= item.id %>" class="qty-input"
+                                    value="0">
+                                <button type="button" class="qty-btn inc" data-target="<%= item.id %>">+</button>
+                            </div>
+                        </div>
+                        <% }); %>
+            </div>
+
+            <!-- SECTION 4: Carbs -->
+            <h3 class="selection-title">Carbs<span class="required">*</span></h3>
+            <span class="error-message category-error" id="carbsError">Please select at least one carb option</span>
+            <div class="selection-box" data-category="carbs">
+                <% const carbs=[ { id: 'rice' , name: 'Rice' , sub: '(6 oz)' , cal: '280 cal.' , protein: '52g protein'
+                    }, { id: 'pasta' , name: 'Pasta' , sub: '(6 oz)' , cal: '350 cal.' , protein: '39g protein' }, {
+                    id: 'quinoa' , name: 'Quinoa' , sub: '(6 oz)' , cal: '380 cal.' , protein: '46g protein' }, {
+                    id: 'sweet_potato' , name: 'Sweet Potato' , sub: '(6 oz)' , cal: '240 cal.' , protein: '48g protein'
+                    }, { id: 'regular_potato' , name: 'Regular Potato' , sub: '(8 oz)' , cal: '180 cal.' ,
+                    protein: '20g protein' } ]; %>
+                    <% carbs.forEach(item=> { %>
+                        <div class="selection-item">
+                            <div class="item-info">
+                                <div class="item-main">
+                                    <span class="item-name">
+                                        <%= item.name %>
+                                    </span>
+                                    <span class="item-sub">
+                                        <%= item.sub %>
+                                    </span>
+                                </div>
+                                <div class="item-stats">
+                                    <span>
+                                        <%= item.cal %>
+                                    </span>
+                                    <span>
+                                        <%= item.protein %>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="item-controls">
+                                <button type="button" class="qty-btn dec" data-target="<%= item.id %>">−</button>
+                                <span class="qty-display" id="display_<%= item.id %>">0</span>
+                                <input type="hidden" name="qty_<%= item.id %>" id="<%= item.id %>" class="qty-input"
+                                    value="0">
+                                <button type="button" class="qty-btn inc" data-target="<%= item.id %>">+</button>
+                            </div>
+                        </div>
+                        <% }); %>
+            </div>
+
+            <!-- SECTION 5: Veggies -->
+            <h3 class="selection-title">Veggies<span class="required">*</span></h3>
+            <span class="error-message category-error" id="veggiesError">Please select at least one veggie option</span>
+            <div class="selection-box" data-category="veggies">
+                <% const veggies=[ { id: 'broccoli' , name: 'Broccoli' , sub: '(6 oz)' , cal: '45 cal.' ,
+                    protein: '4g protein' }, { id: 'asparagus' , name: 'Asparagus' , sub: '(6 oz)' , cal: '30 cal.' ,
+                    protein: '3g protein' }, { id: 'green_beans' , name: 'Green Beans' , sub: '(6 oz)' , cal: '35 cal.'
+                    , protein: '2g protein' }, { id: 'spinach' , name: 'Spinach' , sub: '(6 oz)' , cal: '20 cal.' ,
+                    protein: '2g protein' }, { id: 'roasted_veggies' , name: 'Roasted Veggies' , sub: '(6 oz)' ,
+                    cal: '60 cal.' , protein: '2g protein' } ]; %>
+                    <% veggies.forEach(item=> { %>
+                        <div class="selection-item">
+                            <div class="item-info">
+                                <div class="item-main">
+                                    <span class="item-name">
+                                        <%= item.name %>
+                                    </span>
+                                    <span class="item-sub">
+                                        <%= item.sub %>
+                                    </span>
+                                </div>
+                                <div class="item-stats">
+                                    <span>
+                                        <%= item.cal %>
+                                    </span>
+                                    <span>
+                                        <%= item.protein %>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="item-controls">
+                                <button type="button" class="qty-btn dec" data-target="<%= item.id %>">−</button>
+                                <span class="qty-display" id="display_<%= item.id %>">0</span>
+                                <input type="hidden" name="qty_<%= item.id %>" id="<%= item.id %>" class="qty-input"
+                                    value="0">
+                                <button type="button" class="qty-btn inc" data-target="<%= item.id %>">+</button>
+                            </div>
+                        </div>
+                        <% }); %>
+            </div>
+
+            <!-- SECTION 6: Sauces -->
+            <h3 class="selection-title">Sauces / Seasonings<span class="required">*</span></h3>
+            <span class="error-message category-error" id="saucesError">Please select at least one sauce option</span>
+            <div class="selection-box" data-category="sauces">
+                <% const sauces=[ { id: 'teriyaki' , name: 'Teriyaki' , sub: '(2 oz)' , cal: '50 cal.' ,
+                    protein: '1g protein' }, { id: 'garlic_herb' , name: 'Garlic Herb' , sub: '(2 oz)' , cal: '40 cal.'
+                    , protein: '0g protein' }, { id: 'bbq' , name: 'BBQ' , sub: '(2 oz)' , cal: '60 cal.' ,
+                    protein: '0g protein' }, { id: 'pesto' , name: 'Pesto' , sub: '(2 oz)' , cal: '120 cal.' ,
+                    protein: '2g protein' }, { id: 'lemon_butter' , name: 'Lemon Butter' , sub: '(2 oz)' ,
+                    cal: '90 cal.' , protein: '0g protein' } ]; %>
+                    <% sauces.forEach(item=> { %>
+                        <div class="selection-item">
+                            <div class="item-info">
+                                <div class="item-main">
+                                    <span class="item-name">
+                                        <%= item.name %>
+                                    </span>
+                                    <span class="item-sub">
+                                        <%= item.sub %>
+                                    </span>
+                                </div>
+                                <div class="item-stats">
+                                    <span>
+                                        <%= item.cal %>
+                                    </span>
+                                    <span>
+                                        <%= item.protein %>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="item-controls">
+                                <button type="button" class="qty-btn dec" data-target="<%= item.id %>">−</button>
+                                <span class="qty-display" id="display_<%= item.id %>">0</span>
+                                <input type="hidden" name="qty_<%= item.id %>" id="<%= item.id %>" class="qty-input"
+                                    value="0">
+                                <button type="button" class="qty-btn inc" data-target="<%= item.id %>">+</button>
+                            </div>
+                        </div>
+                        <% }); %>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="dietaryGoals">Dietary Goals</label>
+                <textarea id="dietaryGoals" name="dietaryGoals" placeholder="Enter dietary goals"></textarea>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="allergies">Allergies / Restrictions</label>
+                <textarea id="allergies" name="allergies" placeholder="Enter allergies or restrictions"></textarea>
+            </div>
+
+            <div class="form-group full-width">
+                <label>Upload Dietary Documents</label>
+                <p class="file-hint">Accepted formats: PDF, DOC, DOCX, JPG, PNG (Max 5 files)</p>
+                <div class="file-upload-zone" id="dropZone">
+                    <input type="file" id="dietaryDocs" name="dietaryDocs" multiple accept=".pdf,.doc,.docx,.jpg,.png"
+                        class="file-input">
+                    <div class="file-upload-content">
+                        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            style="width: 40px; height: 40px; color: #dca959; margin-bottom: 8px;">
+                            <path d="M12 16V8M12 8L9 11M12 8L15 11" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M3 15V16C3 18.2091 4.79086 20 7 20H17C19.2091 20 21 18.2091 21 16V15"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M3 9V8C3 5.79086 4.79086 4 7 4H17C19.2091 4 21 5.79086 21 8V9"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <span class="upload-text">Select file</span>
+                    </div>
+                </div>
+                <div id="fileList" class="file-list"></div>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="additionalInfo">Additional Info</label>
+                <textarea id="additionalInfo" name="additionalInfo" placeholder="Additional Message"></textarea>
+            </div>
+
+            <div class="form-submit">
+                <button type="submit" class="submit-btn gold-btn" id="submitBtn">
+                    <span>Submit Booking</span>
+                </button>
+            </div>
+
+            <div id="formFeedback" class="form-feedback"></div>
+        </form>
+    </div>
+
+    <!-- ========== DATE PICKER MODAL ========== -->
+    <div class="picker-overlay" id="datePickerOverlay"></div>
+    <div class="picker-modal" id="datePickerModal">
+        <div class="calendar-header">
+            <div class="calendar-month-year" id="currentMonthYear"></div>
+            <div class="calendar-nav">
+                <button class="nav-btn" id="prevMonth"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg></button>
+                <button class="nav-btn" id="nextMonth"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg></button>
+            </div>
+        </div>
+        <div class="calendar-days-header">
+            <div class="day-name">Mo</div>
+            <div class="day-name">Tu</div>
+            <div class="day-name">We</div>
+            <div class="day-name">Th</div>
+            <div class="day-name">Fr</div>
+            <div class="day-name">Sa</div>
+            <div class="day-name">Su</div>
+        </div>
+        <div class="calendar-grid" id="calendarGrid"></div>
+        <div class="picker-footer">
+            <button class="picker-btn cancel" id="cancelBtn">Cancel</button>
+            <button class="picker-btn confirm" id="confirmBtn">Confirm</button>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('mealBookForm');
+        const feedback = document.getElementById('formFeedback');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Quantity logic
+        document.querySelectorAll('.qty-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const targetId = this.getAttribute('data-target');
+                const input = document.getElementById(targetId);
+                const display = document.getElementById('display_' + targetId);
+                let val = parseInt(input.value);
+
+                if (this.classList.contains('inc')) {
+                    val++;
+                } else if (this.classList.contains('dec') && val > 0) {
+                    val--;
+                }
+
+                input.value = val;
+                display.textContent = val;
+
+                // Clear category errors dynamically
+                const categoryBox = input.closest('.selection-box');
+                if (categoryBox) {
+                    const category = categoryBox.getAttribute('data-category');
+                    const error = document.getElementById(category + 'Error');
+                    if (val > 0 && error) {
+                        error.classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        /* --- Date Picker Shared --- */
+        let currentTargetInput = null;
+        let selectedDate = new Date();
+        let displayDate = new Date();
+        const dateModal = document.getElementById('datePickerModal');
+        const dateOverlay = document.getElementById('datePickerOverlay');
+        const monthYearText = document.getElementById('currentMonthYear');
+        const calendarGrid = document.getElementById('calendarGrid');
+
+        const openDatePicker = (input) => {
+            currentTargetInput = input;
+            const val = input.value ? new Date(input.value) : new Date();
+            selectedDate = isNaN(val.getTime()) ? new Date() : val;
+            displayDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1);
+            renderCalendar();
+            dateModal.classList.add('active');
+            dateOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+        const closeDatePicker = () => {
+            dateModal.classList.remove('active');
+            dateOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+        const renderCalendar = () => {
+            const year = displayDate.getFullYear();
+            const month = displayDate.getMonth();
+            const monthName = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(displayDate);
+            monthYearText.textContent = `${monthName} ${year}`;
+            calendarGrid.innerHTML = '';
+            let firstDay = new Date(year, month, 1).getDay();
+            firstDay = firstDay === 0 ? 6 : firstDay - 1;
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            for (let i = 0; i < firstDay; i++) {
+                const el = document.createElement('div'); el.className = 'calendar-day empty';
+                calendarGrid.appendChild(el);
+            }
+            const today = new Date();
+            for (let d = 1; d <= daysInMonth; d++) {
+                const dayEl = document.createElement('div');
+                dayEl.className = 'calendar-day'; dayEl.textContent = d;
+                if (year === today.getFullYear() && month === today.getMonth() && d === today.getDate()) dayEl.classList.add('today');
+                if (year === selectedDate.getFullYear() && month === selectedDate.getMonth() && d === selectedDate.getDate()) dayEl.classList.add('selected');
+                dayEl.addEventListener('click', () => { selectedDate = new Date(year, month, d); renderCalendar(); });
+                calendarGrid.appendChild(dayEl);
+            }
+        };
+        document.getElementById('prevMonth').addEventListener('click', () => { displayDate.setMonth(displayDate.getMonth() - 1); renderCalendar(); });
+        document.getElementById('nextMonth').addEventListener('click', () => { displayDate.setMonth(displayDate.getMonth() + 1); renderCalendar(); });
+        document.getElementById('confirmBtn').addEventListener('click', () => {
+            const year = selectedDate.getFullYear();
+            const month = (selectedDate.getMonth() + 1).toString().padStart(2, '0');
+            const day = selectedDate.getDate().toString().padStart(2, '0');
+            currentTargetInput.value = `${year}-${month}-${day}`;
+            currentTargetInput.classList.remove('invalid');
+            const err = document.getElementById(currentTargetInput.id + 'Error');
+            if (err) err.classList.remove('active');
+            closeDatePicker();
+        });
+        document.getElementById('cancelBtn').addEventListener('click', closeDatePicker);
+        dateOverlay.addEventListener('click', closeDatePicker);
+        document.getElementById('deliveryDate').addEventListener('click', function () { openDatePicker(this); });
+
+        // File selection display logic
+        const fileInput = document.getElementById('dietaryDocs');
+        const fileList = document.getElementById('fileList');
+
+        fileInput.addEventListener('change', function () {
+            fileList.innerHTML = '';
+            const files = Array.from(this.files);
+
+            if (files.length > 5) {
+                alert('You can only upload a maximum of 5 files.');
+                this.value = '';
+                return;
+            }
+
+            files.forEach(file => {
+                const item = document.createElement('div');
+                item.className = 'file-item';
+                item.innerHTML = `
+                    <span>${file.name}</span>
+                    <span style="font-size: 12px; opacity: 0.6;">(${(file.size / 1024).toFixed(1)} KB)</span>
+                `;
+                fileList.appendChild(item);
+            });
+        });
+
+        // Validation
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            let isValid = true;
+            const requiredFields = ['name', 'email', 'phone', 'address', 'deliveryDate', 'mealCount', 'mealsPerDay'];
+
+            requiredFields.forEach(fieldId => {
+                const input = document.getElementById(fieldId);
+                const error = document.getElementById(fieldId + 'Error');
+                if (!input.value) {
+                    input.classList.add('invalid'); if (error) error.classList.add('active'); isValid = false;
+                } else {
+                    input.classList.remove('invalid'); if (error) error.classList.remove('active');
+                }
+            });
+
+            // Category Selection Validation
+            const categories = ['protein', 'carbs', 'veggies', 'sauces'];
+            categories.forEach(cat => {
+                const categoryBox = document.querySelector(`.selection-box[data-category="${cat}"]`);
+                const qtyInputs = categoryBox.querySelectorAll('.qty-input');
+                let catTotal = 0;
+                qtyInputs.forEach(input => catTotal += parseInt(input.value));
+
+                const catError = document.getElementById(cat + 'Error');
+                if (catTotal === 0) {
+                    if (catError) catError.classList.add('active');
+                    isValid = false;
+                } else {
+                    if (catError) catError.classList.remove('active');
+                }
+            });
+
+            if (isValid) {
+                submitBtn.classList.add('loading');
+                submitBtn.disabled = true;
+                setTimeout(() => {
+                    submitBtn.classList.remove('loading');
+                    feedback.textContent = 'Meal plan submitted successfully! We will contact you shortly.';
+                    feedback.classList.add('success', 'active');
+                    form.reset();
+                    document.querySelectorAll('.qty-display').forEach(d => d.textContent = '0');
+                    submitBtn.disabled = false;
+                    setTimeout(() => { feedback.classList.remove('active'); }, 5000);
+                }, 1500);
+            }
+        });
+
+        form.querySelectorAll('input, select, textarea').forEach(el => {
+            el.addEventListener('input', function () {
+                this.classList.remove('invalid');
+                const error = document.getElementById(this.id + 'Error');
+                if (error) error.classList.remove('active');
+            });
+        });
+    });
+</script>

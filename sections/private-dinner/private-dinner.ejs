@@ -1,0 +1,320 @@
+<section class="private-dinner-section">
+    <div class="private-dinner-container">
+        <h1 class="private-dinner-title">Private Dinner / Date Night</h1>
+        <p class="private-dinner-subtitle">Fill out the form below to customize your meal prep plan.</p>
+
+        <form id="privateDinnerForm" class="private-dinner-form" novalidate>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="serviceMode">Service mode<span class="required">*</span></label>
+                    <div class="select-wrapper">
+                        <select id="serviceMode" name="serviceMode" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="private-chef">Private Chef</option>
+                            <option value="catering">Catering</option>
+                            <option value="delivery-setup">Delivery & Setup</option>
+                        </select>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                    <span class="error-message" id="serviceModeError">Please select a service mode</span>
+                </div>
+                <div class="form-group">
+                    <label for="occasion">Occasion<span class="required">*</span></label>
+                    <div class="select-wrapper">
+                        <select id="occasion" name="occasion" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="date-night">Date Night</option>
+                            <option value="birthday">Birthday</option>
+                            <option value="anniversary">Anniversary</option>
+                            <option value="business-dinner">Business Dinner</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                    <span class="error-message" id="occasionError">Please select an occasion</span>
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="guestCount">Guest count<span class="required">*</span></label>
+                <input type="number" id="guestCount" name="guestCount" placeholder="Enter guest count" min="1" required>
+                <span class="error-message" id="guestCountError">Please enter guest count</span>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="menuSelection">Menu selection<span class="required">*</span></label>
+                <input type="text" id="menuSelection" name="menuSelection" placeholder="Enter menu selection / details"
+                    required>
+                <span class="error-message" id="menuSelectionError">Please enter menu details</span>
+            </div>
+
+            <div class="form-divider"></div>
+
+            <div class="form-group full-width">
+                <label for="spaceDescription">Space Description</label>
+                <textarea id="spaceDescription" name="spaceDescription"
+                    placeholder="Describe the hosting space (e.g. Kitchen setup, dining area)"></textarea>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="allergies">Allergies / Restrictions</label>
+                <textarea id="allergies" name="allergies"
+                    placeholder="Any dietary restrictions or allergies"></textarea>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="addServers">Add servers (optional)</label>
+                <textarea id="addServers" name="addServers"
+                    placeholder="Do you need additional serving staff?"></textarea>
+            </div>
+
+            <div class="form-row-3">
+                <div class="form-group">
+                    <label for="bookingDate">Date<span class="required">*</span></label>
+                    <input type="text" id="bookingDate" name="bookingDate" class="readonly-input"
+                        placeholder="Enter here" readonly required>
+                    <span class="error-message" id="bookingDateError">Select date</span>
+                </div>
+                <div class="form-group">
+                    <label for="bookingTime">Time<span class="required">*</span></label>
+                    <input type="text" id="bookingTime" name="bookingTime" class="readonly-input"
+                        placeholder="Enter here" readonly required>
+                    <span class="error-message" id="bookingTimeError">Select time</span>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location<span class="required">*</span></label>
+                    <input type="text" id="location" name="location" placeholder="Enter here" required>
+                    <span class="error-message" id="locationError">Enter location</span>
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="additionalInfo">Additional Info</label>
+                <textarea id="additionalInfo" name="additionalInfo" placeholder="Additional Message"></textarea>
+            </div>
+
+            <div class="form-submit">
+                <button type="submit" class="submit-btn gold-btn" id="submitBtn">
+                    <span>Submit Booking</span>
+                </button>
+            </div>
+
+            <div id="formFeedback" class="form-feedback"></div>
+        </form>
+    </div>
+
+    <!-- ========== DATE PICKER MODAL ========== -->
+    <div class="picker-overlay" id="datePickerOverlay"></div>
+    <div class="picker-modal" id="datePickerModal">
+        <div class="calendar-header">
+            <div class="calendar-month-year" id="currentMonthYear">October 2020</div>
+            <div class="calendar-nav">
+                <button class="nav-btn" id="prevMonth">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <button class="nav-btn" id="nextMonth">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="calendar-days-header">
+            <div class="day-name">Mo</div>
+            <div class="day-name">Tu</div>
+            <div class="day-name">We</div>
+            <div class="day-name">Th</div>
+            <div class="day-name">Fr</div>
+            <div class="day-name">Sa</div>
+            <div class="day-name">Su</div>
+        </div>
+        <div class="calendar-grid" id="calendarGrid"></div>
+        <div class="picker-footer">
+            <button class="picker-btn cancel" id="cancelBtn">Cancel</button>
+            <button class="picker-btn confirm" id="confirmBtn">Confirm</button>
+        </div>
+    </div>
+
+    <!-- ========== TIME PICKER MODAL ========== -->
+    <div class="picker-overlay" id="timePickerOverlay"></div>
+    <div class="picker-modal" id="timePickerModal">
+        <div class="time-picker-content">
+            <div class="time-display" id="timeDisplay">12:00 PM</div>
+            <div class="am-pm-toggle">
+                <button class="toggle-btn active" id="amBtn">AM</button>
+                <button class="toggle-btn" id="pmBtn">PM</button>
+            </div>
+            <div class="time-grid-container">
+                <div class="time-grid" id="timeGrid"></div>
+            </div>
+        </div>
+        <div class="picker-footer">
+            <button class="picker-btn cancel" id="cancelTimeBtn">Cancel</button>
+            <button class="picker-btn confirm" id="confirmTimeBtn">Confirm</button>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('privateDinnerForm');
+        const feedback = document.getElementById('formFeedback');
+        const submitBtn = document.getElementById('submitBtn');
+
+        /* --- Pickers Logic (Shared from Car Book) --- */
+        let currentTargetInput = null;
+        let selectedDate = new Date();
+        let displayDate = new Date();
+        const dateModal = document.getElementById('datePickerModal');
+        const dateOverlay = document.getElementById('datePickerOverlay');
+        const monthYearText = document.getElementById('currentMonthYear');
+        const calendarGrid = document.getElementById('calendarGrid');
+
+        const openDatePicker = (input) => {
+            currentTargetInput = input;
+            const val = input.value ? new Date(input.value) : new Date();
+            selectedDate = isNaN(val.getTime()) ? new Date() : val;
+            displayDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1);
+            renderCalendar();
+            dateModal.classList.add('active');
+            dateOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+        const closeDatePicker = () => {
+            dateModal.classList.remove('active');
+            dateOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+        const renderCalendar = () => {
+            const year = displayDate.getFullYear();
+            const month = displayDate.getMonth();
+            const monthName = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(displayDate);
+            monthYearText.textContent = `${monthName} ${year}`;
+            calendarGrid.innerHTML = '';
+            let firstDay = new Date(year, month, 1).getDay();
+            firstDay = firstDay === 0 ? 6 : firstDay - 1;
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            for (let i = 0; i < firstDay; i++) {
+                const empty = document.createElement('div');
+                empty.className = 'calendar-day empty';
+                calendarGrid.appendChild(empty);
+            }
+            const today = new Date();
+            for (let d = 1; d <= daysInMonth; d++) {
+                const dayEl = document.createElement('div');
+                dayEl.className = 'calendar-day';
+                dayEl.textContent = d;
+                if (year === today.getFullYear() && month === today.getMonth() && d === today.getDate()) dayEl.classList.add('today');
+                if (year === selectedDate.getFullYear() && month === selectedDate.getMonth() && d === selectedDate.getDate()) dayEl.classList.add('selected');
+                dayEl.addEventListener('click', () => { selectedDate = new Date(year, month, d); renderCalendar(); });
+                calendarGrid.appendChild(dayEl);
+            }
+        };
+        document.getElementById('prevMonth').addEventListener('click', () => { displayDate.setMonth(displayDate.getMonth() - 1); renderCalendar(); });
+        document.getElementById('nextMonth').addEventListener('click', () => { displayDate.setMonth(displayDate.getMonth() + 1); renderCalendar(); });
+        document.getElementById('confirmBtn').addEventListener('click', () => {
+            const year = selectedDate.getFullYear();
+            const month = (selectedDate.getMonth() + 1).toString().padStart(2, '0');
+            const day = selectedDate.getDate().toString().padStart(2, '0');
+            currentTargetInput.value = `${year}-${month}-${day}`;
+            currentTargetInput.classList.remove('invalid');
+            const err = document.getElementById(currentTargetInput.id + 'Error');
+            if (err) err.classList.remove('active');
+            closeDatePicker();
+        });
+        document.getElementById('cancelBtn').addEventListener('click', closeDatePicker);
+        dateOverlay.addEventListener('click', closeDatePicker);
+
+        const timeModal = document.getElementById('timePickerModal');
+        const timeOverlay = document.getElementById('timePickerOverlay');
+        const timeDisplay = document.getElementById('timeDisplay');
+        const timeGrid = document.getElementById('timeGrid');
+        const amBtn = document.getElementById('amBtn');
+        const pmBtn = document.getElementById('pmBtn');
+        let selectedHour = "12", selectedMinute = "00", selectedAMPM = "PM";
+
+        const openTimePicker = (input) => {
+            currentTargetInput = input;
+            if (input.value) {
+                const parts = input.value.split(' ');
+                if (parts.length === 2) {
+                    const timeParts = parts[0].split(':');
+                    selectedHour = timeParts[0]; selectedMinute = timeParts[1]; selectedAMPM = parts[1];
+                }
+            }
+            renderTimeGrid(); updateTimeDisplay();
+            timeModal.classList.add('active'); timeOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+        const closeTimePicker = () => { timeModal.classList.remove('active'); timeOverlay.classList.remove('active'); document.body.style.overflow = ''; };
+        const updateTimeDisplay = () => {
+            timeDisplay.textContent = `${selectedHour}:${selectedMinute} ${selectedAMPM}`;
+            amBtn.classList.toggle('active', selectedAMPM === 'AM'); pmBtn.classList.toggle('active', selectedAMPM === 'PM');
+        };
+        const renderTimeGrid = () => {
+            timeGrid.innerHTML = '';
+            for (let h = 1; h <= 12; h++) {
+                ['00', '15', '30', '45'].forEach(m => {
+                    const hourPadded = h.toString();
+                    const item = document.createElement('div');
+                    item.className = 'time-item';
+                    if (hourPadded === selectedHour && m === selectedMinute) item.classList.add('selected');
+                    item.textContent = `${hourPadded}:${m}`;
+                    item.addEventListener('click', () => { selectedHour = hourPadded; selectedMinute = m; renderTimeGrid(); updateTimeDisplay(); });
+                    timeGrid.appendChild(item);
+                });
+            }
+        };
+        amBtn.addEventListener('click', () => { selectedAMPM = 'AM'; updateTimeDisplay(); });
+        pmBtn.addEventListener('click', () => { selectedAMPM = 'PM'; updateTimeDisplay(); });
+        document.getElementById('confirmTimeBtn').addEventListener('click', () => {
+            currentTargetInput.value = `${selectedHour}:${selectedMinute} ${selectedAMPM}`;
+            currentTargetInput.classList.remove('invalid');
+            const err = document.getElementById(currentTargetInput.id + 'Error');
+            if (err) err.classList.remove('active');
+            closeTimePicker();
+        });
+        document.getElementById('cancelTimeBtn').addEventListener('click', closeTimePicker);
+        timeOverlay.addEventListener('click', closeTimePicker);
+
+        document.getElementById('bookingDate').addEventListener('click', function () { openDatePicker(this); });
+        document.getElementById('bookingTime').addEventListener('click', function () { openTimePicker(this); });
+
+        // Form Validation
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            let isValid = true;
+            const requiredFields = ['serviceMode', 'occasion', 'guestCount', 'menuSelection', 'bookingDate', 'bookingTime', 'location'];
+            requiredFields.forEach(fieldId => {
+                const input = document.getElementById(fieldId);
+                const error = document.getElementById(fieldId + 'Error');
+                if (!input.value) {
+                    input.classList.add('invalid'); if (error) error.classList.add('active'); isValid = false;
+                } else {
+                    input.classList.remove('invalid'); if (error) error.classList.remove('active');
+                }
+            });
+            if (isValid) {
+                submitBtn.classList.add('loading'); submitBtn.disabled = true;
+                setTimeout(() => {
+                    submitBtn.classList.remove('loading');
+                    feedback.textContent = 'Booking request submitted successfully!';
+                    feedback.classList.add('success', 'active');
+                    form.reset(); submitBtn.disabled = false;
+                    setTimeout(() => { feedback.classList.remove('active'); }, 5000);
+                }, 1500);
+            }
+        });
+        form.querySelectorAll('input, select, textarea').forEach(el => {
+            el.addEventListener('input', function () {
+                this.classList.remove('invalid');
+                const error = document.getElementById(this.id + 'Error');
+                if (error) error.classList.remove('active');
+            });
+        });
+    });
+</script>

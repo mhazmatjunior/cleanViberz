@@ -1,0 +1,155 @@
+/* ========== OUR STORY — SECTION 1: INTRO ========== */
+
+.os-intro-section {
+    background: #0d0a04;
+    padding: 6vh 0 8vh;
+    margin-top: 0;
+}
+
+/* ---- Inner wrapper ---- */
+.os-intro-inner {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 100px 0 0;
+    /* clears fixed navbar height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+/* ---- Text Block: Title + Subtitle ---- */
+.os-intro-text-block {
+    width: 1293px;
+    max-width: calc(100% - 80px);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Main Title */
+.os-intro-title {
+    font-family: 'Jost', sans-serif;
+    font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+    margin: 0;
+    width: 1182px;
+    max-width: 100%;
+    text-align: center;
+}
+
+/* Subtitle */
+.os-intro-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.8rem, 1vw, 0.92rem);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.6;
+    margin: 0;
+    width: 1293px;
+    max-width: 100%;
+    text-align: center;
+}
+
+/* ---- Full-Width Image ---- */
+.os-intro-img-wrap {
+    width: 1520px;
+    max-width: calc(100% - 40px);
+    height: 520px;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.os-intro-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+}
+
+/* ---- Body Text ---- */
+.os-intro-body {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.9rem, 1.15vw, 1rem);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.75;
+    margin: 0;
+    width: 1356px;
+    max-width: calc(100% - 80px);
+    text-align: center;
+}
+
+/* ---- Mobile Responsiveness ---- */
+@media (max-width: 1023px) {
+    .os-intro-section {
+        padding: 4vh 0 6vh;
+    }
+
+    .os-intro-inner {
+        padding: 130px 0 0;
+        /* Clear mobile navbar */
+        gap: 24px;
+    }
+
+    .os-intro-text-block {
+        width: 100%;
+        max-width: calc(100% - 40px);
+        gap: 12px;
+    }
+
+    .os-intro-title {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+        width: 100%;
+    }
+
+    .os-intro-subtitle {
+        font-size: 0.95rem;
+        width: 100%;
+    }
+
+    .os-intro-img-wrap {
+        max-width: calc(100% - 40px);
+        height: 350px;
+        border-radius: 20px;
+    }
+
+    .os-intro-body {
+        font-size: 0.95rem;
+        max-width: calc(100% - 40px);
+        text-align: center;
+        /* Centered on mobile */
+    }
+}
+
+@media (max-width: 768px) {
+    .os-intro-img-wrap {
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .os-intro-inner {
+        padding: 120px 0 0;
+    }
+
+    .os-intro-title {
+        font-size: clamp(1.3rem, 6vw, 1.6rem);
+    }
+
+    .os-intro-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .os-intro-body {
+        font-size: 0.9rem;
+    }
+
+    .os-intro-img-wrap {
+        height: 200px;
+        border-radius: 16px;
+    }
+}

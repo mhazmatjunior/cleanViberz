@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <meta name="description"
+        content="Learn about Clean Vibez VIP — our story, mission, and commitment to delivering premium food and dining experiences.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Global styles -->
+    <link rel="stylesheet" href="/css/vars.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Shared section styles -->
+    <link rel="stylesheet" href="/header/header.css">
+    <link rel="stylesheet" href="/footer/footer.css">
+    <!-- Page-specific section styles -->
+    <link rel="stylesheet" href="/os-intro/os-intro.css">
+    <link rel="stylesheet" href="/os-journey/os-journey.css">
+    <link rel="stylesheet" href="/os-services/os-services.css">
+    <link rel="stylesheet" href="/os-luxury/os-luxury.css">
+    <link rel="stylesheet" href="/os-travel/os-travel.css">
+    <link rel="stylesheet" href="/os-concierge/os-concierge.css">
+    <link rel="stylesheet" href="/os-faq/os-faq.css">
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ========== HEADER ========== -->
+    <%- include('../sections/header/our-story-header'); %>
+
+        <main>
+            <!-- ========== SECTION 1: INTRO ========== -->
+            <%- include('../sections/os-intro/os-intro'); %>
+
+                <!-- ========== SECTION 2: JOURNEY OF EXCELLENCE ========== -->
+                <%- include('../sections/os-journey/os-journey'); %>
+
+                    <!-- ========== SECTION 3: SERVICES ========== -->
+                    <%- include('../sections/os-services/os-services'); %>
+
+                        <!-- ========== SECTION 4: LUXURY IN EVERY DETAIL ========== -->
+                        <%- include('../sections/os-luxury/os-luxury'); %>
+
+                            <!-- ========== SECTION 5: REFINED TRAVEL EXPERIENCES ========== -->
+                            <%- include('../sections/os-travel/os-travel'); %>
+
+                                <!-- ========== SECTION 6: CONCIERGE SERVICES ========== -->
+                                <%- include('../sections/os-concierge/os-concierge'); %>
+
+                                    <!-- ========== SECTION 7: FAQ ========== -->
+                                    <%- include('../sections/os-faq/os-faq'); %>
+
+        </main>
+
+        <!-- ========== FOOTER ========== -->
+        <%- include('../sections/footer/footer'); %>
+</body>
+
+</html>

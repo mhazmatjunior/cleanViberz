@@ -1,0 +1,267 @@
+/* ========== OUR STORY — SECTION 4: LUXURY IN EVERY DETAIL ========== */
+
+.os-luxury-section {
+    background: #0d0a04;
+    padding: 8vh 5vw 8vh;
+    overflow: hidden;
+}
+
+/* ---- Inner wrapper ---- */
+.os-luxury-inner {
+    max-width: 1350px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 58px;
+}
+
+/* ---- Left Column: Images (Absolute Positioning) ---- */
+.os-luxury-images {
+    position: relative;
+    width: 633px;
+    height: 614px;
+    flex: 0 0 633px;
+}
+
+.os-luxury-img {
+    position: absolute;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+/* Top Left Image */
+.os-lux-img-1 {
+    width: 257px;
+    height: 212px;
+    top: 0;
+    left: 0;
+    border-radius: 23px;
+    z-index: 3;
+    /* Increased from 1 to bring forward */
+}
+
+/* Center Large Image */
+.os-lux-img-2 {
+    width: 549px;
+    height: 459px;
+    top: 51px;
+    left: 51px;
+    border-radius: 15px;
+    z-index: 2;
+}
+
+/* Bottom Right Image */
+.os-lux-img-3 {
+    width: 333px;
+    height: 203px;
+    top: 411px;
+    left: 300px;
+    border-radius: 23px;
+    z-index: 3;
+}
+
+/* ---- Right Column: Content ---- */
+.os-luxury-content {
+    width: 615px;
+    flex: 0 0 calc(100% - 691px);
+    max-width: 615px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.os-luxury-title {
+    font-family: 'Jost', sans-serif;
+    font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+    margin: 0 0 18px 0;
+    width: 100%;
+}
+
+.os-luxury-desc {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.75;
+    margin: 0 0 35px 0;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Custom Bullet List */
+.os-luxury-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 45px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.os-luxury-list li {
+    display: flex;
+    align-items: center;
+    /* Center aligns tick with text */
+    gap: 16px;
+}
+
+.os-lux-tick {
+    width: 27px;
+    height: 27px;
+    flex-shrink: 0;
+    display: block;
+}
+
+.os-luxury-list li span {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(220, 169, 89, 0.9);
+    /* Gold tinted text */
+    line-height: 1.5;
+}
+
+/* Custom Button */
+.os-luxury-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 275px;
+    height: 68px;
+    border: 1px solid rgba(220, 169, 89, 0.5);
+    /* Gold outline */
+    border-radius: 40px;
+    padding: 0 7px 0 28px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.os-luxury-btn span {
+    font-family: 'Jost', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.os-lux-btn-icon {
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.os-lux-btn-icon img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+}
+
+.os-luxury-btn:hover {
+    background-color: rgba(220, 169, 89, 0.1);
+    border-color: #dca959;
+}
+
+/* ---- Mobile Responsiveness ---- */
+@media (max-width: 1400px) {
+    .os-luxury-inner {
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 60px;
+    }
+
+    .os-luxury-images {
+        flex: none;
+        width: 100%;
+        max-width: 633px;
+        height: auto;
+        aspect-ratio: 633 / 614;
+    }
+
+    .os-luxury-content {
+        width: 100%;
+        max-width: 800px;
+        flex: none;
+        padding-top: 0;
+        align-items: center;
+        /* Center items on mobile */
+    }
+
+    .os-luxury-title {
+        text-align: center;
+    }
+
+    .os-luxury-desc {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .os-luxury-images {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        aspect-ratio: 633 / 614;
+        /* Updated to true aspect ratio */
+    }
+
+    .os-lux-img-1 {
+        width: 40%;
+        height: auto;
+        aspect-ratio: 257 / 212;
+        top: 0;
+        left: 0;
+        border-radius: 16px;
+    }
+
+    .os-lux-img-2 {
+        width: 86.7%;
+        height: auto;
+        aspect-ratio: 549 / 459;
+        top: 8.3%;
+        left: 8%;
+        border-radius: 12px;
+    }
+
+    .os-lux-img-3 {
+        width: 52.6%;
+        height: auto;
+        aspect-ratio: 333 / 203;
+        top: auto;
+        bottom: 0;
+        left: auto;
+        right: 0;
+        border-radius: 16px;
+    }
+
+    .os-luxury-title {
+        font-size: clamp(1.6rem, 7vw, 2.2rem);
+        margin-bottom: 16px;
+    }
+
+    .os-luxury-desc {
+        font-size: 15px;
+        margin-bottom: 30px;
+    }
+
+    .os-luxury-list {
+        gap: 16px;
+        margin-bottom: 40px;
+    }
+
+    .os-luxury-list li span {
+        font-size: 14px;
+    }
+
+    .os-luxury-btn {
+        width: 100%;
+        max-width: 297px;
+    }
+}

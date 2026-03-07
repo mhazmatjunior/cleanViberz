@@ -34,6 +34,13 @@ app.get('/car-service', (req, res) => {
   });
 });
 
+// Our Story Page
+app.get('/our-story', (req, res) => {
+  res.render('our-story', {
+    title: 'Our Story - Clean Vibez VIP'
+  });
+});
+
 // Health check route
 app.get('/health', (req, res) => {
   res.json({ status: 'Server is running' });

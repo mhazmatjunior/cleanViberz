@@ -1,0 +1,233 @@
+/* ========== OUR STORY — SECTION 3: SERVICES ========== */
+
+.os-services-section {
+    background: #0d0a04;
+    padding: 6vh 5vw 4vh;
+}
+
+/* ---- Linker vector — between sections ---- */
+.os-svc-linker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 0 24px;
+    pointer-events: none;
+    background: #0d0a04;
+}
+
+@media (max-width: 1023px) {
+    .os-svc-linker {
+        display: none;
+    }
+}
+
+.os-svc-linker img {
+    width: auto;
+    height: auto;
+}
+
+/* ---- Inner wrapper ---- */
+.os-services-inner {
+    max-width: 1504px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+/* ---- Header ---- */
+.os-services-header {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.os-services-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+}
+
+.os-services-title {
+    font-family: 'Jost', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+    margin: 0 auto;
+    width: 842px;
+    max-width: 100%;
+}
+
+/* ---- Three Cards Grid ---- */
+.os-services-grid {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    max-width: 1504px;
+    height: 516px;
+}
+
+/* ---- Individual Card ---- */
+.os-service-card {
+    position: relative;
+    flex: 1;
+    width: 492px;
+    height: 515px;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+/* Background image */
+.os-service-card-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+    display: block;
+}
+
+.os-service-card:hover .os-service-card-img {
+    transform: scale(1.05);
+}
+
+/* Dark gradient overlay */
+.os-service-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.88) 0%,
+            rgba(0, 0, 0, 0.5) 40%,
+            rgba(0, 0, 0, 0.1) 100%);
+    z-index: 1;
+}
+
+/* Text content on card */
+.os-service-card-content {
+    position: absolute;
+    bottom: 110px;
+    left: 29px;
+    width: 406px;
+    max-width: calc(100% - 40px);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Card title */
+.os-service-card-title {
+    font-family: 'Jost', sans-serif;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    width: 327px;
+    max-width: 100%;
+    line-height: 1.2;
+}
+
+/* Card description */
+.os-service-card-desc {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.6;
+    margin: 0;
+    width: 406px;
+    max-width: 100%;
+}
+
+/* Arrow icon — bottom right */
+.os-service-card-arrow {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 2;
+    width: 97px;
+    height: 97px;
+    transition: transform 0.3s ease;
+}
+
+.os-service-card:hover .os-service-card-arrow {
+    transform: scale(1.08);
+}
+
+.os-service-arrow-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* ---- Mobile Responsiveness ---- */
+@media (max-width: 1023px) {
+    .os-services-section {
+        background: #0d0a04;
+        padding: 6vh 16px 8vh;
+        width: 100%;
+        margin: 0;
+        transform: none;
+        border-radius: 0 !important;
+    }
+
+    .os-services-grid {
+        flex-direction: column;
+        height: auto;
+        gap: 16px;
+    }
+
+    .os-service-card {
+        width: 100%;
+        height: 340px;
+        flex: none;
+    }
+
+    .os-service-card:first-child {
+        border-radius: 20px 20px 0 0;
+    }
+
+    .os-service-card:last-child {
+        border-radius: 0 0 20px 20px;
+    }
+
+    .os-service-card-content {
+        bottom: 90px;
+        left: 20px;
+        width: calc(100% - 120px);
+    }
+
+    .os-service-card-title {
+        font-size: clamp(1.1rem, 5vw, 1.4rem);
+        width: 100%;
+    }
+
+    .os-service-card-desc {
+        font-size: 12px;
+        width: 100%;
+    }
+
+    .os-service-card-arrow {
+        width: 70px;
+        height: 70px;
+        bottom: 16px;
+        right: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .os-service-card {
+        height: 280px;
+    }
+}

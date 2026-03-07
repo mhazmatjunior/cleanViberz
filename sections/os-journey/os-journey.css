@@ -1,0 +1,169 @@
+/* ========== OUR STORY — SECTION 2: JOURNEY OF EXCELLENCE ========== */
+
+.os-journey-section {
+    background: #0d0a04;
+    padding: 10vh 5vw 4vh;
+    /* Reduced bottom padding from 8vh to 4vh */
+    overflow: hidden;
+}
+
+/* ---- Linker vector — between sections ---- */
+.os-exc-linker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 0 24px;
+    /* Removed top padding */
+    pointer-events: none;
+    background: #0d0a04;
+}
+
+@media (max-width: 1023px) {
+    .os-exc-linker {
+        display: none;
+    }
+}
+
+.os-exc-linker img {
+    width: auto;
+    height: auto;
+}
+
+/* ---- Inner wrapper ---- */
+.os-journey-inner {
+    max-width: 1414px;
+    /* Matches the 667 + 100 gap + 647 layout */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 80px;
+}
+
+/* ---- Left Column: Content ---- */
+.os-journey-content {
+    flex: 0 0 667px;
+    width: 667px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.os-journey-title {
+    font-family: 'Jost', sans-serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+    margin: 0;
+    width: 100%;
+    /* Increased from 494px */
+    max-width: 100%;
+}
+
+.os-journey-text {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    width: 100%;
+}
+
+.os-journey-text p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.75;
+    margin: 0;
+}
+
+/* ---- Right Column: Images ---- */
+.os-journey-images {
+    flex: 0 0 647px;
+    width: 647px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+}
+
+.os-journey-img-1 {
+    width: 100%;
+    height: 197px;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+}
+
+.os-journey-img-2 {
+    width: 100%;
+    height: 354px;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+}
+
+/* ---- Mobile Responsiveness ---- */
+@media (max-width: 1200px) {
+    .os-journey-inner {
+        flex-direction: column;
+        gap: 60px;
+    }
+
+    .os-journey-content {
+        flex: unset;
+        width: 100%;
+        text-align: center;
+        align-items: center;
+    }
+
+    .os-journey-title {
+        text-align: center;
+    }
+
+    .os-journey-text {
+        text-align: left;
+        max-width: 800px;
+    }
+}
+
+@media (max-width: 768px) {
+    .os-journey-section {
+        padding: 6vh 24px;
+    }
+
+    .os-journey-images {
+        flex: unset;
+        width: 100%;
+    }
+
+    .os-journey-title {
+        font-size: clamp(1.6rem, 7vw, 2.2rem);
+    }
+
+    .os-journey-text p {
+        font-size: 15px;
+    }
+
+    .os-journey-img-1 {
+        height: auto;
+        aspect-ratio: 647 / 197;
+    }
+
+    .os-journey-img-2 {
+        height: auto;
+        aspect-ratio: 647 / 354;
+    }
+}
+
+@media (max-width: 480px) {
+    .os-journey-title {
+        font-size: clamp(1.4rem, 7vw, 1.8rem);
+    }
+
+    .os-journey-text p {
+        font-size: 14px;
+    }
+}

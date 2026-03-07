@@ -1,0 +1,140 @@
+/* ========== OUR STORY — SECTION 6: CONCIERGE ========== */
+
+.os-concierge-section {
+    background: #0d0a04;
+    padding: 6vh 5vw 10vh;
+    /* Reduced top spacing, added bottom spacing */
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.os-concierge-container {
+    width: 100%;
+    max-width: 1520px;
+    height: 576px;
+    position: relative;
+    border-radius: 30px;
+    overflow: hidden;
+    /* Contains the background image and overlay */
+    background-image: url('/Our%20Story/Section%206%20pic.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Semi-transparent dark overlay to make text readable */
+.os-concierge-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    /* Reduced from 0.65 to let more image through */
+    z-index: 1;
+}
+
+/* Base Content Container */
+.os-concierge-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1030px;
+    padding: 0 20px;
+}
+
+.os-concierge-title {
+    font-family: 'Jost', sans-serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    /* Scales across screen sizes */
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.3;
+    margin: 0 0 26px 0;
+    width: 100%;
+}
+
+.os-concierge-desc {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.75;
+    margin: 0 0 40px 0;
+    width: 100%;
+    max-width: 880px;
+    /* Reduced from 920px */
+}
+
+/* Solid Gold Book Now Button */
+.os-concierge-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 248px;
+    height: 71px;
+    background-color: #dca959;
+    /* Solid gold */
+    border-radius: 150px;
+    /* Extremely rounded custom radius */
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.os-concierge-btn span {
+    font-family: 'Jost', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #ffffff;
+    /* White text on gold button */
+}
+
+.os-concierge-btn:hover {
+    background-color: #c4914a;
+    /* Darker gold on hover */
+    transform: translateY(-2px);
+}
+
+/* ---- Mobile Responsiveness ---- */
+@media (max-width: 768px) {
+    .os-concierge-section {
+        padding: 40px 16px 10vh;
+        /* Added bottom spacing for mobile */
+    }
+
+    .os-concierge-container {
+        height: auto;
+        min-height: 500px;
+        /* Force minimum height for background image */
+        padding: 50px 20px;
+        border-radius: 20px;
+    }
+
+    .os-concierge-title {
+        font-size: clamp(1.6rem, 7vw, 2.2rem);
+        margin-bottom: 20px;
+    }
+
+    .os-concierge-desc {
+        font-size: 15px;
+        margin-bottom: 30px;
+    }
+
+    .os-concierge-btn {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .os-concierge-linker-container {
+        padding: 60px 0;
+    }
+}

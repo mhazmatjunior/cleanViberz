@@ -181,6 +181,10 @@
     display: flex !important;
   }
 
+  .desktop-only {
+    display: none !important;
+  }
+
   .nav-book-btn-mobile {
     padding: 8px 16px !important;
     font-size: 0.85rem !important;

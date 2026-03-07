@@ -20,6 +20,13 @@ app.get('/', (req, res) => {
   });
 });
 
+// Meal Prep Service Page
+app.get('/meal-prep', (req, res) => {
+  res.render('meal-prep', {
+    title: 'Custom Meal Prep - Clean Vibez VIP'
+  });
+});
+
 // Health check route
 app.get('/health', (req, res) => {
   res.json({ status: 'Server is running' });

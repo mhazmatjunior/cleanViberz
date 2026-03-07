@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <meta name="description"
+        content="Custom meal prep designed for your lifestyle. Fresh, healthy, and tailored meals prepared your way and delivered with precision by Clean Vibez VIP.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Global styles -->
+    <link rel="stylesheet" href="/css/vars.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Shared section styles -->
+    <link rel="stylesheet" href="/header/header.css">
+    <link rel="stylesheet" href="/footer/footer.css">
+    <!-- Page-specific section styles -->
+    <link rel="stylesheet" href="/meal-prep-hero/meal-prep-hero.css">
+    <link rel="stylesheet" href="/mp-excellence/mp-excellence.css">
+    <link rel="stylesheet" href="/mp-features/mp-features.css">
+    <link rel="stylesheet" href="/mp-gallery/mp-gallery.css">
+    <link rel="stylesheet" href="/mp-airbnb/mp-airbnb.css">
+    <link rel="stylesheet" href="/mp-process/mp-process.css">
+    <link rel="stylesheet" href="/mp-testimonials/mp-testimonials.css">
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ========== HEADER (same as main, Services tab active) ========== -->
+    <%- include('../sections/header/meal-prep-header'); %>
+
+        <main>
+            <!-- ========== HERO SECTION ========== -->
+            <%- include('../sections/meal-prep-hero/meal-prep-hero'); %>
+
+                <!-- ========== SECTION 2: EXPERIENCE EXCELLENCE ========== -->
+                <%- include('../sections/mp-excellence/mp-excellence'); %>
+
+                    <!-- ========== SECTION 3: EVERYTHING THAT COMES WITH IT ========== -->
+                    <%- include('../sections/mp-features/mp-features'); %>
+
+                        <!-- ========== SECTION 4: PHOTO GALLERY ========== -->
+                        <%- include('../sections/mp-gallery/mp-gallery'); %>
+
+                            <!-- ========== SECTION 5: AIRBNB COMFORT SERVICES ========== -->
+                            <%- include('../sections/mp-airbnb/mp-airbnb'); %>
+
+                                <!-- ========== SECTION 6: THE PROCESS STEPS ========== -->
+                                <%- include('../sections/mp-process/mp-process'); %>
+
+                                    <!-- ========== SECTION 7: TESTIMONIALS ========== -->
+                                    <%- include('../sections/mp-testimonials/mp-testimonials'); %>
+        </main>
+
+        <!-- ========== FOOTER ========== -->
+        <%- include('../sections/footer/footer'); %>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!-- ========== SECTION 2: EXPERIENCE EXCELLENCE ========== -->
+<section id="mp-excellence" class="mp-excellence-section">
+
+
+    <div class="mp-excellence-inner">
+
+        <!-- LEFT: Text Content -->
+        <div class="mp-exc-left">
+            <h2 class="mp-exc-title">Experience Excellence</h2>
+            <p class="mp-exc-desc">
+                Our Premium Meal Prep Service is designed for discerning individuals who
+                demand excellence in every aspect of their lives.
+            </p>
+
+            <ul class="mp-exc-list">
+                <li>Chef-crafted menus designed by Michelin-trained culinary experts.</li>
+                <li>Premium organic ingredients sourced from local artisan purveyors.</li>
+                <li>Fully customizable to accommodate dietary preferences and restrictions.</li>
+                <li>Elegant packaging with eco-friendly, reusable containers.</li>
+                <li>Flexible delivery schedule that adapts to your lifestyle</li>
+            </ul>
+
+            <a href="#" class="mp-exc-cta">
+                <span>Prepare Meal Now</span>
+                <span class="mp-exc-cta-icon">
+                    <img src="/Meal Prep Service Page/up tilted arrow.png" alt="arrow" width="20" height="20">
+                </span>
+            </a>
+        </div>
+
+        <!-- RIGHT: Image/Video Carousel -->
+        <div class="mp-exc-right">
+            <div class="mp-exc-carousel-track" id="mpCarouselTrack">
+                <div class="mp-exc-card">
+                    <img src="/Meal Prep Service Page/Section 2 Pic 1.png" alt="Chef meal preparation">
+                    <button class="mp-exc-play-btn" aria-label="Play video">
+                        <svg viewBox="0 0 24 24" fill="white" width="32" height="32">
+                            <polygon points="5,3 19,12 5,21" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="mp-exc-card">
+                    <img src="/Meal Prep Service Page/Section 2 Pic 2.png" alt="Premium meal presentation">
+                    <button class="mp-exc-play-btn" aria-label="Play video">
+                        <svg viewBox="0 0 24 24" fill="white" width="32" height="32">
+                            <polygon points="5,3 19,12 5,21" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Navigation arrows -->
+            <div class="mp-exc-nav">
+                <button class="mp-exc-nav-btn" id="mpNext" aria-label="Next">
+                    <img src="/Meal Prep Service Page/right arrow.png" alt="Next">
+                </button>
+                <button class="mp-exc-nav-btn" id="mpPrev" aria-label="Previous">
+                    <img src="/Meal Prep Service Page/left arrow.png" alt="Previous">
+                </button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Linker vector — between sections, centered -->
+<div class="mp-exc-linker">
+    <img src="/Meal Prep Service Page/Linker.png" alt="section linker">
+</div>
+
+<script>
+    (function () {
+        const track = document.getElementById('mpCarouselTrack');
+        const prev = document.getElementById('mpPrev');
+        const next = document.getElementById('mpNext');
+        let index = 0;
+
+        function updateCarousel() {
+            const cards = track.querySelectorAll('.mp-exc-card');
+            const cardW = cards[0].offsetWidth + parseInt(getComputedStyle(track).gap || 20);
+            track.style.transform = `translateX(-${index * cardW}px)`;
+            cards.forEach((c, i) => c.classList.toggle('mp-exc-card--active', i === index));
+        }
+
+        if (prev && next) {
+            next.addEventListener('click', () => {
+                const cards = track.querySelectorAll('.mp-exc-card');
+                index = (index + 1) % cards.length;
+                updateCarousel();
+            });
+            prev.addEventListener('click', () => {
+                const cards = track.querySelectorAll('.mp-exc-card');
+                index = (index - 1 + cards.length) % cards.length;
+                updateCarousel();
+            });
+        }
+    })();
+</script>

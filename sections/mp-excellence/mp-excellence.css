@@ -1,0 +1,343 @@
+/* ========== MEAL PREP — SECTION 2: EXPERIENCE EXCELLENCE ========== */
+
+.mp-excellence-section {
+    position: relative;
+    background: #0d0a04;
+    padding: 8vh 5vw 4vh 48px;
+    overflow: visible;
+}
+
+/* ---- Linker vector — between sections ---- */
+.mp-exc-linker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 4px 0;
+    pointer-events: none;
+    background: #0d0a04;
+}
+
+@media (max-width: 1023px) {
+    .mp-exc-linker {
+        display: none;
+    }
+}
+
+
+.mp-exc-linker img {
+    width: auto;
+    height: auto;
+    display: block;
+    max-width: 300px;
+}
+
+/* ---- Inner two-column layout ---- */
+.mp-excellence-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 3vw;
+    max-width: 1600px;
+    margin: 0 48px 0 0;
+    /* Align to left (48px) and let right extend */
+    position: relative;
+    z-index: 1;
+}
+
+
+
+/* ---- LEFT column ---- */
+.mp-exc-left {
+    flex: 0 0 666px;
+    width: 666px;
+    max-width: 666px;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5vh;
+}
+
+.mp-exc-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 46px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0;
+    color: #ffffff;
+    margin: 0;
+}
+
+.mp-exc-desc {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 34.02px;
+    letter-spacing: 0;
+    margin: 0;
+}
+
+/* Bullet list */
+.mp-exc-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* Reduced space between bullets */
+    padding: 0;
+    margin: 0;
+}
+
+.mp-exc-list li {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #e0b973;
+    line-height: normal;
+    letter-spacing: 0;
+    margin: 0;
+}
+
+/* The Bullet Dot */
+.mp-exc-list li::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    min-width: 10px;
+    border-radius: 50%;
+    background: #e0b973;
+    margin-top: 6px;
+    z-index: 2;
+}
+
+/* The Dashed Connecting Line */
+.mp-exc-list li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 16px;
+    /* Start below the dot */
+    left: 4.5px;
+    /* Center with the 10px dot */
+    width: 1.5px;
+    height: calc(100% + 10px);
+    /* Reach down to the next dot */
+    border-left: 1.5px dashed rgba(224, 185, 115, 0.4);
+    z-index: 1;
+}
+
+
+/* CTA button */
+.mp-exc-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 100px;
+    padding: 12px 12px 12px 28px;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    width: fit-content;
+    margin-top: 1vh;
+}
+
+.mp-exc-cta:hover {
+    border-color: #e0b973;
+    transform: translateY(-2px);
+}
+
+.mp-exc-cta-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    background: linear-gradient(135deg, #e0b973, #c9973b);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mp-exc-cta-icon img {
+    width: 18px;
+    height: 18px;
+    filter: brightness(0) invert(0);
+}
+
+/* ---- RIGHT column: Carousel ---- */
+.mp-exc-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5vh;
+    overflow: hidden;
+}
+
+.mp-exc-carousel-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.mp-exc-card {
+    position: relative;
+    flex-shrink: 0;
+    width: calc(50% - 10px);
+    aspect-ratio: 3 / 4;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.mp-exc-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Subtle dark overlay on each card */
+.mp-exc-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    z-index: 1;
+}
+
+/* Play button */
+.mp-exc-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.mp-exc-play-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Navigation arrows */
+.mp-exc-nav {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+}
+
+.mp-exc-nav-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s ease;
+}
+
+.mp-exc-nav-btn:hover {
+    transform: scale(1.08);
+}
+
+.mp-exc-nav-btn img {
+    width: 42px;
+    height: 42px;
+    display: block;
+}
+
+/* ---- Mobile Responsiveness ---- */
+@media (max-width: 1023px) {
+    .mp-excellence-section {
+        padding: 6vh 24px 8vh;
+    }
+
+    .mp-excellence-inner {
+        flex-direction: column;
+        gap: 5vh;
+        margin: 0;
+    }
+
+    .mp-exc-left {
+        flex: unset;
+        max-width: 100%;
+        width: 100%;
+        gap: 16px;
+    }
+
+    .mp-exc-title {
+        font-size: clamp(1.8rem, 7vw, 2.4rem);
+        line-height: 1.2;
+    }
+
+    .mp-exc-desc {
+        font-size: 16px;
+        line-height: 1.5;
+        /* Fix for mobile wrapping */
+    }
+
+    .mp-exc-list {
+        gap: 12px;
+    }
+
+    .mp-exc-list li {
+        font-size: 14px;
+        line-height: 1.4;
+        /* Fix for mobile wrapping */
+    }
+
+    .mp-exc-cta {
+        align-self: center;
+        /* Center button on mobile */
+    }
+
+    .mp-exc-right {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Center cards and nav */
+    }
+
+    .mp-exc-carousel-track {
+        /* Remove justify-content: center if it exists as it breaks sliding */
+        justify-content: flex-start;
+    }
+
+    .mp-exc-card {
+        width: 100%;
+        /* Show one card at a time */
+        aspect-ratio: 4 / 5;
+    }
+}
+
+
+
+@media (max-width: 480px) {
+    .mp-exc-title {
+        font-size: clamp(1.6rem, 7vw, 2rem);
+    }
+}

@@ -1,0 +1,88 @@
+<!-- ========== SECTION 4: PHOTO GALLERY ========== -->
+<section id="mp-gallery" class="mp-gallery-section">
+    <div class="mp-gallery-inner">
+        <!-- Gallery Header -->
+        <div class="mp-gallery-header">
+            <h2 class="mp-gallery-title">Where Taste, Elegance, and Atmosphere <br> Meet in Every Frame</h2>
+
+            <a href="#" class="mp-gallery-cta">
+                <span>Prepare Meal Now</span>
+                <div class="mp-gallery-cta-icon">
+                    <img src="/Meal Prep Service Page/up tilted arrow.png" alt="arrow" width="20" height="20">
+                </div>
+            </a>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="mp-gallery-grid" id="mpGalleryGrid">
+            <div class="mp-gallery-row-1">
+                <div class="mp-gallery-item mp-gallery-pic-1 active">
+                    <img src="/Meal Prep Service Page/Section 4 Pic 1.png" alt="Meal Prep Display 1">
+                </div>
+                <div class="mp-gallery-item mp-gallery-pic-2">
+                    <img src="/Meal Prep Service Page/Section 4 Pic 2.png" alt="Meal Prep Display 2">
+                </div>
+            </div>
+            <div class="mp-gallery-row-2">
+                <div class="mp-gallery-item mp-gallery-pic-3">
+                    <img src="/Meal Prep Service Page/Section 4 Pic 3.png" alt="Meal Prep Display 3">
+                </div>
+                <div class="mp-gallery-item mp-gallery-pic-4">
+                    <img src="/Meal Prep Service Page/Section 4 Pic 4.png" alt="Meal Prep Display 4">
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Arrows (Carousel) -->
+        <div class="mp-gallery-mobile-nav">
+            <button class="mp-gallery-nav-btn" id="galleryNext" aria-label="Next">
+                <img src="/Meal Prep Service Page/right arrow.png" alt="Next">
+            </button>
+            <button class="mp-gallery-nav-btn" id="galleryPrev" aria-label="Previous">
+                <img src="/Meal Prep Service Page/left arrow.png" alt="Previous">
+            </button>
+        </div>
+    </div>
+</section>
+
+<script>
+    (function () {
+        const items = document.querySelectorAll('.mp-gallery-item');
+        const prev = document.getElementById('galleryPrev');
+        const next = document.getElementById('galleryNext');
+        let currentIndex = 0;
+
+        function updateGallery() {
+            // Only runs if we're on mobile (detection by checking if nav is visible)
+            if (window.getComputedStyle(document.querySelector('.mp-gallery-mobile-nav')).display === 'none') return;
+
+            items.forEach((item, index) => {
+                if (index === currentIndex) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        if (prev && next) {
+            next.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % items.length;
+                updateGallery();
+            });
+            prev.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + items.length) % items.length;
+                updateGallery();
+            });
+        }
+
+        // Handle resize - if desktop, make sure all are shown
+        window.addEventListener('resize', () => {
+            if (window.getComputedStyle(document.querySelector('.mp-gallery-mobile-nav')).display === 'none') {
+                items.forEach(item => item.classList.remove('active')); // Reset active in desktop
+            } else {
+                updateGallery(); // Re-apply on mobile
+            }
+        });
+    })();
+</script>

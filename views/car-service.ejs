@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <meta name="description"
+        content="Premium car and van services designed for every occasion. Reliable, stylish, and professional rides by Clean Vibez VIP.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Global styles -->
+    <link rel="stylesheet" href="/css/vars.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Shared section styles -->
+    <link rel="stylesheet" href="/header/header.css">
+    <link rel="stylesheet" href="/footer/footer.css">
+    <!-- Page-specific section styles -->
+    <link rel="stylesheet" href="/car-service-hero/car-service-hero.css">
+    <link rel="stylesheet" href="/cs-excellence/cs-excellence.css">
+    <link rel="stylesheet" href="/cs-rides/cs-rides.css">
+    <link rel="stylesheet" href="/mp-airbnb/mp-airbnb.css">
+    <link rel="stylesheet" href="/mp-process/mp-process.css">
+    <link rel="stylesheet" href="/cs-faq/cs-faq.css">
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ========== HEADER ========== -->
+    <%- include('../sections/header/car-service-header'); %>
+
+        <main>
+            <!-- ========== HERO SECTION ========== -->
+            <%- include('../sections/car-service-hero/car-service-hero'); %>
+
+                <!-- ========== SECTION 2: PREMIUM TRANSPORTATION ========== -->
+                <%- include('../sections/cs-excellence/cs-excellence'); %>
+
+                    <!-- ========== SECTION 3: CHOOSE YOUR RIDE ========== -->
+                    <%- include('../sections/cs-rides/cs-rides'); %>
+
+                        <!-- ========== SECTION 4: AIRBNB COMFORT (DUPLICATE) ========== -->
+                        <%- include('../sections/cs-airbnb/cs-airbnb'); %>
+
+                            <!-- ========== SECTION 5: BOOKING PROCESS STEPS ========== -->
+                            <%- include('../sections/cs-process/cs-process'); %>
+
+                                <!-- ========== SECTION 6: FAQ ========== -->
+                                <%- include('../sections/cs-faq/cs-faq'); %>
+
+        </main>
+
+        <!-- ========== FOOTER ========== -->
+        <%- include('../sections/footer/footer'); %>
+</body>
+
+</html>

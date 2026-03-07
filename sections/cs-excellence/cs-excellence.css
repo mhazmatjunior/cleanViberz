@@ -1,0 +1,278 @@
+/* ========== CAR SERVICE — SECTION 2: EXCELLENCE ========== */
+
+.cs-excellence-section {
+    position: relative;
+    background: #0d0a04;
+    padding: 8vh 0 0 5vw;
+    overflow: visible;
+}
+
+/* ---- Linker vector after section ---- */
+.mp-exc-linker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 4px 0;
+    pointer-events: none;
+    background: #0d0a04;
+}
+
+.mp-exc-linker img {
+    width: auto;
+    height: auto;
+    display: block;
+    max-width: 300px;
+}
+
+@media (max-width: 1023px) {
+    .mp-exc-linker {
+        display: none;
+    }
+}
+
+/* ---- Inner two-column layout ---- */
+.cs-excellence-inner {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    overflow: visible;
+}
+
+/* ---- LEFT column: Text ---- */
+.cs-exc-left {
+    flex: 0 0 771px;
+    width: 771px;
+    max-width: 771px;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+    z-index: 2;
+}
+
+/* Title */
+.cs-exc-title {
+    font-family: 'Jost', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1.2;
+    color: #ffffff;
+    margin: 0;
+    width: 735px;
+    max-width: 100%;
+}
+
+/* Bullet list */
+.cs-exc-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 0;
+    margin: 0;
+}
+
+.cs-exc-list li {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #e0b973;
+    line-height: normal;
+    margin: 0;
+}
+
+/* Bullet dot */
+.cs-exc-list li::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    min-width: 10px;
+    border-radius: 50%;
+    background: #e0b973;
+    margin-top: 6px;
+    z-index: 2;
+}
+
+/* Dashed connecting line */
+.cs-exc-list li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 4.5px;
+    width: 1.5px;
+    height: calc(100% + 14px);
+    border-left: 1.5px dashed rgba(224, 185, 115, 0.4);
+    z-index: 1;
+}
+
+/* Item content wrapper */
+.cs-exc-list-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cs-exc-item-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #e0b973;
+}
+
+.cs-exc-item-desc {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
+}
+
+/* CTA Button */
+.cs-exc-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 100px;
+    padding: 12px 12px 12px 28px;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    width: fit-content;
+    margin-top: 1vh;
+}
+
+.cs-exc-cta:hover {
+    border-color: #e0b973;
+    transform: translateY(-2px);
+}
+
+.cs-exc-cta-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cs-exc-cta-icon img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+/* ---- RIGHT column: Car Image ---- */
+.cs-exc-right {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    overflow: visible;
+    position: relative;
+    height: 515px;
+    /* Pull car left to create overlap with text column */
+    margin-left: -100px;
+    z-index: 1;
+}
+
+.cs-exc-car-img {
+    width: 1062px;
+    height: 515px;
+    max-width: none;
+    /* Allow to exceed container */
+    object-fit: contain;
+    object-position: left bottom;
+    display: block;
+}
+
+/* ---- Mobile Responsiveness ---- */
+@media (max-width: 1200px) {
+    .cs-exc-left {
+        flex: 0 0 50%;
+        width: 50%;
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 1023px) {
+    .cs-excellence-section {
+        background: #0d0a04;
+        padding: 6vh 24px 0;
+        width: 100%;
+        margin: 0;
+        transform: none;
+        border-radius: 0 !important;
+        overflow: hidden;
+        /* clip car on mobile */
+    }
+
+    .cs-excellence-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4vh;
+        margin-left: 0;
+    }
+
+    .cs-exc-left {
+        flex: unset;
+        width: 100%;
+        max-width: 100%;
+        z-index: 2;
+    }
+
+    .cs-exc-title {
+        font-size: clamp(1.6rem, 7vw, 2.2rem);
+        width: 100%;
+        text-align: center;
+    }
+
+    .cs-exc-list {
+        gap: 14px;
+    }
+
+    .cs-exc-list li {
+        font-size: 14px;
+    }
+
+    .cs-exc-cta {
+        align-self: center;
+    }
+
+    .cs-exc-right {
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .cs-exc-car-img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        object-position: center bottom;
+        position: static;
+        right: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .cs-exc-title {
+        font-size: clamp(1.4rem, 7vw, 1.8rem);
+    }
+
+    .cs-exc-item-title {
+        font-size: 14px;
+    }
+
+    .cs-exc-item-desc {
+        font-size: 13px;
+    }
+}

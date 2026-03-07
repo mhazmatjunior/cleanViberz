@@ -27,6 +27,13 @@ app.get('/meal-prep', (req, res) => {
   });
 });
 
+// Premium Car Service Page
+app.get('/car-service', (req, res) => {
+  res.render('car-service', {
+    title: 'Premium Car Services - Clean Vibez VIP'
+  });
+});
+
 // Health check route
 app.get('/health', (req, res) => {
   res.json({ status: 'Server is running' });

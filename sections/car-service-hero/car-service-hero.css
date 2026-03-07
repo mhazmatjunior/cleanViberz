@@ -129,7 +129,7 @@
     font-weight: 600;
     text-decoration: none;
     border-radius: 100px;
-    padding: 14px 14px 14px 32px;
+    padding: 6px 6px 6px 32px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 8px 30px rgba(224, 185, 115, 0.35);
     margin-top: 1rem;
@@ -140,22 +140,9 @@
     box-shadow: 0 14px 40px rgba(224, 185, 115, 0.5);
 }
 
-/* Arrow icon */
-.cs-hero-cta-icon {
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
-    background: #1a1000;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.cs-hero-cta-icon img {
-    width: 22px;
-    height: 22px;
+.cs-hero-cta img {
+    width: 58px;
+    height: 58px;
     object-fit: contain;
 }
 
@@ -219,15 +206,14 @@
 
     .cs-hero-cta {
         font-size: 0.9rem;
-        padding: 11px 11px 11px 24px;
+        padding: 4px 4px 4px 24px;
         gap: 10px;
         margin-top: 8px;
     }
 
-    .cs-hero-cta-icon {
-        width: 36px;
-        height: 36px;
-        min-width: 36px;
+    .cs-hero-cta img {
+        width: 44px;
+        height: 44px;
     }
 }
 

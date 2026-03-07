@@ -51,6 +51,12 @@
     width: 20px;
     height: 20px;
     flex-shrink: 0;
+    transition: transform 0.3s ease;
+    content: url('/img/plus0.svg');
+}
+
+#mp-faq .faq-item[open] .faq-icon {
+    content: url('/img/xmark0.svg');
 }
 
 #mp-faq .faq-answer {

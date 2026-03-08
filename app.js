@@ -13,36 +13,102 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'assets')));
 app.use(express.static(path.join(__dirname, 'sections')));
 
+const db = require('./config/db');
+
+// Middleware for JSON and Form Data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// API Routes
+app.use('/api', require('./routes/api'));
+
 // Routes
-app.get('/', (req, res) => {
-  res.render('index', {
-    title: 'Clean Vibez VIP - Luxury Services',
-    activePage: 'home'
-  });
+app.get('/', async (req, res) => {
+  try {
+    const [[testimonials], [faqs], [services], [destinations]] = await Promise.all([
+      db.query("SELECT * FROM testimonials ORDER BY created_at DESC"),
+      db.query("SELECT * FROM site_faqs WHERE category = ? ORDER BY display_order ASC", ['home']),
+      db.query("SELECT * FROM services"),
+      db.query("SELECT * FROM destinations")
+    ]);
+
+    res.render('index', {
+      title: 'Clean Vibez VIP - Luxury Services',
+      activePage: 'home',
+      testimonials,
+      faqs,
+      services,
+      destinations
+    });
+  } catch (err) {
+    console.error('Render Error:', err.message);
+    res.render('index', {
+      title: 'Clean Vibez VIP - Luxury Services',
+      activePage: 'home',
+      testimonials: [],
+      faqs: [],
+      services: [],
+      destinations: []
+    });
+  }
 });
 
 // Meal Prep Service Page
-app.get('/meal-prep', (req, res) => {
-  res.render('meal-prep', {
-    title: 'Custom Meal Prep - Clean Vibez VIP',
-    activePage: 'services'
-  });
+app.get('/meal-prep', async (req, res) => {
+  try {
+    const [[faqs]] = await db.query("SELECT * FROM site_faqs WHERE category = ? ORDER BY display_order ASC", ['meal']);
+    res.render('meal-prep', {
+      title: 'Custom Meal Prep - Clean Vibez VIP',
+      activePage: 'services',
+      faqs
+    });
+  } catch (err) {
+    res.render('meal-prep', {
+      title: 'Custom Meal Prep - Clean Vibez VIP',
+      activePage: 'services',
+      faqs: []
+    });
+  }
 });
 
 // Premium Car Service Page
-app.get('/car-service', (req, res) => {
-  res.render('car-service', {
-    title: 'Premium Car Services - Clean Vibez VIP',
-    activePage: 'services'
-  });
+app.get('/car-service', async (req, res) => {
+  try {
+    const [[faqs]] = await db.query("SELECT * FROM site_faqs WHERE category = ? ORDER BY display_order ASC", ['car']);
+    const [[rides]] = await db.query("SELECT * FROM car_rides");
+
+    res.render('car-service', {
+      title: 'Premium Car Services - Clean Vibez VIP',
+      activePage: 'services',
+      faqs,
+      rides
+    });
+  } catch (err) {
+    res.render('car-service', {
+      title: 'Premium Car Services - Clean Vibez VIP',
+      activePage: 'services',
+      faqs: [],
+      rides: []
+    });
+  }
 });
 
 // Our Story Page
-app.get('/our-story', (req, res) => {
-  res.render('our-story', {
-    title: 'Our Story - Clean Vibez VIP',
-    activePage: 'story'
-  });
+app.get('/our-story', async (req, res) => {
+  try {
+    const [[faqs]] = await db.query("SELECT * FROM site_faqs WHERE category = ? ORDER BY display_order ASC", ['story']);
+    res.render('our-story', {
+      title: 'Our Story - Clean Vibez VIP',
+      activePage: 'story',
+      faqs
+    });
+  } catch (err) {
+    res.render('our-story', {
+      title: 'Our Story - Clean Vibez VIP',
+      activePage: 'story',
+      faqs: []
+    });
+  }
 });
 
 // Contact Us Page

@@ -478,15 +478,42 @@
             if (isValid) {
                 submitBtn.classList.add('loading');
                 submitBtn.disabled = true;
-                setTimeout(() => {
-                    submitBtn.classList.remove('loading');
-                    feedback.textContent = 'Meal plan submitted successfully! We will contact you shortly.';
-                    feedback.classList.add('success', 'active');
-                    form.reset();
-                    document.querySelectorAll('.qty-display').forEach(d => d.textContent = '0');
-                    submitBtn.disabled = false;
-                    setTimeout(() => { feedback.classList.remove('active'); }, 5000);
-                }, 1500);
+
+                const formData = new FormData(form);
+                const formDataObj = Object.fromEntries(formData);
+                const data = {
+                    type: 'Meal Prep',
+                    name: formDataObj.name,
+                    email: formDataObj.email,
+                    details: JSON.stringify(formDataObj)
+                };
+
+                fetch('/api/book', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.json())
+                    .then(result => {
+                        submitBtn.classList.remove('loading');
+                        if (result.success) {
+                            feedback.textContent = 'Meal plan submitted successfully! We will contact you shortly.';
+                            feedback.classList.add('success', 'active');
+                            form.reset();
+                            document.querySelectorAll('.qty-display').forEach(d => d.textContent = '0');
+                        } else {
+                            feedback.textContent = 'Error: ' + (result.error || 'Failed to submit meal plan.');
+                            feedback.classList.add('error', 'active');
+                        }
+                        submitBtn.disabled = false;
+                        setTimeout(() => { feedback.classList.remove('active'); }, 5000);
+                    })
+                    .catch(err => {
+                        submitBtn.classList.remove('loading');
+                        feedback.textContent = 'Network error. Please try again.';
+                        feedback.classList.add('error', 'active');
+                        submitBtn.disabled = false;
+                    });
             }
         });
 

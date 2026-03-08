@@ -30,90 +30,27 @@
     </div>
 
     <div class="destinations-grid">
-      <!-- Hotels -->
-      <article class="destination-card destination-fadein-animate" data-category="hotels">
-        <div class="destination-image" style="background-image: url('/img/card0.png')"></div>
-        <div class="destination-content">
-          <h3>Paris, France</h3>
-          <p class="price"><span class="from">From</span> <strong>$190/night</strong></p>
-          <p class="desc">Romantic escapes, art, and cafés.</p>
-        </div>
-      </article>
-      <article class="destination-card destination-fadein-animate" data-category="hotels">
-        <div class="destination-image" style="background-image: url('/img/product-card-vertical0.png')"></div>
-        <div class="destination-content">
-          <h3>Santorini, Greece</h3>
-          <p class="price"><span class="from">From</span> <strong>$190/night</strong></p>
-          <p class="desc">Sunsets, sea views, and serenity.</p>
-        </div>
-      </article>
-      <article class="destination-card destination-fadein-animate" data-category="hotels">
-        <div class="destination-image" style="background-image: url('/img/card1.png')"></div>
-        <div class="destination-content">
-          <h3>Bali, Indonesia</h3>
-          <p class="price"><span class="from">From</span> <strong>$190/night</strong></p>
-          <p class="desc">Beaches, nature, and calm vibes.</p>
-        </div>
-      </article>
-      <article class="destination-card destination-fadein-animate" data-category="hotels">
-        <div class="destination-image" style="background-image: url('/img/card2.png')"></div>
-        <div class="destination-content">
-          <h3>Kyoto, Japan</h3>
-          <p class="price"><span class="from">From</span> <strong>$190/night</strong></p>
-          <p class="desc">Cherry blossoms and temples.</p>
-        </div>
-      </article>
-      <!-- Cars -->
-      <article class="destination-card destination-fadein-animate" data-category="cars" style="display:none">
-        <div class="destination-image" style="background-image: url('/img/car1.png')"></div>
-        <div class="destination-content">
-          <h3>Rolls Royce Phantom</h3>
-          <p class="price"><span class="from">From</span> <strong>$900/day</strong></p>
-          <p class="desc">Ultimate luxury ride for special occasions.</p>
-        </div>
-      </article>
-      <article class="destination-card destination-fadein-animate" data-category="cars" style="display:none">
-        <div class="destination-image" style="background-image: url('/img/car2.png')"></div>
-        <div class="destination-content">
-          <h3>Lamborghini Aventador</h3>
-          <p class="price"><span class="from">From</span> <strong>$1200/day</strong></p>
-          <p class="desc">Speed, style, and pure adrenaline.</p>
-        </div>
-      </article>
-      <!-- Chefs -->
-      <article class="destination-card destination-fadein-animate" data-category="chefs" style="display:none">
-        <div class="destination-image" style="background-image: url('/img/chef1.png')"></div>
-        <div class="destination-content">
-          <h3>Chef Pierre</h3>
-          <p class="price"><span class="from">From</span> <strong>$400/event</strong></p>
-          <p class="desc">French cuisine, Michelin experience.</p>
-        </div>
-      </article>
-      <article class="destination-card destination-fadein-animate" data-category="chefs" style="display:none">
-        <div class="destination-image" style="background-image: url('/img/chef2.png')"></div>
-        <div class="destination-content">
-          <h3>Chef Maria</h3>
-          <p class="price"><span class="from">From</span> <strong>$350/event</strong></p>
-          <p class="desc">Mediterranean flavors, healthy delights.</p>
-        </div>
-      </article>
-      <!-- Concierge -->
-      <article class="destination-card destination-fadein-animate" data-category="concierge" style="display:none">
-        <div class="destination-image" style="background-image: url('/img/concierge1.png')"></div>
-        <div class="destination-content">
-          <h3>VIP Event Planner</h3>
-          <p class="price"><span class="from">From</span> <strong>$600/event</strong></p>
-          <p class="desc">Flawless events, every detail managed.</p>
-        </div>
-      </article>
-      <article class="destination-card destination-fadein-animate" data-category="concierge" style="display:none">
-        <div class="destination-image" style="background-image: url('/img/concierge2.png')"></div>
-        <div class="destination-content">
-          <h3>Personal Assistant</h3>
-          <p class="price"><span class="from">From</span> <strong>$250/day</strong></p>
-          <p class="desc">Your needs, handled with care and privacy.</p>
-        </div>
-      </article>
+      <% if (destinations && destinations.length> 0) { %>
+        <% destinations.forEach((dest, index)=> { %>
+          <article class="destination-card destination-fadein-animate" data-category="<%= dest.category %>"
+            style="<%= dest.category === 'hotels' ? '' : 'display:none' %>">
+            <div class="destination-image" style="background-image: url('<%= dest.image_url %>')"></div>
+            <div class="destination-content">
+              <h3>
+                <%= dest.title %>
+              </h3>
+              <p class="price"><span class="from">From</span> <strong>
+                  <%= dest.price_info %>
+                </strong></p>
+              <p class="desc text-white">
+                <%= dest.description %>
+              </p>
+            </div>
+          </article>
+          <% }) %>
+            <% } else { %>
+              <p class="text-white text-center" style="grid-column: 1/-1;">No destinations found.</p>
+              <% } %>
     </div>
 
     <div class="destinations-footer mobile-only" style="margin: 30px auto 0 auto;">

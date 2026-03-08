@@ -4,6 +4,26 @@
         <p class="car-book-subtitle">Fill out the form below to customize your car service plan.</p>
 
         <form id="carBookForm" class="car-book-form" novalidate>
+            <!-- Personal Info -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Name<span class="required">*</span></label>
+                    <input type="text" id="name" name="name" placeholder="John David" required>
+                    <span class="error-message" id="nameError">Please enter your name</span>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email<span class="required">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="your.email@gmail.com" required>
+                    <span class="error-message" id="emailError">Please enter a valid email</span>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone<span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" placeholder="+1 (123) 456789" required>
+                    <span class="error-message" id="phoneError">Please enter your phone number</span>
+                </div>
+            </div>
+
+            <div class="form-divider"></div>
             <div class="form-row">
                 <div class="form-group">
                     <label for="carType">Car Type<span class="required">*</span></label>
@@ -352,7 +372,7 @@
         form.addEventListener('submit', function (e) {
             e.preventDefault();
             let isValid = true;
-            const requiredFields = ['carType', 'guest', 'guestCount', 'pickUpDate', 'dropOffDate', 'pickUpTime', 'dropOffTime'];
+            const requiredFields = ['name', 'email', 'phone', 'carType', 'guest', 'guestCount', 'pickUpDate', 'dropOffDate', 'pickUpTime', 'dropOffTime'];
 
             requiredFields.forEach(fieldId => {
                 const input = document.getElementById(fieldId);
@@ -370,14 +390,41 @@
             if (isValid) {
                 submitBtn.classList.add('loading');
                 submitBtn.disabled = true;
-                setTimeout(() => {
-                    submitBtn.classList.remove('loading');
-                    feedback.textContent = 'Booking request submitted successfully! We will contact you shortly.';
-                    feedback.classList.add('success', 'active');
-                    form.reset();
-                    submitBtn.disabled = false;
-                    setTimeout(() => { feedback.classList.remove('active'); }, 5000);
-                }, 1500);
+
+                const formData = new FormData(form);
+                const formDataObj = Object.fromEntries(formData);
+                const data = {
+                    type: 'Car Booking',
+                    name: formDataObj.name,
+                    email: formDataObj.email,
+                    details: JSON.stringify(formDataObj)
+                };
+
+                fetch('/api/book', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.json())
+                    .then(result => {
+                        submitBtn.classList.remove('loading');
+                        if (result.success) {
+                            feedback.textContent = 'Booking request submitted successfully! We will contact you shortly.';
+                            feedback.classList.add('success', 'active');
+                            form.reset();
+                        } else {
+                            feedback.textContent = 'Error: ' + (result.error || 'Failed to submit booking.');
+                            feedback.classList.add('error', 'active');
+                        }
+                        submitBtn.disabled = false;
+                        setTimeout(() => { feedback.classList.remove('active'); }, 5000);
+                    })
+                    .catch(err => {
+                        submitBtn.classList.remove('loading');
+                        feedback.textContent = 'Network error. Please try again.';
+                        feedback.classList.add('error', 'active');
+                        submitBtn.disabled = false;
+                    });
             }
         });
     });

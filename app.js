@@ -25,12 +25,12 @@ app.use('/api', require('./routes/api'));
 // Routes
 app.get('/', async (req, res) => {
   try {
-    const [[testimonials], [faqs], [services], [destinations]] = await Promise.all([
+    const [testimonials, faqs, services, destinations] = (await Promise.all([
       db.query("SELECT * FROM testimonials ORDER BY created_at DESC"),
       db.query("SELECT * FROM site_faqs WHERE category = ? ORDER BY display_order ASC", ['home']),
-      db.query("SELECT * FROM services"),
+      db.query("SELECT id, title, description, icon_svg_path as icon_path, animation_delay FROM services"),
       db.query("SELECT * FROM destinations")
-    ]);
+    ])).map(r => r[0]);
 
     res.render('index', {
       title: 'Clean Vibez VIP - Luxury Services',
@@ -56,10 +56,10 @@ app.get('/', async (req, res) => {
 // Meal Prep Service Page
 app.get('/meal-prep', async (req, res) => {
   try {
-    const [[faqs], [testimonials]] = await Promise.all([
+    const [faqs, testimonials] = (await Promise.all([
       db.query("SELECT * FROM site_faqs WHERE category = ? ORDER BY display_order ASC", ['meal']),
       db.query("SELECT * FROM testimonials ORDER BY created_at DESC")
-    ]);
+    ])).map(r => r[0]);
     res.render('meal-prep', {
       title: 'Custom Meal Prep - Clean Vibez VIP',
       activePage: 'services',
@@ -79,8 +79,8 @@ app.get('/meal-prep', async (req, res) => {
 // Premium Car Service Page
 app.get('/car-service', async (req, res) => {
   try {
-    const [[faqs]] = await db.query("SELECT * FROM site_faqs WHERE category = ? ORDER BY display_order ASC", ['car']);
-    const [[rides]] = await db.query("SELECT * FROM car_rides");
+    const [faqs] = await db.query("SELECT * FROM site_faqs WHERE category = ? ORDER BY display_order ASC", ['car']);
+    const [rides] = await db.query("SELECT * FROM car_rides");
 
     res.render('car-service', {
       title: 'Premium Car Services - Clean Vibez VIP',
@@ -101,7 +101,7 @@ app.get('/car-service', async (req, res) => {
 // Our Story Page
 app.get('/our-story', async (req, res) => {
   try {
-    const [[faqs]] = await db.query("SELECT * FROM site_faqs WHERE category = ? ORDER BY display_order ASC", ['story']);
+    const [faqs] = await db.query("SELECT * FROM site_faqs WHERE category = ? ORDER BY display_order ASC", ['story']);
     res.render('our-story', {
       title: 'Our Story - Clean Vibez VIP',
       activePage: 'story',

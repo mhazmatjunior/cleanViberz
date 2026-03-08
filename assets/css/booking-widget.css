@@ -25,9 +25,11 @@
   /* Floating effect handled by relative positioning since it's now a sibling */
   position: relative;
   top: calc(7.8vh / 2);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.45) 100%);
-  backdrop-filter: blur(40px) brightness(95%) saturate(150%);
-  -webkit-backdrop-filter: blur(40px) brightness(95%) saturate(150%);
+  background-image: url('/img/blur bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Removed CSS blur/gradient as requested */
   width: 39.6vw;
   height: 7.8vh;
   padding: 4px;
@@ -55,7 +57,7 @@
   flex: 1;
 }
 
-.chip:hover {
+.chip:hover:not(.chip-active) {
   color: #fff;
 }
 
@@ -141,27 +143,26 @@
   }
 }
 
+.form-group-guests {
+  flex: 0 1 auto !important;
+  min-width: 100px;
+}
+
 .btn-submit-circle {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: clamp(40px, 8vh, 60px);
-  aspect-ratio: 1;
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
   background: linear-gradient(135deg, #e0b973 0%, #a07d3a 100%);
-  /* RESTORED GOLDEN THEME */
   border: none;
   border-radius: 50%;
   color: #fff;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin: 0 auto;
-}
-
-@media (min-width: 768px) {
-  .btn-submit-circle {
-    margin: 0;
-    margin-left: 1rem;
-  }
+  margin-left: 10px;
+  margin-right: 15px;
 }
 
 .btn-submit-circle:hover {

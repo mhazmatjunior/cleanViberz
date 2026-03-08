@@ -15,27 +15,22 @@
   <!-- ========== BOOKING FORM (OVER HERO) ========== -->
   <div class="container hero-booking hero-booking-animate">
     <div class="booking-tabs">
-      <button class="chip chip-active">Hotel</button>
+      <button class="chip chip-active">Host</button>
       <button class="chip">Car/Van</button>
       <button class="chip">Concierge</button>
       <button class="chip">Chef</button>
     </div>
     <div class="booking-widget">
       <form class="booking-form" id="heroBookingForm">
-        <input type="hidden" name="type" id="bookingType" value="Hotel">
+        <input type="hidden" name="type" id="bookingType" value="Host">
         <div class="form-group">
           <label>Name</label>
           <input type="text" name="name" id="heroName" placeholder="Your Name" required>
         </div>
         <div class="form-divider"></div>
         <div class="form-group">
-          <label>Phone</label>
-          <input type="tel" name="phone" id="heroPhone" placeholder="10+ Digits" required>
-        </div>
-        <div class="form-divider"></div>
-        <div class="form-group">
           <label>Location</label>
-          <input type="text" name="location" placeholder="Where are you going?">
+          <input type="text" name="location" placeholder="Address?">
         </div>
         <div class="form-divider"></div>
         <div class="form-group">
@@ -44,11 +39,16 @@
         </div>
         <div class="form-divider"></div>
         <div class="form-group">
+          <label>Check Out</label>
+          <input type="text" name="checkOut" placeholder="Add Dates">
+        </div>
+        <div class="form-divider"></div>
+        <div class="form-group form-group-guests">
           <label>Guests</label>
           <input type="text" name="guests" placeholder="2 Adults">
         </div>
         <button type="submit" class="btn-submit-circle" id="heroSubmitBtn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>
@@ -81,16 +81,6 @@
       e.preventDefault();
 
       const name = document.getElementById('heroName').value.trim();
-      const phone = document.getElementById('heroPhone').value.trim();
-
-      // Phone length check (min 10 digits)
-      const digitsOnly = phone.replace(/\D/g, '');
-      if (digitsOnly.length < 10) {
-        feedback.textContent = 'Phone number must be at least 10 digits.';
-        feedback.style.color = '#ff4d4d';
-        return;
-      }
-
       if (!name) {
         feedback.textContent = 'Please enter your name.';
         feedback.style.color = '#ff4d4d';
@@ -98,8 +88,7 @@
       }
 
       submitBtn.disabled = true;
-      feedback.textContent = 'Sending...';
-      feedback.style.color = '#fff';
+      feedback.textContent = ''; // Clear feedback
 
       try {
         const formData = new FormData(form);
@@ -110,7 +99,7 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             name: name,
-            email: phone, // Using phone as contact_info
+            email: 'N/A',
             type: 'Hero - ' + typeInput.value,
             details: details
           })
@@ -118,16 +107,13 @@
 
         const result = await response.json();
         if (result.success) {
-          feedback.textContent = 'Request sent successfully!';
-          feedback.style.color = '#dca959';
           form.reset();
         } else {
           feedback.textContent = 'Error: ' + (result.error || 'Failed to send.');
           feedback.style.color = '#ff4d4d';
         }
       } catch (err) {
-        feedback.textContent = 'Network error. Please try again.';
-        feedback.style.color = '#ff4d4d';
+        console.error(err);
       } finally {
         submitBtn.disabled = false;
       }

@@ -274,5 +274,43 @@ p {
   height: 1rem;
 }
 
-/* ========== HEADER ========== */
-/* All header styles moved to sections/header/header.css */
+/* ========== BLUR-UP IMAGE OPTIMIZATION ========== */
+.blur-load {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ensure blur-load doesn't override absolute positioning if already set */
+.hero-bg.blur-load,
+.cs-hero-bg.blur-load,
+.mp-hero-bg.blur-load,
+.os-intro-img-wrap.blur-load,
+.hero-bg-overlay.blur-load {
+  position: absolute;
+}
+
+.blur-load::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(26, 21, 16, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 5;
+  /* Sit above the hidden image but below content */
+  transition: opacity 1s ease-in-out;
+}
+
+.blur-load.loaded::before {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.blur-load img {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.blur-load.loaded img {
+  opacity: 1;
+}

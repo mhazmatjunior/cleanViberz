@@ -75,6 +75,13 @@
 
     <!-- ========== FOOTER ========== -->
     <%- include('../sections/footer/footer'); %>
+
+      <script>
+        // Blur-up Fallback: Ensure images reveal even if already cached by browser
+        document.querySelectorAll('.blur-load img').forEach(img => {
+          if (img.complete) img.parentElement.classList.add('loaded');
+        });
+      </script>
 </body>
 
 </html>

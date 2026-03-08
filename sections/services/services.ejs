@@ -56,37 +56,23 @@
       </div>
 
       <div class="services-grid">
-        <article class="service-card service-card-animate" style="animation-delay:0.15s">
-          <div class="service-icon">
-            <img src="/img/union0.svg" alt="">
-          </div>
-          <h3>Catering</h3>
-          <p>From intimate dinners to grand celebrations, we serve flavor, style, and unforgettable presentation.</p>
-        </article>
-
-        <article class="service-card service-card-animate" style="animation-delay:0.35s">
-          <div class="service-icon">
-            <img src="/img/vector2.svg" alt="">
-          </div>
-          <h3>Personal Chef</h3>
-          <p>Fine dining at your doorstep personalized menus, flawless service, and pure culinary artistry.</p>
-        </article>
-
-        <article class="service-card service-card-animate" style="animation-delay:0.55s">
-          <div class="service-icon">
-            <img src="/img/vector1.svg" alt="" loading="lazy" decoding="async">
-          </div>
-          <h3>Concierge</h3>
-          <p>Your event, perfectly managed. From setup to last detail, we handle it all with ease and class.</p>
-        </article>
-
-        <article class="service-card service-card-animate" style="animation-delay:0.75s">
-          <div class="service-icon">
-            <img src="/img/group-15978824000.svg" alt="" loading="lazy" decoding="async">
-          </div>
-          <h3>Luxury Car &amp; Van</h3>
-          <p>Travel in comfort &amp; arrive in style premium rides with professional drivers at your service.</p>
-        </article>
+        <% if (services && services.length> 0) { %>
+          <% services.forEach((svc, index)=> { %>
+            <article class="service-card service-card-animate" style="animation-delay:<%= svc.animation_delay %>">
+              <div class="service-icon">
+                <img src="<%= svc.icon_path %>" alt="" loading="lazy" decoding="async">
+              </div>
+              <h3>
+                <%= svc.title %>
+              </h3>
+              <p>
+                <%= svc.description %>
+              </p>
+            </article>
+            <% }) %>
+              <% } else { %>
+                <p class="text-white">No services found.</p>
+                <% } %>
       </div>
     </div>
 

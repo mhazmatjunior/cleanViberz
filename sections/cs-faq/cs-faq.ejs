@@ -5,72 +5,26 @@
             <h2 style="text-align:left">Frequently Ask Questions</h2>
         </header>
         <div class="faq-list">
-            <details class="faq-item" open>
-                <summary class="faq-question">
-                    <span>Where can I watch?</span>
-                    <img src="/img/xmark0.svg" alt="" class="faq-icon">
-                </summary>
-                <div class="faq-answer">
-                    <p>Nibh quisque suscipit fermentum netus nulla cras porttitor euismod nulla.
-                        Orci, dictumst nec aliquet id ullamcorper venenatis. Fermentum sulla craspor
-                        ttitore ismod nulla. Elit adipiscing proin quis est consectetur. Felis
-                        ultricies nisi, quis malesuada sem odio.</p>
-                </div>
-            </details>
-            <details class="faq-item">
-                <summary class="faq-question">
-                    <span>Tempus magna risus interdum ultricies sed urna?</span>
-                    <img src="/img/plus0.svg" alt="" class="faq-icon">
-                </summary>
-                <div class="faq-answer">
-                    <p>Answer content here.</p>
-                </div>
-            </details>
-            <details class="faq-item">
-                <summary class="faq-question">
-                    <span>Augue in nibh urna volutpat mattis?</span>
-                    <img src="/img/plus1.svg" alt="" class="faq-icon">
-                </summary>
-                <div class="faq-answer">
-                    <p>Answer content here.</p>
-                </div>
-            </details>
-            <details class="faq-item">
-                <summary class="faq-question">
-                    <span>Eu egestas sed sed posuere ultrices?</span>
-                    <img src="/img/plus2.svg" alt="" class="faq-icon">
-                </summary>
-                <div class="faq-answer">
-                    <p>Answer content here.</p>
-                </div>
-            </details>
-            <details class="faq-item">
-                <summary class="faq-question">
-                    <span>Elementum facilisi aliquam, nisi, orci vulputate?</span>
-                    <img src="/img/plus3.svg" alt="" class="faq-icon">
-                </summary>
-                <div class="faq-answer">
-                    <p>Answer content here.</p>
-                </div>
-            </details>
-            <details class="faq-item">
-                <summary class="faq-question">
-                    <span>Nibh at odio dolor etiam neque in vel id orci?</span>
-                    <img src="/img/plus4.svg" alt="" class="faq-icon">
-                </summary>
-                <div class="faq-answer">
-                    <p>Answer content here.</p>
-                </div>
-            </details>
-            <details class="faq-item">
-                <summary class="faq-question">
-                    <span>Non dolor at velit lorem erat maecenas?</span>
-                    <img src="/img/plus5.svg" alt="" class="faq-icon">
-                </summary>
-                <div class="faq-answer">
-                    <p>Answer content here.</p>
-                </div>
-            </details>
+            <% if (faqs && faqs.length> 0) { %>
+                <% faqs.forEach((item, index)=> { %>
+                    <details class="faq-item" <%=index===0 ? 'open' : '' %>>
+                        <summary class="faq-question">
+                            <span>
+                                <%= item.question %>
+                            </span>
+                            <img src="/img/<%= index === 0 ? 'xmark0.svg' : 'plus' + (index % 6) + '.svg' %>" alt=""
+                                class="faq-icon">
+                        </summary>
+                        <div class="faq-answer">
+                            <p>
+                                <%= item.answer %>
+                            </p>
+                        </div>
+                    </details>
+                    <% }) %>
+                        <% } else { %>
+                            <p class="text-white text-center">No FAQs found.</p>
+                            <% } %>
         </div>
     </div>
 </section>

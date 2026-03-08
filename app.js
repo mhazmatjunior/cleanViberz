@@ -56,17 +56,22 @@ app.get('/', async (req, res) => {
 // Meal Prep Service Page
 app.get('/meal-prep', async (req, res) => {
   try {
-    const [[faqs]] = await db.query("SELECT * FROM site_faqs WHERE category = ? ORDER BY display_order ASC", ['meal']);
+    const [[faqs], [testimonials]] = await Promise.all([
+      db.query("SELECT * FROM site_faqs WHERE category = ? ORDER BY display_order ASC", ['meal']),
+      db.query("SELECT * FROM testimonials ORDER BY created_at DESC")
+    ]);
     res.render('meal-prep', {
       title: 'Custom Meal Prep - Clean Vibez VIP',
       activePage: 'services',
-      faqs
+      faqs,
+      testimonials
     });
   } catch (err) {
     res.render('meal-prep', {
       title: 'Custom Meal Prep - Clean Vibez VIP',
       activePage: 'services',
-      faqs: []
+      faqs: [],
+      testimonials: []
     });
   }
 });

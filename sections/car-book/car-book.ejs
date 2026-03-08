@@ -377,10 +377,24 @@
             requiredFields.forEach(fieldId => {
                 const input = document.getElementById(fieldId);
                 const error = document.getElementById(fieldId + 'Error');
+
                 if (!input.value) {
                     input.classList.add('invalid');
                     if (error) error.classList.add('active');
                     isValid = false;
+                } else if (fieldId === 'phone') {
+                    const digits = input.value.replace(/\D/g, '');
+                    if (digits.length < 10) {
+                        input.classList.add('invalid');
+                        if (error) {
+                            error.textContent = 'Phone number must be at least 10 digits';
+                            error.classList.add('active');
+                        }
+                        isValid = false;
+                    } else {
+                        input.classList.remove('invalid');
+                        if (error) error.classList.remove('active');
+                    }
                 } else {
                     input.classList.remove('invalid');
                     if (error) error.classList.remove('active');

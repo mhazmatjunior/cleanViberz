@@ -79,7 +79,14 @@
             }
 
             const phone = document.getElementById('phone');
+            const phoneDigits = phone.value.replace(/\D/g, '');
             if (!phone.value.trim()) {
+                document.getElementById('phoneError').textContent = 'Please enter your phone number';
+                document.getElementById('phoneError').classList.add('active');
+                phone.classList.add('invalid');
+                isValid = false;
+            } else if (phoneDigits.length < 10) {
+                document.getElementById('phoneError').textContent = 'Phone number must be at least 10 digits';
                 document.getElementById('phoneError').classList.add('active');
                 phone.classList.add('invalid');
                 isValid = false;

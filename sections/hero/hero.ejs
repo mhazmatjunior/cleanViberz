@@ -21,27 +21,33 @@
       <button class="chip">Chef</button>
     </div>
     <div class="booking-widget">
-      <form class="booking-form">
+      <form class="booking-form" id="heroBookingForm">
+        <input type="hidden" name="type" id="bookingType" value="Hotel">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" name="name" id="heroName" placeholder="Your Name" required>
+        </div>
+        <div class="form-divider"></div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" name="phone" id="heroPhone" placeholder="10+ Digits" required>
+        </div>
+        <div class="form-divider"></div>
         <div class="form-group">
           <label>Location</label>
-          <input type="text" placeholder="Where are you going?">
+          <input type="text" name="location" placeholder="Where are you going?">
         </div>
         <div class="form-divider"></div>
         <div class="form-group">
           <label>Check In</label>
-          <input type="text" placeholder="Add Dates">
+          <input type="text" name="checkIn" placeholder="Add Dates">
         </div>
         <div class="form-divider"></div>
         <div class="form-group">
-          <label>Check Out</label>
-          <input type="text" placeholder="Add Dates">
+          <label>Guests</label>
+          <input type="text" name="guests" placeholder="2 Adults">
         </div>
-        <div class="form-divider"></div>
-        <div class="form-group">
-          <label>Rooms and Guests</label>
-          <input type="text" placeholder="1 Rooms,  2 Adults">
-        </div>
-        <button type="submit" class="btn-submit-circle">
+        <button type="submit" class="btn-submit-circle" id="heroSubmitBtn">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -49,6 +55,82 @@
           </svg>
         </button>
       </form>
+      <div id="heroFeedback" class="form-feedback" style="margin-top: 10px; text-align: center; color: #fff;"></div>
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('heroBookingForm');
+    const chips = document.querySelectorAll('.booking-tabs .chip');
+    const typeInput = document.getElementById('bookingType');
+    const feedback = document.getElementById('heroFeedback');
+    const submitBtn = document.getElementById('heroSubmitBtn');
+
+    // Tab switching logic
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('chip-active'));
+        chip.classList.add('chip-active');
+        typeInput.value = chip.textContent;
+      });
+    });
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('heroName').value.trim();
+      const phone = document.getElementById('heroPhone').value.trim();
+
+      // Phone length check (min 10 digits)
+      const digitsOnly = phone.replace(/\D/g, '');
+      if (digitsOnly.length < 10) {
+        feedback.textContent = 'Phone number must be at least 10 digits.';
+        feedback.style.color = '#ff4d4d';
+        return;
+      }
+
+      if (!name) {
+        feedback.textContent = 'Please enter your name.';
+        feedback.style.color = '#ff4d4d';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      feedback.textContent = 'Sending...';
+      feedback.style.color = '#fff';
+
+      try {
+        const formData = new FormData(form);
+        const details = Object.fromEntries(formData);
+
+        const response = await fetch('/api/book', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: name,
+            email: phone, // Using phone as contact_info
+            type: 'Hero - ' + typeInput.value,
+            details: details
+          })
+        });
+
+        const result = await response.json();
+        if (result.success) {
+          feedback.textContent = 'Request sent successfully!';
+          feedback.style.color = '#dca959';
+          form.reset();
+        } else {
+          feedback.textContent = 'Error: ' + (result.error || 'Failed to send.');
+          feedback.style.color = '#ff4d4d';
+        }
+      } catch (err) {
+        feedback.textContent = 'Network error. Please try again.';
+        feedback.style.color = '#ff4d4d';
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  });
+</script>

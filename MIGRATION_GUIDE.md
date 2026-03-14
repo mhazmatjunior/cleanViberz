@@ -7,8 +7,9 @@ The project is optimized for **TiDB Cloud** (MySQL Compatible).
 
 1.  **Create Cluster**: Log in to [TiDB Cloud](https://tidbcloud.com/) and create a free tier cluster.
 2.  **Schema and Data**: Use the provided scripts to initialize your cloud database:
-    *   Run `node scripts/seed-db.js` (Ensure your `.env` is pointing to the cloud cluster first).
-    *   This will create all tables (`testimonials`, `faqs`, `services`, `rides`, `bookings`, `destinations`) and populate them with the 100% restored original content.
+    *   Run `node scripts/seed-db.js` (Initializes core tables: `testimonials`, `faqs`, `services`, `bookings`).
+    *   Run `node scripts/seed-explore-cars.js` (Populates `destinations` and `rides` with specialized vehicle/hotel data).
+    *   These will restore 100% of the original content.
 
 ## 2. Vercel Environment Variables
 Add the following variables in your **Vercel Project Settings > Environment Variables**:
@@ -33,6 +34,7 @@ Add the following variables in your **Vercel Project Settings > Environment Vari
 ## 4. Verification
 Once deployed, verify the following:
 *   [ ] **Dynamic Sections**: Testimonials, FAQs, and Services should load immediately from the DB.
+*   [ ] **Review System**: Submit a review on the Meal Prep page. Verify the "Success Modal" appears and the record is added to the `testimonials` table.
 *   [ ] **Forms**: Submit a test booking on the Homepage and Car Service page. Check the `bookings` table to confirm capture.
 *   [ ] **Assets**: Ensure high-res background images are restored as per `ASSETS_REQUIRED.md`.
 *   [ ] **Validation**: Try a 9-digit phone number. It should be blocked by the new 10-digit validation logic.

@@ -22,7 +22,9 @@ The following are the top-level route templates located in `/views`:
 7.  **`meal-book.ejs`**: Standalone meal plan selection funnel.
 8.  **`consultancy.ejs`**: Specialized concierge consultancy form.
 9.  **`private-dinner.ejs`**: Exclusive private dining event booking.
-10. **`404.ejs`**: Custom error page.
+10. **`explore-hotels.ejs`**: Elite hotel partner listing with interactive modals.
+11. **`explore-cars.ejs`**: Comprehensive luxury car fleet display with vehicle details.
+12. **`404.ejs`**: Custom error page.
 
 ---
 
@@ -41,7 +43,8 @@ The project uses a component-based structure where each feature is a folder in `
 
 ### Shared Dynamic Modules
 These sections fetch data from the database and are used across multiple pages:
-*   **`testimonials/`**: Renders all client reviews.
+*   **`testimonials/`**: Renders client reviews with an **infinite loop** mechanism.
+*   **`mp-testimonials/`**: Specialist Review Submission system with **POST API** integration.
 *   **`faq/`**: General category-based FAQ system.
 *   **`services/`**: Icon-based service grid.
 *   **`destinations/`**: Image-rich location gallery.

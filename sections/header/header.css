@@ -383,7 +383,8 @@
   height: 20px;
 }
 
-.dropdown:hover .dropdown-menu {
+.dropdown:hover .dropdown-menu,
+.dropdown-menu.force-open {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);

@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="destinations-header-right desktop-only">
-        <a href="#" class="btn btn-outline destinations-explore-btn">
+        <a href="/explore-hotels" id="explore-btn-desktop" class="btn btn-outline destinations-explore-btn">
           Explore More
           <span class="btn-circle">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
@@ -54,7 +54,7 @@
     </div>
 
     <div class="destinations-footer mobile-only" style="margin: 30px auto 0 auto;">
-      <a href="#" class="btn btn-outline">
+      <a href="/explore-hotels" id="explore-btn-mobile" class="btn btn-outline">
         Explore More
         <span class="btn-circle">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
@@ -105,6 +105,22 @@
                 card.style.display = 'none';
               }
             });
+            // Update Explore More link based on active tab
+            var exploreBtns = [document.getElementById('explore-btn-desktop'), document.getElementById('explore-btn-mobile')];
+            exploreBtns.forEach(function(btn) {
+              if (btn) {
+                // Button is always visible now
+                btn.style.display = '';
+                if (cat === 'hotels') {
+                  btn.href = '/explore-hotels';
+                } else if (cat === 'cars') {
+                  btn.href = '/explore-cars';
+                } else {
+                  btn.href = '#'; // No link for other sections per request
+                }
+              }
+            });
+
             // Re-trigger fade-in for visible cards
             setTimeout(function () {
               cards.forEach(function (card, i) {
@@ -117,6 +133,7 @@
               });
             }, 50);
           });
+
         });
       });
     </script>

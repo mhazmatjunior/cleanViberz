@@ -75,23 +75,37 @@ async function seed() {
 
         // 5. Seed Destinations
         console.log('📍 Seeding Destinations...');
-        const dests = [
-            // Hotels
-            ['hotels', 'Paris, France', '$190/night', 'Romantic escapes, art, and cafés.', '/img/card0.png'],
-            ['hotels', 'Santorini, Greece', '$190/night', 'Sunsets, sea views, and serenity.', '/img/product-card-vertical0.png'],
-            ['hotels', 'Bali, Indonesia', '$190/night', 'Beaches, nature, and calm vibes.', '/img/card1.png'],
-            ['hotels', 'Kyoto, Japan', '$190/night', 'Cherry blossoms and temples.', '/img/card2.png'],
-            // Cars
-            ['cars', 'Rolls Royce Phantom', '$900/day', 'Ultimate luxury ride for special occasions.', '/img/car1.png'],
-            ['cars', 'Lamborghini Aventador', '$1200/day', 'Speed, style, and pure adrenaline.', '/img/car2.png'],
-            // Chefs
-            ['chefs', 'Chef Pierre', '$400/event', 'French cuisine, Michelin experience.', '/img/chef1.png'],
-            ['chefs', 'Chef Maria', '$350/event', 'Mediterranean flavors, healthy delights.', '/img/chef2.png'],
-            // Concierge
-            ['concierge', 'VIP Event Planner', '$600/event', 'Flawless events, every detail managed.', '/img/concierge1.png'],
-            ['concierge', 'Personal Assistant', '$250/day', 'Your needs, handled with care and privacy.', '/img/concierge2.png']
+        const hotelAmenities = JSON.stringify(['Fully-furnished', 'Roof', 'Store Room', 'Pool', '2 car parking', 'In-house Gym', 'West Open']);
+        const hotelAbout = "Boba etiam ut bulla tea est potus dilectus singulari compositione saporum et textuum, quae in Taiwan annis 1980 orta sunt. Boba refert ad pilas masticas tapiocas in fundo potus inventas, quae typice lacte tea nigro sapiuntur. Boba phaenomenon. Boba etiam ut bulla tea est potus dilectus singulari compositione saporum et textuum, quae in Taiwan annis 1980 orta sunt. Boba refert ad pilas masticas tapiocas in fundo potus inventas, quae typice lacte tea nigro sapiuntur.";
+
+        const destinations = [
+            // HOTELS
+            { category: 'hotels', title: 'Paris, France', price_info: '$190/night', description: 'Romantic escapes, art, and cafés.', image_url: '/img/card0.png', bedrooms: 2, bathrooms: 2, kitchens: 1, sq_ft: 200, about_room: hotelAbout, other_amenities: hotelAmenities },
+            { category: 'hotels', title: 'Santorini, Greece', price_info: '$190/night', description: 'Sunsets, sea views, and serenity.', image_url: '/img/product-card-vertical0.png', bedrooms: 2, bathrooms: 2, kitchens: 1, sq_ft: 200, about_room: hotelAbout, other_amenities: hotelAmenities },
+            { category: 'hotels', title: 'Bali, Indonesia', price_info: '$190/night', description: 'Beaches, nature, and calm vibes.', image_url: '/img/card1.png', bedrooms: 2, bathrooms: 2, kitchens: 1, sq_ft: 200, about_room: hotelAbout, other_amenities: hotelAmenities },
+            { category: 'hotels', title: 'Kyoto, Japan', price_info: '$190/night', description: 'Cherry blossoms and temples.', image_url: '/img/card2.png', bedrooms: 2, bathrooms: 2, kitchens: 1, sq_ft: 200, about_room: hotelAbout, other_amenities: hotelAmenities },
+
+            // CARS
+            { category: 'cars', title: 'Mini Cooper', price_info: 'From $190/day', description: 'Romantic escapes, art, and cafés.', image_url: '/img/destinations_car_1.png', bedrooms: null, bathrooms: null, kitchens: null, sq_ft: null, about_room: null, other_amenities: null },
+            { category: 'cars', title: 'Chevrolet', price_info: 'From $190/day', description: 'Sunsets, sea views, and serenity.', image_url: '/img/destinations_car_2.png', bedrooms: null, bathrooms: null, kitchens: null, sq_ft: null, about_room: null, other_amenities: null },
+            { category: 'cars', title: 'Audi', price_info: 'From $190/day', description: 'Beaches, nature, and calm vibes.', image_url: '/img/destinations_car_3.png', bedrooms: null, bathrooms: null, kitchens: null, sq_ft: null, about_room: null, other_amenities: null },
+            { category: 'cars', title: 'Mazda', price_info: 'From $190/day', description: 'Cherry blossoms and temples.', image_url: '/img/destinations_car_4.png', bedrooms: null, bathrooms: null, kitchens: null, sq_ft: null, about_room: null, other_amenities: null },
+
+            // CHEFS
+            { category: 'chefs', title: 'Chef Pierre', price_info: '$400/event', description: 'French cuisine, Michelin experience.', image_url: '/img/chef1.png', bedrooms: null, bathrooms: null, kitchens: null, sq_ft: null, about_room: null, other_amenities: null },
+            { category: 'chefs', title: 'Chef Maria', price_info: '$350/event', description: 'Mediterranean flavors, healthy delights.', image_url: '/img/chef2.png', bedrooms: null, bathrooms: null, kitchens: null, sq_ft: null, about_room: null, other_amenities: null },
+
+            // CONCIERGE
+            { category: 'concierge', title: 'VIP Event Planner', price_info: '$600/event', description: 'Flawless events, every detail managed.', image_url: '/img/concierge1.png', bedrooms: null, bathrooms: null, kitchens: null, sq_ft: null, about_room: null, other_amenities: null },
+            { category: 'concierge', title: 'Personal Assistant', price_info: '$250/day', description: 'Your needs, handled with care and privacy.', image_url: '/img/concierge2.png', bedrooms: null, bathrooms: null, kitchens: null, sq_ft: null, about_room: null, other_amenities: null }
         ];
-        await db.query('INSERT INTO destinations (category, title, price_info, description, image_url) VALUES ?', [dests]);
+
+        for (const dest of destinations) {
+            await db.query(
+                'INSERT INTO destinations (category, title, price_info, description, image_url, bedrooms, bathrooms, kitchens, sq_ft, about_room, other_amenities) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                [dest.category, dest.title, dest.price_info, dest.description, dest.image_url, dest.bedrooms, dest.bathrooms, dest.kitchens, dest.sq_ft, dest.about_room, dest.other_amenities]
+            );
+        }
 
         console.log('✨ Comprehensive seeding complete!');
     } catch (err) {

@@ -11,25 +11,28 @@
     <div class="mp-testimonials-slider-outer">
         <div class="mp-testimonials-slider-inner" id="mp-testimonials-slider-inner">
             <% if (testimonials && testimonials.length> 0) { %>
-                <% testimonials.forEach((test, index)=> { %>
-                    <article class="mp-testimonial-card">
-                        <img src="/img/stars<%= test.stars || 5 %>.svg" alt="<%= test.stars || 5 %> stars"
-                            class="mp-testimonial-stars">
-                        <blockquote>
-                            <p>
-                                <%= test.content %>
-                            </p>
-                        </blockquote>
-                        <footer class="mp-testimonial-author">
-                            <strong>
-                                <%= test.author_name %>
-                            </strong>
-                            <span>
-                                <%= test.author_title %>
-                            </span>
-                        </footer>
-                    </article>
+                <% /* Render twice for seamless infinite loop */ %>
+                <% for(let i=0; i < 2; i++) { %>
+                    <% testimonials.forEach((test, index)=> { %>
+                        <article class="mp-testimonial-card">
+                            <img src="/img/stars<%= test.stars || 5 %>.svg" alt="<%= test.stars || 5 %> stars"
+                                class="mp-testimonial-stars">
+                            <blockquote>
+                                <p>
+                                    <%= test.content %>
+                                </p>
+                            </blockquote>
+                            <footer class="mp-testimonial-author">
+                                <strong>
+                                    <%= test.author_name %>
+                                </strong>
+                                <span>
+                                    <%= test.author_title %>
+                                </span>
+                            </footer>
+                        </article>
                     <% }) %>
+                <% } %>
                         <% } else { %>
                             <p class="text-white text-center" style="grid-column: 1/-1;">No testimonials found.</p>
                             <% } %>
@@ -38,7 +41,151 @@
 
     <!-- ADDITION: Write Your Review Button -->
     <div class="mp-testimonials-cta">
-        <a href="#" class="mp-review-btn">Write Your Review</a>
+        <button type="button" class="mp-review-btn" id="writeReviewBtn">Write Your Review</button>
     </div>
 
+    <!-- ADDITION: Review Submission Modal -->
+    <div class="review-modal-overlay" id="reviewModal">
+        <div class="review-modal-content">
+            <button class="review-modal-close" id="closeReviewModal">&times;</button>
+            <h3>Share Your Experience</h3>
+            <form class="review-form" id="reviewForm">
+                <div class="review-form-group">
+                    <label for="reviewName">Full Name</label>
+                    <input type="text" id="reviewName" name="author_name" class="review-input" placeholder="e.g. David Josh" required>
+                </div>
+                <div class="review-form-group">
+                    <label for="reviewTitle">Professional Title (Optional)</label>
+                    <input type="text" id="reviewTitle" name="author_title" class="review-input" placeholder="e.g. CEO, Air Canada">
+                </div>
+                <div class="review-form-group">
+                    <label>Your Rating</label>
+                    <div class="stars-selector" id="starsSelector">
+                        <span class="star-option active" data-value="1">★</span>
+                        <span class="star-option active" data-value="2">★</span>
+                        <span class="star-option active" data-value="3">★</span>
+                        <span class="star-option active" data-value="4">★</span>
+                        <span class="star-option active" data-value="5">★</span>
+                    </div>
+                    <input type="hidden" name="stars" id="reviewStars" value="5">
+                </div>
+                <div class="review-form-group">
+                    <label for="reviewContent">Your Review</label>
+                    <textarea id="reviewContent" name="content" class="review-textarea" placeholder="Tell us about your Clean Vibez experience..." required></textarea>
+                </div>
+                <button type="submit" class="review-submit-btn" id="submitReview">Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ADDITION: Success Modal -->
+    <div class="review-modal-overlay" id="successModal">
+        <div class="review-modal-content success-modal">
+            <div class="success-icon">✓</div>
+            <h3>Thank You!</h3>
+            <p>Your review has been submitted successfully and will be visible shortly.</p>
+            <button type="button" class="review-submit-btn" id="successCloseBtn">Great!</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('reviewModal');
+            const openBtn = document.getElementById('writeReviewBtn');
+            const closeBtn = document.getElementById('closeReviewModal');
+            const form = document.getElementById('reviewForm');
+            const starsSelector = document.getElementById('starsSelector');
+            const starsInput = document.getElementById('reviewStars');
+            const starOptions = starsSelector.querySelectorAll('.star-option');
+
+            // Open Modal
+            openBtn.addEventListener('click', () => {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            // Close Modal
+            const closeModal = () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            };
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            // Star Selection
+            starOptions.forEach(star => {
+                star.addEventListener('click', () => {
+                    const value = parseInt(star.getAttribute('data-value'));
+                    starsInput.value = value;
+                    starOptions.forEach((s, i) => {
+                        if (i < value) s.classList.add('active');
+                        else s.classList.remove('active');
+                    });
+                });
+
+                star.addEventListener('mouseenter', () => {
+                    const value = parseInt(star.getAttribute('data-value'));
+                    starOptions.forEach((s, i) => {
+                        if (i < value) s.classList.add('hover');
+                        else s.classList.remove('hover');
+                    });
+                });
+
+                star.addEventListener('mouseleave', () => {
+                    starOptions.forEach(s => s.classList.remove('hover'));
+                });
+            });
+
+            // Form Submission
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const submitBtn = document.getElementById('submitReview');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+
+                const formData = {
+                    author_name: document.getElementById('reviewName').value,
+                    author_title: document.getElementById('reviewTitle').value,
+                    content: document.getElementById('reviewContent').value,
+                    stars: parseInt(starsInput.value)
+                };
+
+                try {
+                    const response = await fetch('/api/testimonials', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        form.reset();
+                        starOptions.forEach(s => s.classList.add('active'));
+                        starsInput.value = 5;
+                        
+                        // Show Success Modal
+                        modal.classList.remove('active');
+                        const successModal = document.getElementById('successModal');
+                        successModal.classList.add('active');
+                        
+                        document.getElementById('successCloseBtn').onclick = () => {
+                            successModal.classList.remove('active');
+                            window.location.reload();
+                        };
+                    } else {
+                        alert('Error: ' + result.error);
+                    }
+                } catch (err) {
+                    console.error('Submission error:', err);
+                    alert('An error occurred. Please try again later.');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Review';
+                }
+            });
+        });
+    </script>
 </section>

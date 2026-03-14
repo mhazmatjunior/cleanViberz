@@ -122,15 +122,37 @@
 
     header.classList.add('header-loaded');
 
-    const openSidebar = () => {
+    const openSidebar = window.openSidebar = () => {
       mobileSidebar.classList.add('active');
       document.body.style.overflow = 'hidden';
     };
 
-    const closeSidebar = () => {
+    const closeSidebar = window.closeSidebar = () => {
       mobileSidebar.classList.remove('active');
       document.body.style.overflow = '';
       if (dropdownWrapper) dropdownWrapper.classList.remove('active');
+    };
+
+    window.triggerServicesUI = () => {
+      if (window.innerWidth <= 768) {
+        // Mobile: Open sidebar and expand services
+        setTimeout(() => {
+          openSidebar();
+          if (dropdownWrapper) dropdownWrapper.classList.add('active');
+        }, 300);
+      } else {
+        // Desktop: Force dropdown open
+        const desktopDropdown = document.querySelector('.dropdown-menu');
+        if (desktopDropdown) {
+          desktopDropdown.classList.add('force-open');
+          document.addEventListener('click', function closeStore(e) {
+            if (!e.target.closest('.dropdown')) {
+              desktopDropdown.classList.remove('force-open');
+              document.removeEventListener('click', closeStore);
+            }
+          });
+        }
+      }
     };
 
     if (menuToggle) menuToggle.addEventListener('click', openSidebar);
@@ -146,6 +168,15 @@
         e.stopPropagation();
         dropdownWrapper.classList.toggle('active');
       });
+    }
+
+    // Logic for openServices from URL (initial load)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('openServices') === 'true') {
+      window.triggerServicesUI();
+      // Clean up URL without refresh
+      const newUrl = window.location.pathname + window.location.hash;
+      window.history.replaceState({}, document.title, newUrl);
     }
   });
 </script>

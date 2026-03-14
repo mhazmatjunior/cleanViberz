@@ -43,6 +43,27 @@ router.get('/destinations', async (req, res) => {
   }
 });
 
+// Post a Testimonial
+router.post('/testimonials', async (req, res) => {
+  try {
+    const { author_name, author_title, content, stars } = req.body;
+    
+    if (!author_name || !content) {
+      return res.status(400).json({ success: false, error: 'Name and Content are required' });
+    }
+
+    const [result] = await db.query(
+      'INSERT INTO testimonials (author_name, author_title, content, stars) VALUES (?, ?, ?, ?)',
+      [author_name, author_title, content, stars || 5]
+    );
+
+    res.status(201).json({ success: true, testimonialId: result.insertId });
+  } catch (err) {
+    console.error('Testimonial Error:', err.message);
+    res.status(500).json({ success: false, error: 'Failed to save testimonial' });
+  }
+});
+
 // Post a Booking
 router.post('/book', async (req, res) => {
   try {

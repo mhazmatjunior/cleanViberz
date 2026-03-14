@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/css/vars.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- Section-specific stylesheets -->
+  <link rel="stylesheet" href="/header/header.css">
+  <link rel="stylesheet" href="/destinations/destinations.css">
+  <link rel="stylesheet" href="/faq/faq.css">
+  <link rel="stylesheet" href="/footer/footer.css">
+  <script src="/faq.js" defer></script>
+  <!-- Google Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <!-- ========== HEADER ========== -->
+  <%- include('../sections/header/header'); %>
+
+  <main>
+    <section class="section no-top-gap" style="padding-top: 15vh !important;">
+      <div class="container">
+        <div class="hotels-header-container">
+          <a href="/#destinations" class="hotels-back-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back
+          </a>
+          <h1 class="hotels-main-title">
+            Travel in Style with Our Premium Vehicles
+          </h1>
+        </div>
+
+        <% 
+        const carSections = [
+          { title: 'Luxury Sedan', subtitle: '(Best for 3 passengers)' },
+          { title: 'Premium SUVs', subtitle: '(Ideal for 4 to 6 persons)' },
+          { title: 'Sports Car', subtitle: '(Spacious for 2 persons)' }
+        ];
+        %>
+        
+        <% carSections.forEach((section, i) => { %>
+          <div class="stay-section-header <%= i > 0 ? 'stay-section-gap' : '' %>">
+            <h2 style="font-family: 'Jost', sans-serif;"><%= section.title %></h2>
+            <span style="color: #747474; font-size: 1.1rem; font-family: 'Poppins', sans-serif;"><%= section.subtitle %></span>
+          </div>
+
+          <div class="destinations-grid explore-hotels-grid">
+            <!-- Debug: <%= destinations.length %> total destinations, checking for section <%= i + 1 %> -->
+            <% 
+              // Filter destinations for this section based on the 'bedrooms' column mapping (1, 2, or 3)
+              // Use == for loose equality as the DB might return bedrooms as a string
+              const sectionCars = destinations.filter(d => d.bedrooms == (i + 1));
+            %>
+            <% if (sectionCars && sectionCars.length > 0) { %>
+              <% sectionCars.forEach((dest, index) => { %>
+                <article class="destination-card destination-fadein-animate" 
+                     data-category="<%= dest.category %>" 
+                     data-passengers="<%= dest.bedrooms || 4 %>"
+                     data-transmission="Automatic"
+                     data-fuel="Petrol"
+                     data-sqft="Luxury"
+                     data-about="<%= dest.about_room || '' %>"
+                     data-amenities='<%- typeof dest.other_amenities === "string" ? dest.other_amenities : JSON.stringify(dest.other_amenities || []) %>'
+                     onclick="openCarModal(this)" 
+                     style="cursor: pointer;">
+                  <div class="destination-image" style="background-image: url('<%= dest.image_url %>')"></div>
+                  <div class="destination-content">
+                    <h3 class="card-title">
+                      <%= dest.title %>
+                    </h3>
+                    <p class="price"><span class="from">From</span> <strong class="card-price">
+                        <%= dest.price_info %>
+                      </strong></p>
+                    <p class="desc text-white card-desc">
+                      <%= dest.description %>
+                    </p>
+                  </div>
+                </article>
+              <% }) %>
+            <% } else { %>
+              <p class="text-white text-center" style="grid-column: 1/-1;">No vehicles found for this section.</p>
+            <% } %>
+          </div>
+        <% }) %>
+      </div>
+    </section>
+
+    <!-- Car Modal Overlay -->
+    <div id="carModal" class="hotel-modal-overlay">
+      <div class="hotel-modal-content">
+        <div class="hm-modal-handle"></div>
+        <button class="hotel-modal-close" onclick="closeCarModal()">
+          <span class="material-icons">close</span>
+        </button>
+
+        <!-- Images Grid -->
+        <div class="hotel-modal-gallery">
+          <img src="/img/explore_car_section_1_pic_1.png" class="hm-pic hm-pic-1" alt="Car View">
+          <img src="/img/explore_car_section_2_pic_1.png" class="hm-pic hm-pic-2" alt="Car View">
+          <img src="/img/explore_car_section_3_pic_1.png" class="hm-pic hm-pic-3" alt="Car View">
+          <img src="/img/explore_car_section_1_pic_2.png" class="hm-pic hm-pic-4" alt="Car View">
+          <img src="/img/explore_car_section_2_pic_2.png" class="hm-pic hm-pic-5" alt="Car View">
+        </div>
+
+        <!-- Content Columns -->
+        <div class="hotel-modal-body">
+          
+          <!-- Left Column -->
+          <div class="hm-left-col">
+            <div class="hm-title-row">
+              <div>
+                <h2 id="hmTitle" class="hm-title">Premium Vehicle</h2>
+                <div class="hm-location">Luxury Rental Services</div>
+              </div>
+              <div style="text-align: right;">
+                <div id="hmPrice" class="hm-price">$190<span>/Day</span></div>
+                <div class="hm-date">Available Now</div>
+              </div>
+            </div>
+
+            <div class="hm-features">
+              <div class="hm-feature">
+                <img src="/img/Vector_Model_1.png" alt="Passengers">
+                <span id="hmPassengers">4 Passengers</span>
+              </div>
+              <div class="hm-feature">
+                <img src="/img/Vector_Model_2.png" alt="Transmission">
+                <span id="hmTransmission">Automatic</span>
+              </div>
+              <div class="hm-feature">
+                <img src="/img/Vector_Model_3.png" alt="Fuel">
+                <span id="hmFuel">Petrol</span>
+              </div>
+              <div class="hm-feature" style="border-right: none;">
+                <img src="/img/Vector_Model_4.png" alt="Class">
+                <span id="hmClass">Luxury Class</span>
+              </div>
+            </div>
+
+            <div class="hm-about">
+              <h3>About Vehicle</h3>
+              <p id="hmDesc">Experience luxury and performance with our premium car rentals...</p>
+            </div>
+
+            <div class="hm-other-amenities">
+              <h3>Vehicle Details</h3>
+              <div id="hmVehicleDetails" class="hm-details-grid">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="hm-right-col">
+            <h3 class="hm-book-title">Book Your Car</h3>
+            <form id="carModalForm" class="hm-booking-form">
+              <input type="hidden" name="type" value="Car Rental">
+              <input type="hidden" name="carName" id="hmFormCarName" value="">
+
+              <div class="hm-form-group">
+                <label>Name</label>
+                <input type="text" name="name" id="hmFormName" placeholder="Your Name" required>
+              </div>
+              
+              <div class="hm-form-group">
+                <label>Pickup Location</label>
+                <input type="text" name="pickup" placeholder="Where do you need it?">
+              </div>
+              
+              <div class="hm-form-row">
+                <div class="hm-form-group" style="flex: 1;">
+                  <label>Start Date</label>
+                  <input type="text" name="startDate" placeholder="dd/mm/yyyy">
+                </div>
+                <div class="hm-form-group" style="flex: 1;">
+                  <label>End Date</label>
+                  <input type="text" name="endDate" placeholder="dd/mm/yyyy">
+                </div>
+              </div>
+
+              <div class="hm-form-group">
+                <label>Driver Requirement</label>
+                <input type="text" name="driver" placeholder="Self-drive or Chauffeur?">
+              </div>
+              
+              <button type="submit" class="hm-btn" id="hmSubmitBtn">Reserve Now</button>
+              <div id="hmFeedback" style="margin-top: 10px; text-align: center; color: #fff; font-size: 0.9rem;"></div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== FAQ SECTION ========== -->
+    <%- include('../sections/faq/faq'); %>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <%- include('../sections/footer/footer'); %>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Fade in cards on scroll
+      var grids = document.querySelectorAll('.explore-hotels-grid');
+      
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries, observer) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              var grid = entry.target;
+              var cards = grid.querySelectorAll('.destination-fadein-animate');
+              cards.forEach(function (card, i) {
+                setTimeout(function () {
+                  card.classList.add('animate');
+                }, i * 120);
+              });
+              observer.unobserve(grid);
+            }
+          });
+        }, { threshold: 0.15 });
+
+        grids.forEach(function(grid, index) {
+          observer.observe(grid);
+          if (window.innerWidth <= 768 && index === 0) {
+            var cards = grid.querySelectorAll('.destination-fadein-animate');
+            cards.forEach(function (card, i) {
+              setTimeout(function () {
+                card.classList.add('animate');
+              }, i * 120);
+            });
+          }
+        });
+      } else {
+        grids.forEach(function(grid) {
+          var cards = grid.querySelectorAll('.destination-fadein-animate');
+          cards.forEach(function (card, i) {
+            setTimeout(function () {
+              card.classList.add('animate');
+            }, i * 120);
+          });
+        });
+      }
+    });
+
+    // Modal logic
+    function openCarModal(cardElem) {
+      if(!cardElem) return;
+      document.getElementById('hmTitle').innerText = cardElem.querySelector('.card-title').innerText.trim();
+      
+      const rawPrice = cardElem.querySelector('.card-price').innerText.trim();
+      if(rawPrice.toLowerCase().includes('/day')) {
+         document.getElementById('hmPrice').innerHTML = rawPrice;
+      } else {
+         document.getElementById('hmPrice').innerHTML = rawPrice + '<span>/Day</span>';
+      }
+
+      document.getElementById('hmDesc').innerText = cardElem.dataset.about || cardElem.querySelector('.card-desc').innerText.trim();
+      document.getElementById('hmFormCarName').value = document.getElementById('hmTitle').innerText;
+      document.getElementById('hmPassengers').innerText = cardElem.dataset.passengers + ' Passengers';
+      document.getElementById('hmTransmission').innerText = cardElem.dataset.transmission;
+      document.getElementById('hmFuel').innerText = cardElem.dataset.fuel;
+      document.getElementById('hmClass').innerText = cardElem.dataset.sqft + ' Class';
+
+      const detailsContainer = document.getElementById('hmVehicleDetails');
+      detailsContainer.innerHTML = '';
+      try {
+        const details = JSON.parse(cardElem.dataset.amenities || '{}');
+        Object.entries(details).forEach(([label, value]) => {
+          const item = document.createElement('div');
+          item.className = 'hm-detail-item';
+          
+          const labelSpan = document.createElement('span');
+          labelSpan.className = 'hm-detail-label';
+          labelSpan.innerText = label;
+          
+          const valueSpan = document.createElement('span');
+          valueSpan.className = 'hm-detail-value';
+          valueSpan.innerText = value;
+          
+          item.appendChild(labelSpan);
+          item.appendChild(valueSpan);
+          detailsContainer.appendChild(item);
+        });
+      } catch(e) { console.error('Error parsing features', e); }
+
+      const modal = document.getElementById('carModal');
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      startMobileSlideshow();
+    }
+
+    let slideshowInterval;
+    function startMobileSlideshow() {
+      if (window.innerWidth > 768) return;
+      
+      const images = document.querySelectorAll('.hotel-modal-gallery .hm-pic');
+      if (images.length <= 1) return;
+
+      let currentIndex = 0;
+      images.forEach(img => img.classList.remove('active'));
+      images[0].classList.add('active');
+
+      clearInterval(slideshowInterval);
+      slideshowInterval = setInterval(() => {
+        images[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % images.length;
+        images[currentIndex].classList.add('active');
+      }, 3000);
+    }
+
+    function closeCarModal() {
+      const modal = document.getElementById('carModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+      clearInterval(slideshowInterval);
+      const form = document.getElementById('carModalForm');
+      if(form) form.reset();
+      const feedback = document.getElementById('hmFeedback');
+      if(feedback) feedback.textContent = '';
+    }
+
+    const carForm = document.getElementById('carModalForm');
+    if (carForm) {
+      carForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const name = document.getElementById('hmFormName').value.trim();
+        const feedback = document.getElementById('hmFeedback');
+        const submitBtn = document.getElementById('hmSubmitBtn');
+
+        submitBtn.disabled = true;
+        feedback.textContent = '';
+
+        try {
+          const formData = new FormData(carForm);
+          const details = Object.fromEntries(formData);
+          delete details.name;
+          delete details.type;
+
+          const response = await fetch('/api/book', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: name,
+              email: 'N/A',
+              type: carForm.querySelector('[name="type"]').value,
+              details: details
+            })
+          });
+
+          const result = await response.json();
+          if (result.success) {
+            carForm.reset();
+            feedback.textContent = 'Rental request sent successfully!';
+            feedback.style.color = '#4CAF50';
+          } else {
+            feedback.textContent = 'Error: ' + (result.error || 'Failed to send.');
+            feedback.style.color = '#ff4d4d';
+          }
+        } catch (err) {
+          console.error(err);
+          feedback.textContent = 'An expected error occurred.';
+          feedback.style.color = '#ff4d4d';
+        } finally {
+          submitBtn.disabled = false;
+        }
+      });
+    }
+  </script>
+  
+  <style>
+    /* Reuse Hotel Styles */
+    .explore-hotels-grid .destination-fadein-animate {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .explore-hotels-grid .destination-fadein-animate.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hotels-header-container {
+      position: relative;
+      text-align: center;
+      margin-top: 5vh;
+      margin-bottom: 5vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    .hotels-back-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #FFFFFF;
+      text-decoration: none;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      transition: opacity 0.3s;
+      align-self: flex-start;
+    }
+    .hotels-back-btn:hover { opacity: 0.7; }
+    .hotels-main-title {
+      max-width: 981px;
+      margin: 0;
+      color: #FFFFFF;
+      font-family: 'Jost', sans-serif;
+      line-height: 1.2;
+    }
+
+    .stay-section-header {
+      margin-bottom: 4vh;
+      display: flex;
+      align-items: baseline;
+      gap: 15px;
+    }
+    .stay-section-gap {
+      margin-top: 10vh;
+    }
+
+    @media (min-width: 769px) {
+      .hotels-header-container { display: block; margin-top: 8vh; margin-bottom: 8vh; }
+      .hotels-back-btn { position: absolute; left: 0; top: 10px; }
+      .hotels-main-title { margin: 0 auto; }
+    }
+    
+    .hotel-modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999;
+      display: none; align-items: flex-start; justify-content: center;
+      padding: 5vh 20px; overflow-y: auto; backdrop-filter: blur(8px);
+    }
+    .hotel-modal-overlay.active { display: flex; }
+    .hotel-modal-content {
+      background: #090909; border-radius: 16px; width: 100%; max-width: 1000px;
+      position: relative; padding: 0; box-sizing: border-box; color: #fff;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    }
+    .hm-modal-handle {
+      display: none; width: 40px; height: 4px; background: rgba(255,255,255,0.2);
+      border-radius: 2px; margin: 12px auto 8px;
+    }
+    .hotel-modal-close {
+      position: absolute; top: 20px; right: 20px; background: #fff; color: #000;
+      border: none; border-radius: 50%; width: 36px; height: 36px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5); transition: transform 0.3s, background 0.3s;
+    }
+    .hotel-modal-close:hover { transform: scale(1.1); background: #eee; }
+    .hotel-modal-close .material-icons { font-size: 20px; font-weight: bold; }
+
+    .hotel-modal-gallery {
+      display: grid; grid-template-columns: 2.1fr 1fr 1fr;
+      grid-template-rows: 200px 200px; gap: 10px; margin-bottom: 20px; height: 410px;
+    }
+    .hm-pic { width: 100%; height: 100%; object-fit: cover; }
+    .hm-pic-1 { grid-column: 1 / 2; grid-row: 1 / 3; border-radius: 14px; }
+    .hm-pic-2 { grid-column: 2 / 3; grid-row: 1 / 2; border-radius: 6px; }
+    .hm-pic-3 { grid-column: 3 / 4; grid-row: 1 / 2; border-radius: 6px; }
+    .hm-pic-4 { grid-column: 2 / 3; grid-row: 2 / 3; border-radius: 6px; }
+    .hm-pic-5 { grid-column: 3 / 4; grid-row: 2 / 3; border-radius: 6px; }
+
+    .hotel-modal-body { display: flex; gap: 25px; flex-wrap: wrap; padding: 0 30px 30px 30px; }
+    .hm-left-col { flex: 1; min-width: 300px; max-width: 781px; }
+    .hm-right-col {
+      flex: 0 0 320px; background: #14110E; border-radius: 12px;
+      padding: 20px; box-sizing: border-box; height: fit-content;
+    }
+
+    .hm-title-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 10px; }
+    .hm-title { font-family: 'Jost', sans-serif; font-size: 1.6rem; font-weight: 600; margin-bottom: 2px; line-height: 1.2; }
+    .hm-location { color: #888; font-size: 0.85rem; }
+    .hm-price { font-size: 1.3rem; font-weight: 700; display: flex; align-items: baseline; gap: 5px; justify-content: flex-end; }
+    .hm-price span { font-size: 0.85rem; color: #e0b973; font-weight: 400; }
+    .hm-date { color: #555; font-size: 0.7rem; text-align: right; margin-top: 2px; }
+
+    .hm-features { display: flex; background: #14110E; border-radius: 12px; padding: 16px 0; margin-bottom: 25px; gap: 0; }
+    .hm-feature { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; font-size: 0.85rem; color: #ccc; flex: 1; padding: 0 20px; }
+    .hm-feature:first-child { padding-left: 25px; } .hm-feature:last-child { padding-right: 25px; }
+    .hm-feature img { width: 22px; height: 22px; object-fit: contain; }
+    .hm-feature:not(:last-child) { border-right: 1px dashed #333; }
+
+    @media (max-width: 900px) {
+      .hotel-modal-content { flex-direction: column; max-height: 95vh; width: 100%; border-radius: 12px; }
+      .hm-modal-handle { display: block; }
+      .hm-left-col { border-right: none; border-bottom: 1px solid #222; padding-bottom: 25px; margin-bottom: 25px; }
+      .hm-right-col { position: relative; top: 0; padding-top: 30px; }
+    }
+    
+    @media (max-width: 768px) {
+      .hotel-modal-overlay { padding: 10px; }
+      .hotel-modal-close { top: 10px; right: 10px; }
+      .hotel-modal-body { padding: 0 20px 20px 20px; }
+      .destinations-grid { grid-template-columns: 1fr; }
+      .hm-features { flex-wrap: wrap; padding: 15px; gap: 15px; }
+      .hm-feature { flex: 1 1 40%; padding: 0 !important; }
+      .hm-feature:not(:last-child) { border-right: none; }
+      .hotel-modal-gallery { display: block; position: relative; height: 250px; overflow: hidden; border-radius: 14px; margin-bottom: 15px; }
+      .hm-pic { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; display: block !important; border-radius: 14px !important; }
+      .hm-pic.active { opacity: 1; position: relative; }
+      .hm-form-row { flex-direction: column; gap: 15px; }
+    }
+
+    .hm-about h3, .hm-other-amenities h3 { font-family: 'Jost', sans-serif; font-size: 1.1rem; margin-bottom: 12px; }
+    .hm-about p { color: #999; line-height: 1.5; font-size: 0.85rem; margin-bottom: 25px; }
+
+    .hm-details-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px 10px;
+    }
+    .hm-detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .hm-detail-label {
+      font-size: 0.8rem;
+      color: #FFFFFF;
+      font-weight: 500;
+      font-family: 'Poppins', sans-serif;
+    }
+    .hm-detail-value {
+      font-size: 0.85rem;
+      color: #999;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    @media (max-width: 768px) {
+      .hm-details-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .hm-book-title { font-family: 'Jost', sans-serif; font-size: 1.3rem; margin-bottom: 15px; }
+    .hm-form-group { margin-bottom: 15px; }
+    .hm-form-group label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.85rem; color: #fff; }
+    .hm-form-group input { width: 100%; border: none; border-bottom: 1px solid #444; background: transparent; color: #fff; padding: 6px 0; font-family: 'Poppins', sans-serif; font-size: 0.85rem; }
+    .hm-form-group input::placeholder { color: #555; }
+    .hm-form-group input:focus { outline: none; border-bottom-color: #D3A75A; }
+    .hm-form-row { display: flex; gap: 15px; flex-wrap: wrap; }
+    .hm-form-row .hm-form-group { flex: 1; min-width: 120px; }
+    .hm-btn { background: #D3A75A; color: #000; font-weight: 600; width: 100%; padding: 14px; border: none; border-radius: 25px; margin-top: 10px; cursor: pointer; font-family: 'Poppins', sans-serif; transition: opacity 0.3s; font-size: 0.95rem; }
+    .hm-btn:hover { opacity: 0.8; }
+  </style>
+</body>
+
+</html>

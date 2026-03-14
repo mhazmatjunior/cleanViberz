@@ -11,25 +11,28 @@
   <div class="testimonials-slider-outer">
     <div class="testimonials-slider-inner" id="testimonials-slider-inner">
       <% if (testimonials && testimonials.length> 0) { %>
-        <% testimonials.forEach((test, index)=> { %>
-          <article class="testimonial-card">
-            <img src="/img/stars<%= test.stars || 5 %>.svg" alt="<%= test.stars || 5 %> stars"
-              class="testimonial-stars">
-            <blockquote>
-              <p>
-                <%= test.content %>
-              </p>
-            </blockquote>
-            <footer class="testimonial-author">
-              <strong>
-                <%= test.author_name %>
-              </strong>
-              <span>
-                <%= test.author_title %>
-              </span>
-            </footer>
-          </article>
+        <% /* Render twice for seamless infinite loop */ %>
+        <% for(let i=0; i < 2; i++) { %>
+          <% testimonials.forEach((test, index)=> { %>
+            <article class="testimonial-card">
+              <img src="/img/stars<%= test.stars || 5 %>.svg" alt="<%= test.stars || 5 %> stars"
+                class="testimonial-stars">
+              <blockquote>
+                <p>
+                  <%= test.content %>
+                </p>
+              </blockquote>
+              <footer class="testimonial-author">
+                <strong>
+                  <%= test.author_name %>
+                </strong>
+                <span>
+                  <%= test.author_title %>
+                </span>
+              </footer>
+            </article>
           <% }) %>
+        <% } %>
             <% } else { %>
               <p class="text-white text-center" style="grid-column: 1/-1;">No testimonials found.</p>
               <% } %>

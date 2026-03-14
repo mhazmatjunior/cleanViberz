@@ -179,3 +179,178 @@
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(224, 185, 115, 0.3);
 }
+
+/* Review Submission Modal Styles */
+.review-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+}
+
+.review-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.review-modal-content {
+    background: #14110b;
+    border: 1px solid rgba(220, 169, 89, 0.2);
+    border-radius: 24px;
+    width: 90%;
+    max-width: 500px;
+    padding: 40px;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.review-modal-overlay.active .review-modal-content {
+    transform: translateY(0);
+}
+
+.review-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.3s;
+}
+
+.review-modal-close:hover {
+    color: #fff;
+}
+
+.review-modal-content h3 {
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 25px;
+    font-family: 'Jost', sans-serif;
+    text-align: center;
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.review-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.review-form-group label {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+.review-input,
+.review-textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 12px 16px;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.review-input:focus,
+.review-textarea:focus {
+    border-color: #e0b973;
+}
+
+.review-textarea {
+    height: 100px;
+    resize: none;
+}
+
+.stars-selector {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.star-option {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.2);
+    transition: color 0.2s;
+}
+
+.star-option.active,
+.star-option:hover,
+.star-option.hover {
+    color: #e0b973;
+}
+
+.review-submit-btn {
+    background: #e0b973;
+    color: #000;
+    border: none;
+    border-radius: 30px;
+    padding: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    transition: all 0.3s;
+}
+
+.review-submit-btn:hover {
+    background: #fff;
+    box-shadow: 0 0 20px rgba(224, 185, 115, 0.4);
+}
+
+.review-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+    .review-modal-content {
+        padding: 30px 20px;
+    }
+}
+
+/* Success Modal Specifics */
+.success-modal {
+    text-align: center;
+}
+
+.success-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(144, 238, 144, 0.1);
+    color: #90ee90;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    border: 1px solid rgba(144, 238, 144, 0.2);
+}
+
+.success-modal p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}

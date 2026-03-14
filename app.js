@@ -132,6 +132,56 @@ app.get('/consultancy', (req, res) => {
   });
 });
 
+// Explore Hotels Page
+app.get('/explore-hotels', async (req, res) => {
+  try {
+    const [destinations, faqs] = await Promise.all([
+      db.query("SELECT * FROM destinations WHERE category = 'hotels'"),
+      db.query("SELECT * FROM site_faqs WHERE category = ? ORDER BY display_order ASC", ['home'])
+    ]).then(results => results.map(r => r[0]));
+    
+    res.render('explore-hotels', {
+      title: 'Explore More Hotels - Clean Vibez VIP',
+      activePage: 'home',
+      destinations,
+      faqs
+    });
+  } catch (err) {
+    console.error('Render Error:', err.message);
+    res.render('explore-hotels', {
+      title: 'Explore More Hotels - Clean Vibez VIP',
+      activePage: 'home',
+      destinations: [],
+      faqs: []
+    });
+  }
+});
+
+// Explore Cars Page
+app.get('/explore-cars', async (req, res) => {
+  try {
+    const [destinations, faqs] = await Promise.all([
+      db.query("SELECT * FROM destinations WHERE category = 'luxury-cars'"),
+      db.query("SELECT * FROM site_faqs WHERE category = ? ORDER BY display_order ASC", ['car'])
+    ]).then(results => results.map(r => r[0]));
+    
+    res.render('explore-cars', {
+      title: 'Explore Luxury Cars - Clean Vibez VIP',
+      activePage: 'home',
+      destinations,
+      faqs
+    });
+  } catch (err) {
+    console.error('Render Error:', err.message);
+    res.render('explore-cars', {
+      title: 'Explore Luxury Cars - Clean Vibez VIP',
+      activePage: 'home',
+      destinations: [],
+      faqs: []
+    });
+  }
+});
+
 // Car Book Form Page
 app.get('/car-book', (req, res) => {
   res.render('car-book', {

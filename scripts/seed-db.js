@@ -92,12 +92,12 @@ async function seed() {
             { category: 'cars', title: 'Mazda', price_info: 'From $190/day', description: 'Cherry blossoms and temples.', image_url: '/img/destinations_car_4.png', bedrooms: null, bathrooms: null, kitchens: null, sq_ft: null, about_room: null, other_amenities: null },
 
             // CHEFS
-            { category: 'chefs', title: 'Chef Pierre', price_info: '$400/event', description: 'French cuisine, Michelin experience.', image_url: '/img/chef1.png', bedrooms: null, bathrooms: null, kitchens: null, sq_ft: null, about_room: null, other_amenities: null },
-            { category: 'chefs', title: 'Chef Maria', price_info: '$350/event', description: 'Mediterranean flavors, healthy delights.', image_url: '/img/chef2.png', bedrooms: null, bathrooms: null, kitchens: null, sq_ft: null, about_room: null, other_amenities: null },
+            { category: 'chefs', title: 'Chef Pierre', price_info: '$400/event', description: 'French cuisine, Michelin experience.', image_url: '/img/chef_pic.jpg', bedrooms: null, bathrooms: null, kitchens: null, sq_ft: null, about_room: null, other_amenities: null },
+            { category: 'chefs', title: 'Chef Maria', price_info: '$350/event', description: 'Mediterranean flavors, healthy delights.', image_url: '/img/chef_pic.jpg', bedrooms: null, bathrooms: null, kitchens: null, sq_ft: null, about_room: null, other_amenities: null },
 
             // CONCIERGE
-            { category: 'concierge', title: 'VIP Event Planner', price_info: '$600/event', description: 'Flawless events, every detail managed.', image_url: '/img/concierge1.png', bedrooms: null, bathrooms: null, kitchens: null, sq_ft: null, about_room: null, other_amenities: null },
-            { category: 'concierge', title: 'Personal Assistant', price_info: '$250/day', description: 'Your needs, handled with care and privacy.', image_url: '/img/concierge2.png', bedrooms: null, bathrooms: null, kitchens: null, sq_ft: null, about_room: null, other_amenities: null }
+            { category: 'concierge', title: 'VIP Event Planner', price_info: '$600/event', description: 'Flawless events, every detail managed.', image_url: '/img/concierge_pic.jpg', bedrooms: null, bathrooms: null, kitchens: null, sq_ft: null, about_room: null, other_amenities: null },
+            { category: 'concierge', title: 'Personal Assistant', price_info: '$250/day', description: 'Your needs, handled with care and privacy.', image_url: '/img/concierge_pic.jpg', bedrooms: null, bathrooms: null, kitchens: null, sq_ft: null, about_room: null, other_amenities: null }
         ];
 
         for (const dest of destinations) {

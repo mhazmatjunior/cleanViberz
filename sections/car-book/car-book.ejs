@@ -184,6 +184,17 @@
         const feedback = document.getElementById('formFeedback');
         const submitBtn = document.getElementById('submitBtn');
 
+        // Pre-fill logic from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const prefillFields = ['name', 'location', 'pickUpDate', 'dropOffDate', 'guestCount'];
+        prefillFields.forEach(fieldId => {
+            const val = urlParams.get(fieldId);
+            if (val) {
+                const input = document.getElementById(fieldId === 'location' ? 'pickUpLocation' : fieldId);
+                if (input) input.value = val;
+            }
+        });
+
         /* --- Custom Date Picker Logic --- */
         let currentTargetInput = null;
         let selectedDate = new Date();

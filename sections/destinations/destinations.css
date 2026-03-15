@@ -170,9 +170,19 @@
 
 .destination-image {
   aspect-ratio: 3/4;
-  background-size: cover;
-  background-position: center;
   position: relative;
+  overflow: hidden;
+}
+
+.dest-img-obj {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.destination-card:hover .dest-img-obj {
+  transform: scale(1.1);
 }
 
 .destination-image::after {
@@ -211,4 +221,223 @@
 .destination-content .desc {
   font-size: clamp(0.8rem, 2vmin, 0.9rem);
   margin-bottom: 0;
+}
+
+/* ========== MODAL STYLES ========== */
+.hotel-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 9999;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 5vh 20px;
+  overflow-y: auto;
+  backdrop-filter: blur(8px);
+}
+.hotel-modal-overlay.active { display: flex; }
+
+.hotel-modal-content {
+  background: #090909; 
+  border-radius: 16px;
+  width: 100%;
+  max-width: 1000px;
+  position: relative;
+  padding: 0;
+  box-sizing: border-box;
+  color: #fff;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+.hm-modal-handle {
+  display: none;
+  width: 40px;
+  height: 4px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 2px;
+  margin: 12px auto 8px;
+}
+.hotel-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #fff;
+  color: #000;
+  border: none;
+  border-radius: 50%;
+  width: 36px; height: 36px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  transition: transform 0.3s, background 0.3s;
+}
+.hotel-modal-close:hover { 
+  transform: scale(1.1);
+  background: #eee;
+}
+.hotel-modal-gallery {
+  display: grid;
+  grid-template-columns: 2.1fr 1fr 1fr;
+  grid-template-rows: 200px 200px;
+  gap: 10px;
+  margin-bottom: 20px;
+  height: 410px;
+}
+.hm-pic { width: 100%; height: 100%; object-fit: cover; }
+.hm-pic-1 { grid-column: 1 / 2; grid-row: 1 / 3; border-radius: 14px; }
+.hm-pic-2 { grid-column: 2 / 3; grid-row: 1 / 2; border-radius: 6px; }
+.hm-pic-3 { grid-column: 3 / 4; grid-row: 1 / 2; border-radius: 6px; }
+.hm-pic-4 { grid-column: 2 / 3; grid-row: 2 / 3; border-radius: 6px; }
+.hm-pic-5 { grid-column: 3 / 4; grid-row: 2 / 3; border-radius: 6px; }
+
+.hotel-modal-body {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  padding: 0 30px 30px 30px;
+}
+.hm-left-col {
+  flex: 1;
+  min-width: 300px;
+  max-width: 781px;
+}
+.hm-right-col {
+  flex: 0 0 320px;
+  background: #14110E;
+  border-radius: 12px;
+  padding: 20px;
+  box-sizing: border-box;
+  height: fit-content;
+}
+
+.hm-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.hm-title {
+  font-family: 'Jost', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+.hm-location { color: #888; font-size: 0.85rem; }
+.hm-price { font-size: 1.3rem; font-weight: 700; display: flex; align-items: baseline; gap: 5px; justify-content: flex-end; }
+.hm-price span { font-size: 0.85rem; color: #e0b973; font-weight: 400; }
+.hm-date { color: #555; font-size: 0.7rem; text-align: right; margin-top: 2px; }
+
+.hm-features {
+  display: flex;
+  background: #14110E;
+  border-radius: 12px;
+  padding: 16px 0;
+  margin-bottom: 25px;
+  gap: 0;
+}
+.hm-feature {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+  font-size: 0.85rem; color: #ccc;
+  flex: 1;
+  padding: 0 20px;
+}
+.hm-feature img { width: 22px; height: 22px; object-fit: contain; }
+.hm-feature:not(:last-child) {
+  border-right: 1px dashed #333;
+}
+
+.hm-about h3, .hm-other-amenities h3 {
+  font-family: 'Jost', sans-serif;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+.hm-about p {
+  color: #999;
+  line-height: 1.5;
+  font-size: 0.85rem;
+  margin-bottom: 25px;
+}
+.hm-amenities-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.hm-amenity-chip {
+  border: 1px solid #333;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  color: #bbb;
+}
+
+.hm-book-title {
+  font-family: 'Jost', sans-serif;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+.hm-form-group { margin-bottom: 15px; }
+.hm-form-group label {
+  display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.85rem;
+  color: #fff;
+}
+.hm-form-group input {
+  width: 100%; border: none; border-bottom: 1px solid #444;
+  background: transparent; color: #fff; padding: 6px 0;
+  font-family: 'Poppins', sans-serif; font-size: 0.85rem;
+}
+.hm-form-group input:focus { outline: none; border-bottom-color: #D3A75A; }
+.hm-form-row { display: flex; gap: 15px; flex-wrap: wrap; }
+.hm-btn {
+  background: #D3A75A; color: #000; font-weight: 600; width: 100%;
+  padding: 14px; border: none; border-radius: 25px; margin-top: 10px;
+  cursor: pointer; font-family: 'Poppins', sans-serif;
+  transition: opacity 0.3s; font-size: 0.95rem;
+}
+.hm-btn:hover { opacity: 0.8; }
+
+/* Car Specific Details Grid */
+.hm-details-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px 10px;
+}
+.hm-detail-item { display: flex; flex-direction: column; gap: 4px; }
+.hm-detail-label { font-size: 0.8rem; color: #FFFFFF; font-weight: 500; font-family: 'Poppins', sans-serif; }
+.hm-detail-value { font-size: 0.85rem; color: #999; font-family: 'Poppins', sans-serif; }
+
+@media (max-width: 900px) {
+  .hotel-modal-content {
+    flex-direction: column;
+    max-height: 95vh;
+    width: 100%;
+    border-radius: 12px;
+  }
+  .hm-modal-handle { display: block; }
+  .hm-left-col { border-right: none; border-bottom: 1px solid #222; padding-bottom: 25px; margin-bottom: 25px; }
+  .hm-right-col { position: relative; top: 0; padding-top: 30px; }
+}
+
+@media (max-width: 768px) {
+  .hotel-modal-overlay { padding: 10px; }
+  .hotel-modal-close { top: 10px; right: 10px; }
+  .hotel-modal-body { padding: 0 20px 20px 20px; }
+  .hm-features { flex-wrap: wrap; padding: 15px; gap: 15px; }
+  .hm-feature { flex: 1 1 40%; padding: 0 !important; }
+  .hm-feature:not(:last-child) { border-right: none; }
+  .hotel-modal-gallery {
+    display: block;
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 14px;
+    margin-bottom: 15px;
+  }
+  .hm-pic {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0; transition: opacity 1s ease-in-out;
+    display: block !important; border-radius: 14px !important;
+  }
+  .hm-pic.active { opacity: 1; position: relative; }
+  .hm-form-row { flex-direction: column; gap: 15px; }
+  .hm-details-grid { grid-template-columns: repeat(2, 1fr); }
 }

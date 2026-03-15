@@ -67,6 +67,20 @@
         const feedback = document.getElementById('formFeedback');
         const submitBtn = document.getElementById('submitBtn');
 
+        // Pre-fill logic from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const nameVal = urlParams.get('name');
+        if (nameVal) document.getElementById('fullName').value = nameVal;
+        
+        const typeVal = urlParams.get('consultancyType');
+        if (typeVal) document.getElementById('consultancyType').value = typeVal;
+
+        const emailVal = urlParams.get('email');
+        if (emailVal) document.getElementById('email').value = emailVal;
+
+        const msgVal = urlParams.get('message');
+        if (msgVal) document.getElementById('message').value = msgVal;
+
         form.addEventListener('submit', function (e) {
             e.preventDefault();
 

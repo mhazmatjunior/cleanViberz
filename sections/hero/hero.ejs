@@ -24,28 +24,28 @@
       <form class="booking-form" id="heroBookingForm">
         <input type="hidden" name="type" id="bookingType" value="Host">
         <div class="form-group">
-          <label>Name</label>
-          <input type="text" name="name" id="heroName" placeholder="Your Name" required>
+          <label id="label-1">Name</label>
+          <input type="text" name="name" id="hero-input-1" placeholder="Your Name" required>
         </div>
-        <div class="form-divider"></div>
+        <div class="form-divider" id="divider-1"></div>
         <div class="form-group">
-          <label>Location</label>
-          <input type="text" name="location" placeholder="Address?">
+          <label id="label-2">Location</label>
+          <input type="text" name="location" id="hero-input-2" placeholder="Address?">
         </div>
-        <div class="form-divider"></div>
+        <div class="form-divider" id="divider-2"></div>
         <div class="form-group">
-          <label>Check In</label>
-          <input type="text" name="checkIn" placeholder="Add Dates">
+          <label id="label-3">Check In</label>
+          <input type="text" name="checkIn" id="hero-input-3" placeholder="Add Dates">
         </div>
-        <div class="form-divider"></div>
+        <div class="form-divider" id="divider-3"></div>
         <div class="form-group">
-          <label>Check Out</label>
-          <input type="text" name="checkOut" placeholder="Add Dates">
+          <label id="label-4">Check Out</label>
+          <input type="text" name="checkOut" id="hero-input-4" placeholder="Add Dates">
         </div>
-        <div class="form-divider"></div>
+        <div class="form-divider" id="divider-4"></div>
         <div class="form-group form-group-guests">
-          <label>Guests</label>
-          <input type="text" name="guests" placeholder="2 Adults">
+          <label id="label-5">Guests</label>
+          <input type="text" name="guests" id="hero-input-5" placeholder="2 Adults">
         </div>
         <button type="submit" class="btn-submit-circle" id="heroSubmitBtn">
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
@@ -68,54 +68,114 @@
     const feedback = document.getElementById('heroFeedback');
     const submitBtn = document.getElementById('heroSubmitBtn');
 
+    // Field mapping for dynamic tabs
+    const fieldMap = {
+      'host': [
+        { label: 'Name', name: 'name', placeholder: 'Your Name' },
+        { label: 'Location', name: 'location', placeholder: 'Address?' },
+        { label: 'Check In', name: 'checkIn', placeholder: 'Add Dates' },
+        { label: 'Check Out', name: 'checkOut', placeholder: 'Add Dates' },
+        { label: 'Guests', name: 'guests', placeholder: '2 Adults' }
+      ],
+      'car/van': [
+        { label: 'Name', name: 'name', placeholder: 'Your Name' },
+        { label: 'Location', name: 'location', placeholder: 'Pickup Address' },
+        { label: 'Pick Up', name: 'pickUpDate', placeholder: 'Select Date' },
+        { label: 'Drop Off', name: 'dropOffDate', placeholder: 'Select Date' },
+        { label: 'Guests', name: 'guestCount', placeholder: '2 Adults' }
+      ],
+      'concierge': [
+        { label: 'Name', name: 'name', placeholder: 'Your Name' },
+        { label: 'Service', name: 'consultancyType', placeholder: 'e.g. Airbnb' },
+        { label: 'Location', name: 'location', placeholder: 'Address?' },
+        { label: 'Email', name: 'email', placeholder: 'your@email.com' },
+        { label: 'Request', name: 'message', placeholder: 'Special Request' }
+      ],
+      'chef': [
+        { label: 'Name', name: 'name', placeholder: 'Your Name' },
+        { label: 'Location', name: 'address', placeholder: 'Delivery Address' },
+        { label: 'Delivery', name: 'deliveryDate', placeholder: 'Select Date' },
+        { label: 'Meals/Week', name: 'mealCount', placeholder: 'e.g. 10' },
+        { label: 'Meals/Day', name: 'mealsPerDay', placeholder: 'e.g. 2' }
+      ]
+    };
+
+    function updateFields(tabType) {
+      const fields = fieldMap[tabType];
+      if (!fields) return;
+      fields.forEach((f, i) => {
+        const idx = i + 1;
+        const label = document.getElementById(`label-${idx}`);
+        const input = document.getElementById(`hero-input-${idx}`);
+        if (label && input) {
+          label.textContent = f.label;
+          input.name = f.name;
+          input.placeholder = f.placeholder;
+        }
+      });
+    }
+
     // Tab switching logic
     chips.forEach(chip => {
       chip.addEventListener('click', () => {
         chips.forEach(c => c.classList.remove('chip-active'));
         chip.classList.add('chip-active');
-        typeInput.value = chip.textContent;
+        const tabType = chip.textContent.trim().toLowerCase();
+        typeInput.value = chip.textContent.trim();
+        updateFields(tabType);
       });
     });
 
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
+      const tabType = typeInput.value.toLowerCase();
+      const formData = new FormData(form);
+      const params = new URLSearchParams(formData).toString();
 
-      const name = document.getElementById('heroName').value.trim();
-      if (!name) {
-        feedback.textContent = 'Please enter your name.';
-        feedback.style.color = '#ff4d4d';
-        return;
-      }
-
-      submitBtn.disabled = true;
-      feedback.textContent = ''; // Clear feedback
-
-      try {
-        const formData = new FormData(form);
-        const details = Object.fromEntries(formData);
-
-        const response = await fetch('/api/book', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: name,
-            email: 'N/A',
-            type: 'Hero - ' + typeInput.value,
-            details: details
-          })
-        });
-
-        const result = await response.json();
-        if (result.success) {
-          form.reset();
-        } else {
-          feedback.textContent = 'Error: ' + (result.error || 'Failed to send.');
+      if (tabType === 'host') {
+        // Existing Host submission logic
+        const name = document.getElementById('hero-input-1').value.trim();
+        if (!name) {
+          feedback.textContent = 'Please enter your name.';
           feedback.style.color = '#ff4d4d';
+          return;
         }
-      } catch (err) {
-        console.error(err);
-      } finally {
-        submitBtn.disabled = false;
+        submitBtn.disabled = true;
+        feedback.textContent = '';
+        try {
+          const details = Object.fromEntries(formData);
+          const response = await fetch('/api/book', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: name,
+              email: 'N/A',
+              type: 'Hero - Host',
+              details: details
+            })
+          });
+          const result = await response.json();
+          if (result.success) {
+            form.reset();
+            feedback.textContent = 'Request sent successfully!';
+            feedback.style.color = '#4CAF50';
+          } else {
+            feedback.textContent = 'Error: ' + (result.error || 'Failed to send.');
+            feedback.style.color = '#ff4d4d';
+          }
+        } catch (err) {
+          console.error(err);
+        } finally {
+          submitBtn.disabled = false;
+        }
+      } else {
+        // Redirection logic for other tabs
+        let target = '/';
+        if (tabType === 'car/van') target = '/car-book';
+        else if (tabType === 'concierge') target = '/consultancy';
+        else if (tabType === 'chef') target = '/meal-book';
+        
+        window.location.href = `${target}?${params}`;
       }
     });
   });

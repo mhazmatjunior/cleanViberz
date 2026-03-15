@@ -325,6 +325,17 @@
         const feedback = document.getElementById('formFeedback');
         const submitBtn = document.getElementById('submitBtn');
 
+        // Pre-fill logic from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const prefillFields = ['name', 'address', 'deliveryDate', 'mealCount', 'mealsPerDay'];
+        prefillFields.forEach(fieldId => {
+            const val = urlParams.get(fieldId);
+            if (val) {
+                const input = document.getElementById(fieldId);
+                if (input) input.value = val;
+            }
+        });
+
         // Quantity logic
         document.querySelectorAll('.qty-btn').forEach(btn => {
             btn.addEventListener('click', function () {

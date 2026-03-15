@@ -21,7 +21,8 @@ Every major button has been linked to its specific functional form to maximize c
 | Page | Button / Element | Link Destination | Feature |
 | :--- | :--- | :--- | :--- |
 | **Homepage** | Book Now (CTA Section) | `/meal-book` | Direct Form Access |
-| **Car Service** | Book Your Ride (Excellence) | `/car-book` | Service Booking |
+| **Car Service** | Book Your Ride (Excellence) | Car Service Page | Links "Book Your Ride Now" to Car Form |
+| Destinations Interactivity | Homepage | Modal support for Hotels, Cars, Chefs, Concierge |
 | **Meal Prep** | Prepare Meal Now (Gallery) | `/meal-book` | Interactive Link |
 | **Meal Prep** | Book Your Room (Section 5) | `/our-story` | Service Discovery |
 | **Car Service** | Ride Category Arrows | `/explore-cars` | Quick Fleet Access |

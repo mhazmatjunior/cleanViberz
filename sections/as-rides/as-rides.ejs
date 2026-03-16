@@ -1,0 +1,258 @@
+<!-- ========== AIRBNB STAY SECTION 3: RIDE GALLERY (DUPLICATE) ========== -->
+<section id="as-rides" class="as-rides-section">
+    <div class="as-rides-inner">
+
+        <!-- Header -->
+        <div class="as-rides-header">
+            <h2 class="as-rides-title">Choose Your Ideal Stay</h2>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="as-rides-grid">
+            <!-- Card 1: Private Studio Suite -->
+            <article class="as-ride-card" 
+                data-title="Private Studio Suite"
+                data-desc="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque. Sed ut perspiciatis unde omnis iste natus error sit voluptatem"
+                data-img="/AirBNB Stay/Section_3_Pic_1.png"
+                data-bedrooms="1" data-bathrooms="1" data-kitchens="1" data-sqft="450"
+                data-amenities='["Free WiFi", "Smart TV", "Mini Fridge"]'
+                onclick="openHotelModal(this)">
+                <img src="/AirBNB Stay/Section_3_Pic_1.png" alt="Private Studio Suite" class="as-ride-card-img"
+                    loading="lazy" decoding="async">
+                <div class="as-ride-card-overlay"></div>
+                <div class="as-ride-card-content">
+                    <h3 class="as-ride-card-title">Private Studio Suite</h3>
+                    <p class="as-ride-card-desc">
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque. Sed ut
+                        perspiciatis unde omnis iste natus error sit voluptatem
+                    </p>
+                </div>
+                <button type="button" class="as-ride-card-arrow" onclick="event.stopPropagation(); openHotelModal(this.parentElement)">
+                    <img src="/Car Service/Grouped Arrow.png" alt="View" class="as-ride-arrow-img">
+                </button>
+            </article>
+
+            <!-- Card 2: Luxury Stay -->
+            <article class="as-ride-card" 
+                data-title="Luxury Stay"
+                data-desc="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque. Sed ut perspiciatis unde omnis iste natus error sit voluptatem"
+                data-img="/AirBNB Stay/Section_3_Pic_2.png"
+                data-bedrooms="2" data-bathrooms="2" data-kitchens="1" data-sqft="1200"
+                data-amenities='["Private Pool", "Ocean View", "Gourmet Kitchen"]'
+                onclick="openHotelModal(this)">
+                <img src="/AirBNB Stay/Section_3_Pic_2.png" alt="Luxury Stay" class="as-ride-card-img" loading="lazy"
+                    decoding="async">
+                <div class="as-ride-card-overlay"></div>
+                <div class="as-ride-card-content">
+                    <h3 class="as-ride-card-title">Luxury Stay</h3>
+                    <p class="as-ride-card-desc">
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque. Sed ut
+                        perspiciatis unde omnis iste natus error sit voluptatem
+                    </p>
+                </div>
+                <button type="button" class="as-ride-card-arrow" onclick="event.stopPropagation(); openHotelModal(this.parentElement)">
+                    <img src="/Car Service/Grouped Arrow.png" alt="View" class="as-ride-arrow-img">
+                </button>
+            </article>
+
+            <!-- Card 3: Family Friendly Suite -->
+            <article class="as-ride-card" 
+                data-title="Family Friendly Suite"
+                data-desc="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque. Sed ut perspiciatis unde omnis iste natus error sit voluptatem"
+                data-img="/AirBNB Stay/Section_3_Pic_3.png"
+                data-bedrooms="3" data-bathrooms="2" data-kitchens="1" data-sqft="1800"
+                data-amenities='["Kids Play Area", "High Chair", "Washer/Dryer"]'
+                onclick="openHotelModal(this)">
+                <img src="/AirBNB Stay/Section_3_Pic_3.png" alt="Family Friendly Suite" class="as-ride-card-img"
+                    loading="lazy" decoding="async">
+                <div class="as-ride-card-overlay"></div>
+                <div class="as-ride-card-content">
+                    <h3 class="as-ride-card-title">Family Friendly Suite</h3>
+                    <p class="as-ride-card-desc">
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque. Sed ut
+                        perspiciatis unde omnis iste natus error sit voluptatem
+                    </p>
+                </div>
+                <button type="button" class="as-ride-card-arrow" onclick="event.stopPropagation(); openHotelModal(this.parentElement)">
+                    <img src="/Car Service/Grouped Arrow.png" alt="View" class="as-ride-arrow-img">
+                </button>
+            </article>
+        </div>
+    </div>
+
+    <!-- HOTEL MODAL -->
+    <div class="hotel-modal-overlay" id="hotelModal">
+        <div class="hotel-modal-content">
+            <div class="hm-modal-handle"></div>
+            <button class="hotel-modal-close" onclick="closeHotelModal()">
+                <span class="material-icons">close</span>
+            </button>
+            <div class="hotel-modal-gallery">
+                <img src="" alt="Stay 1" class="hm-pic hm-pic-1">
+                <img src="" alt="Stay 2" class="hm-pic hm-pic-2">
+                <img src="" alt="Stay 3" class="hm-pic hm-pic-3">
+                <img src="" alt="Stay 4" class="hm-pic hm-pic-4">
+                <img src="" alt="Stay 5" class="hm-pic hm-pic-5">
+            </div>
+            <div class="hotel-modal-body">
+                <div class="hm-left-col">
+                    <div class="hm-title-row">
+                        <div>
+                            <h2 class="hm-title" id="hmTitle">Stay Name</h2>
+                            <p class="hm-location">Premium Stay & Comfort</p>
+                        </div>
+                        <div class="hm-price-box">
+                            <div class="hm-price" id="hmPrice">$190<span>/Night</span></div>
+                            <p class="hm-date">Check current availability</p>
+                        </div>
+                    </div>
+                    <div class="hm-features">
+                        <div class="hm-feature">
+                            <img src="/img/Vector_Model_1.png" alt="Bedrooms">
+                            <span id="hmBedrooms">2 Bedrooms</span>
+                        </div>
+                        <div class="hm-feature">
+                            <img src="/img/Vector_Model_2.png" alt="Bathrooms">
+                            <span id="hmBathrooms">2 Bathrooms</span>
+                        </div>
+                        <div class="hm-feature">
+                            <img src="/img/Vector_Model_3.png" alt="Kitchens">
+                            <span id="hmKitchens">1 Kitchens</span>
+                        </div>
+                        <div class="hm-feature">
+                            <img src="/img/Vector_Model_4.png" alt="Sq Ft">
+                            <span id="hmSqFt">200 Sq Fts</span>
+                        </div>
+                    </div>
+                    <div class="hm-about">
+                        <h3>About this stay</h3>
+                        <p id="hmDesc">Stay description goes here...</p>
+                    </div>
+                    <div class="hm-other-amenities">
+                        <h3>Other Amenities</h3>
+                        <div id="hmAmenitiesList" class="hm-amenities-list"></div>
+                    </div>
+                </div>
+                <div class="hm-right-col">
+                    <h3 class="hm-book-title">Reserve Your Stay</h3>
+                    <form id="hotelModalForm" class="hm-booking-form">
+                        <input type="hidden" name="type" value="Airbnb Stay">
+                        <input type="hidden" name="hotelName" id="hmFormHotelName" value="">
+                        <div class="hm-form-group">
+                            <label>Name</label>
+                            <input type="text" name="name" id="hmFormName" placeholder="Your Name" required>
+                        </div>
+                        <div class="hm-form-row">
+                            <div class="hm-form-group">
+                                <label>Adults</label>
+                                <input type="number" name="adults" value="1" min="1">
+                            </div>
+                            <div class="hm-form-group">
+                                <label>Children</label>
+                                <input type="number" name="children" value="0" min="0">
+                            </div>
+                        </div>
+                        <button type="submit" class="hm-btn" id="hmSubmitBtn">Check Availability</button>
+                        <div id="hmFeedback" style="margin-top: 10px; text-align: center; color: #fff; font-size: 0.9rem;"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let slideshowInterval;
+        function startMobileSlideshow(modalId) {
+            if (window.innerWidth > 768) return;
+            const modal = document.getElementById(modalId);
+            const images = modal.querySelectorAll('.hotel-modal-gallery .hm-pic');
+            if (images.length <= 1) return;
+            let currentIndex = 0;
+            images.forEach(img => img.classList.remove('active'));
+            images[0].classList.add('active');
+            clearInterval(slideshowInterval);
+            slideshowInterval = setInterval(() => {
+                images[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].classList.add('active');
+            }, 3000);
+        }
+
+        function openHotelModal(card) {
+            document.getElementById('hmTitle').innerText = card.dataset.title;
+            document.getElementById('hmDesc').innerText = card.dataset.desc;
+            document.getElementById('hmFormHotelName').value = card.dataset.title;
+            document.getElementById('hmBedrooms').innerText = (card.dataset.bedrooms || '1') + ' Bedrooms';
+            document.getElementById('hmBathrooms').innerText = (card.dataset.bathrooms || '1') + ' Bathrooms';
+            document.getElementById('hmKitchens').innerText = (card.dataset.kitchens || '1') + ' Kitchens';
+            document.getElementById('hmSqFt').innerText = (card.dataset.sqft || '450') + ' Sq Fts';
+
+            const imgUrl = card.dataset.img;
+            const gallery = document.querySelectorAll('#hotelModal .hm-pic');
+            gallery.forEach(img => img.src = imgUrl);
+
+            const amenitiesContainer = document.getElementById('hmAmenitiesList');
+            amenitiesContainer.innerHTML = '';
+            try {
+                const specs = JSON.parse(card.dataset.amenities || '[]');
+                specs.forEach(item => {
+                    const span = document.createElement('span');
+                    span.className = 'hm-amenity-chip';
+                    span.innerText = item;
+                    amenitiesContainer.appendChild(span);
+                });
+            } catch(e) {}
+            
+            document.getElementById('hotelModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            startMobileSlideshow('hotelModal');
+        }
+
+        function closeHotelModal() {
+            document.getElementById('hotelModal').classList.remove('active');
+            document.body.style.overflow = '';
+            clearInterval(slideshowInterval);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('hotelModalForm');
+            if (form) {
+                form.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+                    const feedback = document.getElementById('hmFeedback');
+                    const submitBtn = document.getElementById('hmSubmitBtn');
+                    submitBtn.disabled = true;
+                    feedback.textContent = 'Sending...';
+                    
+                    try {
+                        const formData = new FormData(form);
+                        const response = await fetch('/api/book', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                name: formData.get('name'),
+                                email: 'N/A',
+                                type: formData.get('type') || 'Airbnb Stay',
+                                details: Object.fromEntries(formData)
+                            })
+                        });
+                        const result = await response.json();
+                        if (result.success) {
+                            form.reset();
+                            feedback.textContent = 'Request sent successfully!';
+                            feedback.style.color = '#4CAF50';
+                        } else {
+                            feedback.textContent = 'Error: ' + result.error;
+                            feedback.style.color = '#ff4d4d';
+                        }
+                    } catch (err) {
+                        feedback.textContent = 'An error occurred.';
+                        feedback.style.color = '#ff4d4d';
+                    } finally {
+                        submitBtn.disabled = false;
+                    }
+                });
+            }
+        });
+    </script>
+</section>

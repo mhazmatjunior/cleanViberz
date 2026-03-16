@@ -1,0 +1,344 @@
+<section class="as-book-section">
+    <div class="as-book-container">
+        <h1 class="as-book-title">Stay Reservation Form</h1>
+        <p class="as-book-subtitle">Fill out the form below to book your premium stay experience.</p>
+
+        <form id="asBookForm" class="as-book-form" novalidate>
+            <!-- Personal Info -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Name<span class="required">*</span></label>
+                    <input type="text" id="name" name="name" placeholder="John David" required>
+                    <span class="error-message" id="nameError">Please enter your name</span>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email<span class="required">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="your.email@gmail.com" required>
+                    <span class="error-message" id="emailError">Please enter a valid email</span>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone<span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" placeholder="+1 (123) 456789" required>
+                    <span class="error-message" id="phoneError">Please enter your phone number</span>
+                </div>
+            </div>
+
+            <div class="form-divider"></div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="stayType">Stay Type<span class="required">*</span></label>
+                    <div class="select-wrapper">
+                        <select id="stayType" name="stayType" required>
+                            <option value="" disabled selected>Select Stay Type</option>
+                            <option value="studio-suite">Studio Suite</option>
+                            <option value="luxury-stay">Luxury Stay</option>
+                            <option value="family-suite">Family Suite</option>
+                            <option value="executive-apartment">Executive Apartment</option>
+                        </select>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                    <span class="error-message" id="stayTypeError">Please select a stay type</span>
+                </div>
+                <div class="form-group">
+                    <label for="guest">Guest Type<span class="required">*</span></label>
+                    <div class="select-wrapper">
+                        <select id="guest" name="guest" required>
+                            <option value="" disabled selected>Select Guest Type</option>
+                            <option value="personal">Personal</option>
+                            <option value="business">Business</option>
+                            <option value="family">Family/Group</option>
+                        </select>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                    <span class="error-message" id="guestError">Please select a guest type</span>
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="guestCount">Guest count<span class="required">*</span></label>
+                <input type="number" id="guestCount" name="guestCount" placeholder="Enter guest count" min="1" required>
+                <span class="error-message" id="guestCountError">Please enter guest count</span>
+            </div>
+
+            <div class="form-divider"></div>
+
+            <div class="form-group full-width">
+                <label for="stayLocation">Stay Location<span class="required">*</span></label>
+                <input type="text" id="stayLocation" name="stayLocation" placeholder="Dubai Marina, Downtown Dubai, etc." required>
+                <span class="error-message" id="stayLocationError">Please enter stay location</span>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="checkInDate">Check-in Date<span class="required">*</span></label>
+                    <input type="text" id="checkInDate" name="checkInDate" class="readonly-input"
+                        placeholder="Select Check-in Date" readonly required>
+                    <span class="error-message" id="checkInDateError">Please select check-in date</span>
+                </div>
+                <div class="form-group">
+                    <label for="checkOutDate">Check-out Date<span class="required">*</span></label>
+                    <input type="text" id="checkOutDate" name="checkOutDate" class="readonly-input"
+                        placeholder="Select Check-out Date" readonly required>
+                    <span class="error-message" id="checkOutDateError">Please select check-out date</span>
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="additionalInfo">Additional Info</label>
+                <textarea id="additionalInfo" name="additionalInfo" placeholder="Additional Message (e.g. special requests, arrival time)"></textarea>
+            </div>
+
+            <div class="form-submit">
+                <button type="submit" class="submit-btn gold-btn" id="submitBtn">
+                    <span>Confirm Reservation Request</span>
+                </button>
+            </div>
+
+            <div id="formFeedback" class="form-feedback"></div>
+        </form>
+    </div>
+
+    <!-- ========== DATE PICKER MODAL ========== -->
+    <div class="picker-overlay" id="datePickerOverlay"></div>
+    <div class="picker-modal" id="datePickerModal">
+        <div class="calendar-header">
+            <div class="calendar-month-year" id="currentMonthYear"></div>
+            <div class="calendar-nav">
+                <button class="nav-btn" id="prevMonth">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <button class="nav-btn" id="nextMonth">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="calendar-days-header">
+            <div class="day-name">Mo</div>
+            <div class="day-name">Tu</div>
+            <div class="day-name">We</div>
+            <div class="day-name">Th</div>
+            <div class="day-name">Fr</div>
+            <div class="day-name">Sa</div>
+            <div class="day-name">Su</div>
+        </div>
+        <div class="calendar-grid" id="calendarGrid">
+            <!-- Days injected via JS -->
+        </div>
+        <div class="picker-footer">
+            <button class="picker-btn cancel" id="cancelBtn">Cancel</button>
+            <button class="picker-btn confirm" id="confirmBtn">Confirm</button>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('asBookForm');
+        const feedback = document.getElementById('formFeedback');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Pre-fill logic from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const prefillFields = ['name', 'location', 'checkInDate', 'checkOutDate', 'guestCount'];
+        prefillFields.forEach(fieldId => {
+            const val = urlParams.get(fieldId);
+            if (val) {
+                const input = document.getElementById(fieldId === 'location' ? 'stayLocation' : fieldId);
+                if (input) input.value = val;
+            }
+        });
+
+        /* --- Custom Date Picker Logic --- */
+        let currentTargetInput = null;
+        let selectedDate = new Date();
+        let displayDate = new Date();
+
+        const dateModal = document.getElementById('datePickerModal');
+        const dateOverlay = document.getElementById('datePickerOverlay');
+        const monthYearText = document.getElementById('currentMonthYear');
+        const calendarGrid = document.getElementById('calendarGrid');
+
+        const openDatePicker = (input) => {
+            currentTargetInput = input;
+            const val = input.value ? new Date(input.value) : new Date();
+            selectedDate = isNaN(val.getTime()) ? new Date() : val;
+            displayDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1);
+            renderCalendar();
+            dateModal.classList.add('active');
+            dateOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const closeDatePicker = () => {
+            dateModal.classList.remove('active');
+            dateOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        const renderCalendar = () => {
+            const year = displayDate.getFullYear();
+            const month = displayDate.getMonth();
+            const monthName = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(displayDate);
+            monthYearText.textContent = `${monthName} ${year}`;
+
+            calendarGrid.innerHTML = '';
+
+            let firstDay = new Date(year, month, 1).getDay();
+            firstDay = firstDay === 0 ? 6 : firstDay - 1; 
+
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            for (let i = 0; i < firstDay; i++) {
+                const empty = document.createElement('div');
+                empty.className = 'calendar-day empty';
+                calendarGrid.appendChild(empty);
+            }
+
+            const today = new Date();
+
+            for (let d = 1; d <= daysInMonth; d++) {
+                const dayEl = document.createElement('div');
+                dayEl.className = 'calendar-day';
+                dayEl.textContent = d;
+
+                if (year === today.getFullYear() && month === today.getMonth() && d === today.getDate()) {
+                    dayEl.classList.add('today');
+                }
+
+                if (year === selectedDate.getFullYear() && month === selectedDate.getMonth() && d === selectedDate.getDate()) {
+                    dayEl.classList.add('selected');
+                }
+
+                dayEl.addEventListener('click', () => {
+                    selectedDate = new Date(year, month, d);
+                    renderCalendar();
+                });
+
+                calendarGrid.appendChild(dayEl);
+            }
+        };
+
+        document.getElementById('prevMonth').addEventListener('click', (e) => {
+            e.preventDefault();
+            displayDate.setMonth(displayDate.getMonth() - 1);
+            renderCalendar();
+        });
+
+        document.getElementById('nextMonth').addEventListener('click', (e) => {
+            e.preventDefault();
+            displayDate.setMonth(displayDate.getMonth() + 1);
+            renderCalendar();
+        });
+
+        document.getElementById('confirmBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            const year = selectedDate.getFullYear();
+            const month = (selectedDate.getMonth() + 1).toString().padStart(2, '0');
+            const day = selectedDate.getDate().toString().padStart(2, '0');
+            currentTargetInput.value = `${year}-${month}-${day}`;
+            currentTargetInput.classList.remove('invalid');
+            const err = document.getElementById(currentTargetInput.id + 'Error');
+            if (err) err.classList.remove('active');
+            closeDatePicker();
+        });
+
+        document.getElementById('cancelBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            closeDatePicker();
+        });
+        dateOverlay.addEventListener('click', closeDatePicker);
+
+        /* --- Field Handlers --- */
+        ['checkInDate', 'checkOutDate'].forEach(id => {
+            document.getElementById(id).addEventListener('click', function () { openDatePicker(this); });
+        });
+
+        /* --- Form Submission --- */
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            let isValid = true;
+            const requiredFields = ['name', 'email', 'phone', 'stayType', 'guest', 'guestCount', 'stayLocation', 'checkInDate', 'checkOutDate'];
+
+            requiredFields.forEach(fieldId => {
+                const input = document.getElementById(fieldId);
+                const error = document.getElementById(fieldId + 'Error');
+
+                if (!input.value) {
+                    input.classList.add('invalid');
+                    if (error) error.classList.add('active');
+                    isValid = false;
+                } else if (fieldId === 'phone') {
+                    const digits = input.value.replace(/\D/g, '');
+                    if (digits.length < 10) {
+                        input.classList.add('invalid');
+                        if (error) {
+                            error.textContent = 'Phone number must be at least 10 digits';
+                            error.classList.add('active');
+                        }
+                        isValid = false;
+                    } else {
+                        input.classList.remove('invalid');
+                        if (error) error.classList.remove('active');
+                    }
+                } else {
+                    input.classList.remove('invalid');
+                    if (error) error.classList.remove('active');
+                }
+            });
+
+            if (isValid) {
+                submitBtn.classList.add('loading');
+                submitBtn.disabled = true;
+
+                const formData = new FormData(form);
+                const formDataObj = Object.fromEntries(formData);
+                const data = {
+                    type: 'Stay Booking',
+                    name: formDataObj.name,
+                    email: formDataObj.email,
+                    details: JSON.stringify(formDataObj)
+                };
+
+                fetch('/api/book', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.json())
+                    .then(result => {
+                        submitBtn.classList.remove('loading');
+                        if (result.success) {
+                            feedback.textContent = 'Reservation request submitted successfully! We will contact you shortly.';
+                            feedback.classList.add('success', 'active');
+                            form.reset();
+                        } else {
+                            feedback.textContent = 'Error: ' + (result.error || 'Failed to submit booking.');
+                            feedback.classList.add('error', 'active');
+                        }
+                        submitBtn.disabled = false;
+                        setTimeout(() => { feedback.classList.remove('active'); }, 5000);
+                    })
+                    .catch(err => {
+                        submitBtn.classList.remove('loading');
+                        feedback.textContent = 'Network error. Please try again.';
+                        feedback.classList.add('error', 'active');
+                        submitBtn.disabled = false;
+                    });
+            }
+        });
+
+        form.querySelectorAll('input, select, textarea').forEach(el => {
+            el.addEventListener('input', function () {
+                this.classList.remove('invalid');
+                const error = document.getElementById(this.id + 'Error');
+                if (error) error.classList.remove('active');
+            });
+        });
+    });
+</script>

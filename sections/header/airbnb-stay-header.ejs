@@ -1,4 +1,4 @@
-<!-- ========== HEADER — Services Active ========== -->
+<!-- ========== AIRBNB STAY HEADER (Services tab active) ========== -->
 <header class="site-header animate-header" id="header">
     <div class="header-inner">
         <a href="/" class="brand">
@@ -15,7 +15,7 @@
                 <span class="nav-text">Home</span>
             </a>
             <div class="dropdown">
-                <a href="/meal-prep" class="nav-link active">
+                <a href="/airbnb-stay" class="nav-link active">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="nav-icon">
@@ -54,13 +54,14 @@
             </a>
         </nav>
         <div class="header-actions">
-            <a href="/meal-book" class="btn btn-primary header-cta desktop-only">
+            <!-- For now pointing to a generic book or story if book doesn't exist -->
+            <a href="/our-story" class="btn btn-primary header-cta desktop-only">
                 <span>Book Now</span>
                 <img src="/img/vector5.svg" alt="Book Now Icon" width="58" height="58">
             </a>
 
             <!-- Mobile Book Now Button -->
-            <a href="/meal-book" class="btn btn-primary nav-book-btn-mobile mobile-only">
+            <a href="/our-story" class="btn btn-primary nav-book-btn-mobile mobile-only">
                 Book Now
             </a>
 
@@ -88,9 +89,9 @@
                     <span>02</span> Services <span class="dropdown-chevron">▼</span>
                 </div>
                 <div class="sidebar-submenu">
-                    <a href="/meal-prep" class="submenu-link active">Meal Prep</a>
+                    <a href="/meal-prep" class="submenu-link">Meal Prep</a>
                     <a href="/car-service" class="submenu-link">Car Book</a>
-                    <a href="/airbnb-stay" class="submenu-link">Airbnb Stay</a>
+                    <a href="/airbnb-stay" class="submenu-link active">Airbnb Stay</a>
                     <a href="/private-dinner" class="submenu-link">Private Dinner</a>
                     <a href="/consultancy" class="submenu-link">Consultation</a>
                 </div>
@@ -104,7 +105,7 @@
                 <p>info@cleanvibezvip.com</p>
                 <p>+1 (555) VIP-VIBE</p>
             </div>
-            <button class="btn btn-primary sidebar-cta">Book Your Experience</button>
+            <a href="/our-story" class="btn btn-primary sidebar-cta">Book Your Experience</a>
         </div>
     </div>
 </div>
@@ -130,7 +131,6 @@
         const closeSidebar = () => {
             mobileSidebar.classList.remove('active');
             document.body.style.overflow = '';
-            // Reset dropdown state on close
             if (dropdownWrapper) dropdownWrapper.classList.remove('active');
         };
 

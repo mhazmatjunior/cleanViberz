@@ -182,12 +182,35 @@ app.get('/explore-cars', async (req, res) => {
   }
 });
 
+// Airbnb Stay Page
+app.get('/airbnb-stay', async (req, res) => {
+  try {
+    const [faqs] = await db.query("SELECT * FROM site_faqs WHERE category = ? ORDER BY display_order ASC", ['car']);
+    const [rides] = await db.query("SELECT * FROM car_rides");
+
+    res.render('airbnb-stay', {
+      title: 'Airbnb Stay - Clean Vibez VIP',
+      activePage: 'services',
+      faqs,
+      rides
+    });
+  } catch (err) {
+    res.render('airbnb-stay', {
+      title: 'Airbnb Stay - Clean Vibez VIP',
+      activePage: 'services',
+      faqs: [],
+      rides: []
+    });
+  }
+});
+
 // Car Book Form Page
 app.get('/car-book', (req, res) => {
-  res.render('car-book', {
-    title: 'Car Book Form - Clean Vibez VIP',
-    activePage: 'services'
-  });
+  res.render('car-book', { title: 'Car Booking | Clean Vibez VIP', activePage: 'services' });
+});
+
+app.get('/airbnb-stay-book', (req, res) => {
+  res.render('airbnb-stay-book', { title: 'Stay Reservation | Clean Vibez VIP', activePage: 'services' });
 });
 
 // Private Dinner / Date Night Page

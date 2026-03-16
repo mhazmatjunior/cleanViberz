@@ -1,0 +1,295 @@
+/* ========== AIRBNB STAY — SECTION 2: EXCELLENCE ========== */
+
+.as-excellence-section {
+    position: relative;
+    background: #0d0a04;
+    padding: 8vh 0 0 5vw;
+    overflow: visible;
+}
+
+/* ---- Linker vector after section ---- */
+.as-exc-linker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 4px 0;
+    pointer-events: none;
+    background: #0d0a04;
+}
+
+.as-exc-linker img {
+    width: auto;
+    height: auto;
+    display: block;
+    max-width: 300px;
+}
+
+@media (max-width: 1023px) {
+    .as-exc-linker {
+        display: none;
+    }
+}
+
+/* ---- Inner two-column layout ---- */
+.as-excellence-inner {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    overflow: visible;
+}
+
+/* ---- LEFT column: Text ---- */
+.as-exc-left {
+    flex: 0 0 771px;
+    width: 771px;
+    max-width: 771px;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+    z-index: 2;
+}
+
+/* Title */
+.as-exc-title {
+    font-family: 'Jost', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1.2;
+    color: #ffffff;
+    margin: 0;
+    width: 735px;
+    max-width: 100%;
+}
+
+/* Bullet list */
+.as-exc-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 0;
+    margin: 0;
+}
+
+.as-exc-list li {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #e0b973;
+    line-height: normal;
+    margin: 0;
+}
+
+/* Bullet dot */
+.as-exc-list li::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    min-width: 10px;
+    border-radius: 50%;
+    background: #e0b973;
+    margin-top: 6px;
+    z-index: 2;
+}
+
+/* Dashed connecting line */
+.as-exc-list li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 4.5px;
+    width: 1.5px;
+    height: calc(100% + 14px);
+    border-left: 1.5px dashed rgba(224, 185, 115, 0.4);
+    z-index: 1;
+}
+
+/* Item content wrapper */
+.as-exc-list-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.as-exc-item-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #e0b973;
+}
+
+.as-exc-item-desc {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
+}
+
+/* CTA Button */
+.as-exc-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 100px;
+    padding: 12px 12px 12px 28px;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    width: fit-content;
+    margin-top: 1vh;
+}
+
+.as-exc-cta:hover {
+    border-color: #e0b973;
+    transform: translateY(-2px);
+}
+
+.as-exc-cta-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.as-exc-cta-icon img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+/* ---- RIGHT column: Images ---- */
+.as-exc-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: visible;
+    position: relative;
+    padding-right: 5vw;
+    z-index: 1;
+}
+
+.as-exc-img-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.as-exc-img-top,
+.as-exc-img-bottom {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 30px;
+    display: block;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.as-exc-img-top {
+    max-height: 300px;
+}
+
+.as-exc-img-bottom {
+    max-height: 500px;
+}
+
+/* ---- Mobile Responsiveness ---- */
+@media (max-width: 1200px) {
+    .as-exc-left {
+        flex: 0 0 50%;
+        width: 50%;
+        max-width: 50%;
+    }
+
+    .as-exc-right {
+        padding-right: 2vw;
+    }
+}
+
+@media (max-width: 1023px) {
+    .as-excellence-section {
+        background: #0d0a04;
+        padding: 6vh 24px 0;
+        width: 100%;
+        margin: 0;
+        transform: none;
+        border-radius: 0 !important;
+        overflow: hidden;
+        /* clip on mobile */
+    }
+
+    .as-excellence-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4vh;
+        margin-left: 0;
+    }
+
+    .as-exc-left {
+        flex: unset;
+        width: 100%;
+        max-width: 100%;
+        z-index: 2;
+    }
+
+    .as-exc-title {
+        font-size: clamp(1.6rem, 7vw, 2.2rem);
+        width: 100%;
+        text-align: center;
+    }
+
+    .as-exc-list {
+        gap: 14px;
+    }
+
+    .as-exc-list li {
+        font-size: 14px;
+    }
+
+    .as-exc-cta {
+        align-self: center;
+    }
+
+    .as-exc-right {
+        width: 100%;
+        height: auto;
+        padding-right: 0;
+        justify-content: center;
+    }
+
+    .as-exc-img-stack {
+        max-width: 100%;
+    }
+
+    .as-exc-img-top,
+    .as-exc-img-bottom {
+        border-radius: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .as-exc-title {
+        font-size: clamp(1.4rem, 7vw, 1.8rem);
+    }
+
+    .as-exc-item-title {
+        font-size: 14px;
+    }
+
+    .as-exc-item-desc {
+        font-size: 13px;
+    }
+}

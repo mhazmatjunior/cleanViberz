@@ -1,0 +1,161 @@
+/* ========== AIRBNB STAY — SECTION 5: PROCESS STEPS ========== */
+
+.as-process-section {
+    background: #0d0a04;
+    padding: 120px 5vw;
+    position: relative;
+    overflow: hidden;
+}
+
+.as-process-inner {
+    max-width: 1451px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header Styling */
+.as-process-header {
+    margin-bottom: 106px;
+    text-align: center;
+}
+
+.as-process-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.as-process-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 46px;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.1;
+    margin: 0;
+    width: 901px;
+    max-width: 100%;
+}
+
+/* Grid Styling */
+.as-process-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 1451.1px;
+    max-width: 100%;
+    position: relative;
+}
+
+/* Card Styling */
+.as-process-card {
+    width: 296.8px;
+    height: 296.8px;
+    background: #110e08;
+    border-radius: 50px;
+    padding: 30px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid rgba(224, 185, 115, 0.2);
+    transition: transform 0.3s ease, background 0.3s ease;
+    z-index: 2;
+}
+
+.as-process-card:hover {
+    background: #1a160d;
+    transform: translateY(-8px);
+}
+
+.as-process-step-num {
+    font-family: 'Jost', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.as-process-step-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 25px 0;
+    line-height: 1.2;
+}
+
+.as-process-step-desc {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+    margin: 0;
+    width: 245px;
+}
+
+/* Linker Styling */
+.as-process-linker {
+    width: 224px;
+    height: 182px;
+    margin: 0 -68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.as-process-linker img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 1;
+}
+
+/* ---- Mobile Responsiveness ---- */
+@media (max-width: 1450px) {
+    .as-process-grid {
+        width: 100%;
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .as-process-grid {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    .as-process-linker {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .as-process-section {
+        padding: 80px 24px;
+    }
+
+    .as-process-header {
+        margin-bottom: 40px;
+    }
+
+    .as-process-title {
+        font-size: 32px;
+        width: 100%;
+    }
+
+    .as-process-card {
+        width: 100%;
+        max-width: 340px;
+        height: auto;
+        min-height: 296.8px;
+        border-radius: 40px;
+    }
+}

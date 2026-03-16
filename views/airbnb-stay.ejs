@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <meta name="description"
+        content="Premium Airbnb management and stay services designed for your comfort. Reliable and professional stays by Clean Vibez VIP.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Preload Critical Hero Image -->
+    <link rel="preload" as="image" href="/Car Service/hero-bg.png">
+    <!-- Global styles -->
+    <link rel="stylesheet" href="/css/vars.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Shared section styles -->
+    <link rel="stylesheet" href="/header/header.css">
+    <link rel="stylesheet" href="/footer/footer.css">
+    <!-- Page-specific section styles -->
+    <link rel="stylesheet" href="/airbnb-stay-hero/airbnb-stay-hero.css">
+    <link rel="stylesheet" href="/as-excellence/as-excellence.css">
+    <link rel="stylesheet" href="/as-rides/as-rides.css">
+    <link rel="stylesheet" href="/as-airbnb/as-airbnb.css">
+    <link rel="stylesheet" href="/as-process/as-process.css">
+    <link rel="stylesheet" href="/as-faq/as-faq.css">
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ========== HEADER ========== -->
+    <%- include('../sections/header/airbnb-stay-header'); %>
+
+        <main>
+            <!-- ========== HERO SECTION ========== -->
+            <%- include('../sections/airbnb-stay-hero/airbnb-stay-hero'); %>
+
+                <!-- ========== SECTION 2: PREMIUM STAY ========== -->
+                <%- include('../sections/as-excellence/as-excellence'); %>
+
+                    <!-- ========== SECTION 3: CHOOSE YOUR STAY ========== -->
+                    <%- include('../sections/as-rides/as-rides'); %>
+
+                        <!-- ========== SECTION 4: AIRBNB COMFORT ========== -->
+                        <%- include('../sections/as-airbnb/as-airbnb'); %>
+
+                            <!-- ========== SECTION 5: BOOKING PROCESS STEPS ========== -->
+                            <%- include('../sections/as-process/as-process'); %>
+
+                                <!-- ========== SECTION 6: FAQ ========== -->
+                                <%- include('../sections/as-faq/as-faq'); %>
+
+        </main>
+
+        <!-- ========== FOOTER ========== -->
+        <%- include('../sections/footer/footer'); %>
+
+            <script>
+                // Blur-up Fallback
+                document.querySelectorAll('.blur-load img').forEach(img => {
+                    if (img.complete) img.parentElement.classList.add('loaded');
+                });
+            </script>
+</body>
+
+</html>

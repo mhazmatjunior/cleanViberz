@@ -13,18 +13,9 @@ This document provides a comprehensive technical map of the **Clean Vibez VIP** 
 ## 1. Main Pages (Views)
 The following are the top-level route templates located in `/views`:
 
-1.  **`index.ejs`**: The primary homepage.
-2.  **`car-service.ejs`**: Main portal for car and transportation services.
-3.  **`meal-prep.ejs`**: Deep-dive into meal planning and private chef services.
-4.  **`our-story.ejs`**: About us and company philosophy.
-5.  **`contact.ejs`**: Dedicated contact page.
-6.  **`car-book.ejs`**: Standalone car booking funnel.
-7.  **`meal-book.ejs`**: Standalone meal plan selection funnel.
-8.  **`consultancy.ejs`**: Specialized concierge consultancy form.
-9.  **`private-dinner.ejs`**: Exclusive private dining event booking.
-10. **`explore-hotels.ejs`**: Elite hotel partner listing with interactive modals.
-11. **`explore-cars.ejs`**: Comprehensive luxury car fleet display with vehicle details.
-12. **`404.ejs`**: Custom error page.
+12. **`airbnb-stay.ejs`**: Specialized hub for premium Airbnb stays and accommodations.
+13. **`airbnb-stay-book.ejs`**: Dedicated reservation funnel for short-term stays.
+14. **`404.ejs`**: Custom error page.
 
 ---
 
@@ -38,6 +29,7 @@ The project uses a component-based structure where each feature is a folder in `
 
 ### Service-Specific Sections
 *   **Car Service**: `car-service-hero`, `cs-excellence`, `cs-faq`, `cs-process`, `cs-rides`, `cs-airbnb`.
+*   **Airbnb Stay**: `airbnb-stay-hero`, `as-excellence`, `as-faq`, `as-process`, `as-rides`, `as-airbnb`, `airbnb-stay-book`.
 *   **Meal Prep**: `meal-prep-hero`, `mp-excellence`, `mp-faq`, `mp-features`, `mp-gallery`, `mp-process`, `mp-testimonials`, `mp-airbnb`.
 *   **Our Story**: `os-intro`, `os-journey`, `os-luxury`, `os-services`, `os-travel`, `os-concierge`, `story`.
 

@@ -1,8 +1,18 @@
 # High-Resolution Asset Restoration
 
-To keep the initial project package small and fast, the five heaviest background images have been uploaded separately. 
+To ensure a fast and manageable delivery, the project has been split into two packages:
+1. **CleanVibez_Codebase.zip**: Contains all updated source code (<25MB).
+2. **CleanVibez_Assets.zip**: Contains all high-resolution images and branding assets.
 
-Please download the images from the link provided in the Upwork message and place them into the following folders with the exact names listed below:
+### Instructions:
+1. Download both zip files.
+2. Extract the **Codebase** zip into your project folder.
+3. Extract the **Assets** zip and merge its contents into the `assets/` directory.
+
+---
+
+## Heavy Individual Assets
+If you are manually restoring assets, please ensure the following high-resolution files are present:
 
 | Image Filename | Target Folder in Project |
 | :--- | :--- |

@@ -1,12 +1,12 @@
-/* ========== CAR SERVICE — SECTION 3: RIDE GALLERY ========== */
+/* ========== AIRBNB STAY — SECTION 3: RIDE GALLERY ========== */
 
-.cs-rides-section {
+.as-rides-section {
     background: #0d0a04;
     padding: 6vh 5vw 8vh;
 }
 
 /* ---- Inner wrapper ---- */
-.cs-rides-inner {
+.as-rides-inner {
     max-width: 1504px;
     margin: 0 auto;
     display: flex;
@@ -16,12 +16,12 @@
 }
 
 /* ---- Header ---- */
-.cs-rides-header {
+.as-rides-header {
     text-align: center;
     width: 100%;
 }
 
-.cs-rides-title {
+.as-rides-title {
     font-family: 'Jost', sans-serif;
     font-size: clamp(1.6rem, 3vw, 2.4rem);
     font-weight: 600;
@@ -33,7 +33,7 @@
 }
 
 /* ---- Three Cards Grid ---- */
-.cs-rides-grid {
+.as-rides-grid {
     display: flex;
     gap: 12px;
     width: 100%;
@@ -42,7 +42,7 @@
 }
 
 /* ---- Individual Card ---- */
-.cs-ride-card {
+.as-ride-card {
     position: relative;
     flex: 1;
     width: 492px;
@@ -53,7 +53,7 @@
 }
 
 /* Background image */
-.cs-ride-card-img {
+.as-ride-card-img {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -64,12 +64,12 @@
     display: block;
 }
 
-.cs-ride-card:hover .cs-ride-card-img {
+.as-ride-card:hover .as-ride-card-img {
     transform: scale(1.05);
 }
 
 /* Dark gradient overlay */
-.cs-ride-card-overlay {
+.as-ride-card-overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(to top,
@@ -80,7 +80,7 @@
 }
 
 /* Text content on card */
-.cs-ride-card-content {
+.as-ride-card-content {
     position: absolute;
     bottom: 110px;
     left: 29px;
@@ -93,7 +93,7 @@
 }
 
 /* Card title */
-.cs-ride-card-title {
+.as-ride-card-title {
     font-family: 'Jost', sans-serif;
     font-size: clamp(1.1rem, 2vw, 1.5rem);
     font-weight: 700;
@@ -105,7 +105,7 @@
 }
 
 /* Card description */
-.cs-ride-card-desc {
+.as-ride-card-desc {
     font-family: 'Poppins', sans-serif;
     font-size: 13px;
     font-weight: 400;
@@ -117,7 +117,7 @@
 }
 
 /* Arrow icon — bottom right */
-.cs-ride-card-arrow {
+.as-ride-card-arrow {
     position: absolute;
     bottom: 20px;
     right: 20px;
@@ -131,11 +131,11 @@
     cursor: pointer;
 }
 
-.cs-ride-card:hover .cs-ride-card-arrow {
+.as-ride-card:hover .as-ride-card-arrow {
     transform: scale(1.08);
 }
 
-.cs-ride-arrow-img {
+.as-ride-arrow-img {
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -144,7 +144,7 @@
 
 /* ---- Mobile Responsiveness ---- */
 @media (max-width: 1023px) {
-    .cs-rides-section {
+    .as-rides-section {
         background: #0d0a04;
         padding: 6vh 16px 8vh;
         width: 100%;
@@ -153,43 +153,43 @@
         border-radius: 0 !important;
     }
 
-    .cs-rides-grid {
+    .as-rides-grid {
         flex-direction: column;
         height: auto;
         gap: 16px;
     }
 
-    .cs-ride-card {
+    .as-ride-card {
         width: 100%;
         height: 340px;
         flex: none;
     }
 
-    .cs-ride-card:first-child {
+    .as-ride-card:first-child {
         border-radius: 20px 20px 0 0;
     }
 
-    .cs-ride-card:last-child {
+    .as-ride-card:last-child {
         border-radius: 0 0 20px 20px;
     }
 
-    .cs-ride-card-content {
+    .as-ride-card-content {
         bottom: 90px;
         left: 20px;
         width: calc(100% - 120px);
     }
 
-    .cs-ride-card-title {
+    .as-ride-card-title {
         font-size: clamp(1.1rem, 5vw, 1.4rem);
         width: 100%;
     }
 
-    .cs-ride-card-desc {
+    .as-ride-card-desc {
         font-size: 12px;
         width: 100%;
     }
 
-    .cs-ride-card-arrow {
+    .as-ride-card-arrow {
         width: 70px;
         height: 70px;
         bottom: 16px;
@@ -198,7 +198,7 @@
 }
 
 @media (max-width: 480px) {
-    .cs-ride-card {
+    .as-ride-card {
         height: 280px;
     }
 }
@@ -494,32 +494,6 @@
     opacity: 0.8;
 }
 
-/* Car Specific Details Grid (Used in Car Modal) */
-.hm-details-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px 10px;
-}
-
-.hm-detail-item {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.hm-detail-label {
-    font-size: 0.8rem;
-    color: #FFFFFF;
-    font-weight: 500;
-    font-family: 'Poppins', sans-serif;
-}
-
-.hm-detail-value {
-    font-size: 0.85rem;
-    color: #999;
-    font-family: 'Poppins', sans-serif;
-}
-
 @media (max-width: 900px) {
     .hotel-modal-content {
         flex-direction: column;
@@ -540,41 +514,17 @@
     }
 
     .hm-right-col {
-        position: relative;
-        top: 0;
-        padding-top: 30px;
+        position: relative; top: 0; padding-top: 30px;
     }
 }
 
 @media (max-width: 768px) {
-    .hotel-modal-overlay {
-        padding: 10px;
-    }
-
-    .hotel-modal-close {
-        top: 10px;
-        right: 10px;
-    }
-
-    .hotel-modal-body {
-        padding: 0 20px 20px 20px;
-    }
-
-    .hm-features {
-        flex-wrap: wrap;
-        padding: 15px;
-        gap: 15px;
-    }
-
-    .hm-feature {
-        flex: 1 1 40%;
-        padding: 0 !important;
-    }
-
-    .hm-feature:not(:last-child) {
-        border-right: none;
-    }
-
+    .hotel-modal-overlay { padding: 10px; }
+    .hotel-modal-close { top: 10px; right: 10px; }
+    .hotel-modal-body { padding: 0 20px 20px 20px; }
+    .hm-features { flex-wrap: wrap; padding: 15px; gap: 15px; }
+    .hm-feature { flex: 1 1 40%; padding: 0 !important; }
+    .hm-feature:not(:last-child) { border-right: none; }
     .hotel-modal-gallery {
         display: block;
         position: relative;
@@ -583,30 +533,11 @@
         border-radius: 14px;
         margin-bottom: 15px;
     }
-
     .hm-pic {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        transition: opacity 1s ease-in-out;
-        display: block !important;
-        border-radius: 14px !important;
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        opacity: 0; transition: opacity 1s ease-in-out;
+        display: block !important; border-radius: 14px !important;
     }
-
-    .hm-pic.active {
-        opacity: 1;
-        position: relative;
-    }
-
-    .hm-form-row {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .hm-details-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    .hm-pic.active { opacity: 1; position: relative; }
+    .hm-form-row { flex-direction: column; gap: 15px; }
 }

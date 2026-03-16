@@ -1,0 +1,30 @@
+<!-- ========== AIRBNB STAY SECTION 6: FAQ ========== -->
+<section id="as-faq">
+    <div class="container">
+        <header class="section-header text-center">
+            <h2 style="text-align:left">Frequently Ask Questions</h2>
+        </header>
+        <div class="faq-list">
+            <% if (faqs && faqs.length> 0) { %>
+                <% faqs.forEach((item, index)=> { %>
+                    <details class="faq-item" <%=index===0 ? 'open' : '' %>>
+                        <summary class="faq-question">
+                            <span>
+                                <%= item.question %>
+                            </span>
+                            <img src="/img/<%= index === 0 ? 'xmark0.svg' : 'plus' + (index % 6) + '.svg' %>" alt=""
+                                class="faq-icon">
+                        </summary>
+                        <div class="faq-answer">
+                            <p>
+                                <%= item.answer %>
+                            </p>
+                        </div>
+                    </details>
+                    <% }) %>
+                        <% } else { %>
+                            <p class="text-white text-center">No FAQs found.</p>
+                            <% } %>
+        </div>
+    </div>
+</section>
